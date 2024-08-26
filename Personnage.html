@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Personnage - The Witcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            background-color: #555;
+            color: #fff;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-top: 40px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .attribute-table, .skills-table, .weapons-table, .armor-table, .vitality-table, .magic-table, .ritual-table, .charm-table, .background-table {
+            margin-bottom: 20px;
+        }
+        .attributes, .general-infos,.skills-container, .vitality-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 25%;
+        }
+
+        .infos-container{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.1rem;
+        }
+        
+        td:first-child, .vitality-name{
+            width: 8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Fiche de Personnage - The Witcher</h1>
+
+        <section class="infos-container">
+            <div class="general-infos">
+                <h2>Informations Générales</h2>
+                <table class="general-info-table">
+                    <tr>
+                        <td>Nom</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Race</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Genre</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Âge</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Terre natale</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="attributes">
+                <h2>Caractéristiques</h2>
+                <div class="infos-container">
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Attribut</th>
+                            <th>Valeur</th>
+                        </tr>
+                        <tr>
+                            <td>Corps (COR)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Intelligence (INT)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Réflexes (REF)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Dextérité (DEX)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Empathie (EMP)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Technique (TECH)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Volonté (VOL)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Charisme (CHA)</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Attribut</th>
+                            <th>Valeur</th>
+                        </tr>
+                        <tr>
+                            <td>Etourdissement (ETOU)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Courage (COUR)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Saut</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Point Santé (PS)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Endurance (END)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Encombrement (ENC)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Récupération (REC)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Poings</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Pieds</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+            <div class="vitality-container">
+                <h2>Vigueur et Endurance</h2>
+                <table>
+                    <tr>
+                        <th class="vitality-name">Vigueur Actuelle</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="vitality-name">Vigueur Utilisée</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="vitality-name">Endurance</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="vitality-name">Focus</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th class="vitality-name">Mod. Vigueur</th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Compétences</h2>
+            <div class="infos-container">
+                <div class="skills-container">
+                    <h3>Compétences d’Intelligence</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Connaissance de la rue</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Connaissance des monstres</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Déduction</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Éducation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Enseignement</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Étiquette</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Langue ancienne</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Langue commune</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Langue naine</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Négoce</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Survie</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Tactique</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Vigilance</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Compétences de Réflexe</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Bagarre</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Bâton/Lance</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Équitation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Escrime</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Esquive/Évasion</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Lames courtes</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Mêlée</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Navigation</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Compétences de Dextérité</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Adresse</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Arbalète</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Archerie</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Athlétisme</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Furtivité</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Compétences de Corps</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Physique</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Résilience</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Compétences d’Empathie</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Beaux-arts</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Charisme</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Commandement</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Duperie</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Jeu</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Persuasion</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Psychologie</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Représentation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Séduction</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Stylisme</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Compétences de Technique</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Artisanat</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Balistique</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Démolition</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Dressage</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Explosifs</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Herboristerie</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Monte</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Pilotage</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Premier soins</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Réparation</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Compétences de Volonté</h3>
+                    <table class="skills-table">
+                        <tr>
+                            <td>Concentration</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Courage</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Intimidation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Résistance à la douleur</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Résistance à la contrainte</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Résistance à la magie</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Rituels</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+        </section>
+
+        <section>
+            <h2>Armes et Armures</h2>
+            <h3>Armes</h3>
+            <table class="weapons-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>PRE</th>
+                    <th>Dégâts</th>
+                    <th>Fia.</th>
+                    <th>Mains</th>
+                    <th>Portée</th>
+                    <th>Effet</th>
+                    <th>Diss.</th>
+                    <th>AM</th>
+                    <th>Poids</th>
+                </tr>
+                <!-- Lignes pour les armes -->
+            </table>
+
+            <h3>Armure</h3>
+            <table class="armor-table">
+                <tr>
+                    <th>Localisation</th>
+                    <th>PA</th>
+                    <th>Dégâts</th>
+                </tr>
+                <tr>
+                    <td>Tête</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Torse</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Bras droit</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Bras gauche</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Jambe droite</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Jambe gauche</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Sorts / Invocations / Signes</h2>
+            <table class="magic-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Effet</th>
+                    <th>Durée</th>
+                    <th>Coût</th>
+                    <th>Portée</th>
+                </tr>
+                <!-- Lignes pour les sorts -->
+            </table>
+        </section>
+
+        <section>
+            <h2>Rituels</h2>
+            <table class="ritual-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Coût</th>
+                    <th>Effet</th>
+                    <th>Temps</th>
+                    <th>SD</th>
+                    <th>Durée</th>
+                    <th>Composants</th>
+                </tr>
+                <!-- Lignes pour les rituels -->
+            </table>
+        </section>
+
+        <section>
+            <h2>Envoûtements</h2>
+            <table class="charm-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Coût</th>
+                    <th>Effet</th>
+                    <th>Prérequis pour la lever</th>
+                </tr>
+                <!-- Lignes pour les envoûtements -->
+            </table>
+        </section>
+
+        <section>
+            <h2>Background et Notes</h2>
+            <table class="background-table">
+                <tr>
+                    <th>Background</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Notes</th>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -26,6 +26,7 @@ h2 {
     text-transform: uppercase;
     font-size: 18px;
     margin-top: 30px;
+    height: 2.5rem;
 }
 
 h3 {
@@ -40,7 +41,7 @@ h3 {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 2px;
 }
 
 th, td {
@@ -60,20 +61,22 @@ th {
     text-transform: uppercase;
 }
 
-.attribute-table, .skills-table, .weapons-table, .armor-table, .vitality-table, .magic-table, .ritual-table, .charm-table, .background-table {
-    margin-bottom: 20px;
-}
-.attributes, .general-infos,.skills-container, .vitality-container {
+.attributes-container, .general-infos,.skills-container, .vitality-container {
     display: flex;
     flex-direction: column;
     max-width: 25%;
 }
-
-.infos-container{
+.attributes{
     display: flex;
     justify-content: space-between;
+}
+.infos-container, .main-skills-container{
+    display: flex;
+    justify-content: space-between;
+    gap :0.5rem;
+}
+.main-skills-container{
     flex-wrap: wrap;
-    gap: 0.1rem;
 }
 
 td:first-child, .vitality-name{

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="./styles/styles.css" rel="stylesheet">
-    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
 </head>
 <body>
 
@@ -23,7 +23,13 @@
                     </tr>
                     <tr>
                         <th>Race</th>
-                        <td><input type="text" size="8"></td>
+                        <td><select id="raceSelect">
+                            <option value="default"></option>
+                            <option value="Elfe">Elfe</option>
+                            <option value="Nain">Nain</option>
+                            <option value="Humain">Humain</option>
+                            <option value="Sorceleur">Sorceleur</option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td>Genre</td>
@@ -60,35 +66,35 @@
                     </tr>
                     <tr>
                         <td>Corps (COR)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="corValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Intelligence (INT)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Réflexes (REF)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="refValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Dextérité (DEX)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="dexValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Empathie (EMP)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="empValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Technique (TECH)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="techVale" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Volonté (VOL)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="volValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Charisme (CHA)</td>
-                        <td><input type="number" placeholder="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                 </table>
             </div>
@@ -101,39 +107,39 @@
                     </tr>
                     <tr>
                         <td>Etourdissement (ETOU)</td>
-                        <td></td>
+                        <td id="etouValue"></td>
                     </tr>
                     <tr>
                         <td>Courage (COUR)</td>
-                        <td></td>
+                        <td id="courValue"></td>
                     </tr>
                     <tr>
                         <td>Saut</td>
-                        <td></td>
+                        <td id="sautValue"></td>
                     </tr>
                     <tr>
                         <td>Point Santé (PS)</td>
-                        <td></td>
+                        <td id="psValue"></td>
                     </tr>
                     <tr>
                         <td>Endurance (END)</td>
-                        <td></td>
+                        <td id="endValue"></td>
                     </tr>
                     <tr>
                         <td>Encombrement (ENC)</td>
-                        <td></td>
+                        <td id="encValue"></td>
                     </tr>
                     <tr>
                         <td>Récupération (REC)</td>
-                        <td></td>
+                        <td id="recValue"></td>
                     </tr>
                     <tr>
                         <td>Poings</td>
-                        <td></td>
+                        <td id="poingsValue"></td>
                     </tr>
                     <tr>
                         <td>Pieds</td>
-                        <td></td>
+                        <td id="piedsValue"></td>
                     </tr>
                 </table>
             </div>
@@ -172,55 +178,55 @@
                     <table class="skills-table">
                         <tr>
                             <td>Connaissance de la rue</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Connaissance des monstres</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Déduction</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Éducation</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Enseignement</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Étiquette</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Langue ancienne</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Langue commune</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Langue naine</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Négoce</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Survie</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Tactique</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Vigilance</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -229,35 +235,35 @@
                     <table class="skills-table">
                         <tr>
                             <td>Bagarre</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Bâton/Lance</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Équitation</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Escrime</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Esquive/Évasion</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Lames courtes</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Mêlée</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Navigation</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -266,23 +272,23 @@
                     <table class="skills-table">
                         <tr>
                             <td>Adresse</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Arbalète</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Archerie</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Athlétisme</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Furtivité</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -291,11 +297,11 @@
                     <table class="skills-table">
                         <tr>
                             <td>Physique</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Résilience</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -304,43 +310,43 @@
                     <table class="skills-table">
                         <tr>
                             <td>Beaux-arts</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Charisme</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Commandement</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Duperie</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Jeu</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Persuasion</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Psychologie</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Représentation</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Séduction</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Stylisme</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -349,43 +355,43 @@
                     <table class="skills-table">
                         <tr>
                             <td>Artisanat</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Balistique</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Démolition</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Dressage</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Explosifs</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Herboristerie</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Monte</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Pilotage</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Premier soins</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Réparation</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -394,31 +400,31 @@
                     <table class="skills-table">
                         <tr>
                             <td>Concentration</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Courage</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Intimidation</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Résistance à la douleur</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Résistance à la contrainte</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Résistance à la magie</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Rituels</td>
-                            <td></td>
+                            <td><input type="number" id="chaValue" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>

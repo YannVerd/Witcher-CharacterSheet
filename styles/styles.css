@@ -92,6 +92,7 @@ th {
     display: flex;
     justify-content: space-between;
     gap :0.5rem;
+    flex-wrap: wrap;
 }
 .main-skills-container{
     flex-wrap: wrap;
@@ -105,3 +106,10 @@ textarea {
     width: 100%;
     
 }
+
+input[type="number"] {
+    text-align: center;
+}
+
+
+  

@@ -10,10 +10,10 @@
 <body>
     
         <nav>
-            <button><a href="">Fiche</a></button>
-            <button><a href="">Grimoire</a></button>
-            <button><a href="">Aide/Rappels</a></button>
-            <button><a href="">Notes/Background</a></button>
+            <button><a href="#">Fiche</a></button>
+            <button><a href="#">Grimoire</a></button>
+            <button><a href="#">Aide/Rappels</a></button>
+            <button><a href="#">Notes/Background</a></button>
         </nav>
     
     <div class="container">
@@ -21,7 +21,7 @@
         <section class="infos-container">
             <div class="general-infos">
                 <h2>Informations Générales</h2>
-                <table class="general-info-table">
+                <table>
                     <tr>
                         <td>Nom</td>
                         <td><input type="text" size="8"></td>
@@ -50,7 +50,19 @@
                     </tr>
                     <tr>
                         <th>Profession</th>
-                        <td><input type="text" size="8"></td>
+                        <td><select id="jobSelect">
+                            <option value="default"></option>
+                            <option value="Artisan">Artisan</option>
+                            <option value="Barde">Barde</option>
+                            <option value="Criminel">Criminel</option>
+                            <option value="Docteur">Docteur</option>
+                            <option value="Homme d'armes">Homme d'armes</option>
+                            <option value="Mage">Mage</option>
+                            <option value="Marchand">Marchand</option>
+                            <option value="Prêtre">Prêtre</option>
+                            <option value="Sorceleur">Sorceleur</option>
+
+                        </select></td>
                     </tr>
                     <tr>
                         <th>Compétence exclusive</th>
@@ -439,61 +451,87 @@
 
         <section>
             <h2>Armes et Armures</h2>
-            <h3>Armes</h3>
-            <table class="weapons-table">
-                <tr>
-                    <th>Nom</th>
-                    <th>PRE</th>
-                    <th>Dégâts</th>
-                    <th>Fia.</th>
-                    <th>Mains</th>
-                    <th>Portée</th>
-                    <th>Effet</th>
-                    <th>Diss.</th>
-                    <th>AM</th>
-                    <th>Poids</th>
-                </tr>
-                <!-- Lignes pour les armes -->
-            </table>
-
-            <h3>Armure</h3>
-            <table class="armor-table">
-                <tr>
-                    <th>Localisation</th>
-                    <th>PA</th>
-                    <th>Dégâts</th>
-                </tr>
-                <tr>
-                    <td>Tête</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Torse</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Bras droit</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Bras gauche</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Jambe droite</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Jambe gauche</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
+            <div class="infos-container">
+                <div class="skills-container">
+                    <h3>Armes</h3>
+                    <table class="weapons-table">
+                        <tr>
+                            <th>Nom</th>
+                            <td><input type="text" size="8"></td>
+                        </tr>
+                        <tr>
+                            <th>PRE</th>
+                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>
+                        </tr>
+                        <tr>
+                            <th>Dégâts</th>
+                            <td><input type="text" size="8"></td>
+                        <tr>
+                            <th>Fia.</th>
+                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                        <tr>
+                            <th>Mains</th>
+                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                        <tr>
+                            <th>Portée</th>
+                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                        <tr>
+                            <th>Effet</th>
+                            <td><input type="text" size="8"></td>
+                        </tr>
+                        <tr>
+                            <th>Diss.</th>
+                            <td><input type="text" size="8"></td>
+                        </tr>
+                        <tr>
+                            <th>AM</th>
+                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr> 
+                        <tr>
+                            <th>Poids</th>
+                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Armure</h3>
+                    <table class="armor-table">
+                        <tr>
+                            <th>Localisation</th>
+                            <th>PA</th>
+                            <th>Dégâts</th>
+                        </tr>
+                        <tr>
+                            <td>Tête</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Torse</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Bras droit</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Bras gauche</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Jambe droite</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Jambe gauche</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </section>
 
         <section>

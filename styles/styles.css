@@ -82,3 +82,8 @@ th {
 td:first-child, .vitality-name{
     width: 8rem;
 }
+
+#notes {
+    width: 100%;
+    height: auto;
+}

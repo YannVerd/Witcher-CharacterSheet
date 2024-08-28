@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Personnage - The Witcher</title>
+    <script src="../datas/grimoire.js"></script>
+    <link href="../styles/styles.css" rel="stylesheet">
+    
+</head>
+<body>
+    
+    <nav>
+        <button><a href="../character.html">Fiche</a></button>
+        <button><a href="#">Grimoire</a></button>
+        <button><a href="#">Aide/Rappels</a></button>
+        <button><a href="#">Notes/Background</a></button>
+        <button><a href="./inventory.html">Inventaire/Composants</a></button>
+        <select id="selectLevel">
+            <option value="">Niveau...</option>
+            <option value="Novice">Novice</option>
+            <option value="Compagnon">Compagnon</option>
+            <option value="Maitre">Maitre</option>
+        </select>
+    </nav>
+    <div class="infos-container container" style="width: 90%;">
+        <table id="grimoireTable">
+            <tr>
+                <th>Nom</th>
+                <th>Temps_preparation</th>
+                <th>Type</th>
+                <th>Cout</th>
+                <th>Duree</th>
+                <th>Effet</th>
+                <th>SD_Difficulte</th>
+                <th>Defense</th>
+                <th>Degats</th>
+                <th>Classe</th>
+                <th>Source</th>  
+            </tr>       
+        </table>
+    </div>
+
+</body>
+<script type="text/javascript" defer>
+    let grimoireTable = document.getElementById("grimoireTable");
+    let selectLevel = document.getElementById("selectLevel");
+    selectLevel.addEventListener("change", e => {
+        grimoireTable.innerHTML = "";
+        grimoire[selectLevel.value]["Sorts"].forEach(obj => {
+        let row = document.createElement("tr");
+        for(const prop in obj){
+            let cell = document.createElement("td");
+            cell.innerHTML = obj[prop];
+            row.appendChild(cell);
+        }
+        grimoireTable.appendChild(row);
+    });
+    })
+    
+
+</script>
+</html>

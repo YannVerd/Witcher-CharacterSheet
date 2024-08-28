@@ -28,7 +28,10 @@
             <option value="Rituels">Rituels</option>
         </select>
     </nav>
+    
     <div class="infos-container container" style="width: 90%;">
+        <h1>Fiche Personnage - Grimoire</h1>
+        <h4 id="infosLevel"></h4>
         <table id="grimoireTable">
             <tr>
                 <th>Nom</th>
@@ -48,6 +51,7 @@
 
 </body>
 <script type="text/javascript" defer>
+    let infosLevel = document.getElementById("infosLevel");
     let grimoireTable = document.getElementById("grimoireTable");
     let selectLevel = document.getElementById("selectLevel");
     let selectType = document.getElementById("selectType");
@@ -65,6 +69,7 @@
                 <th>Source</th>  
             </tr>`
     selectLevel.addEventListener("change", e => {
+        infosLevel.innerHTML = "PP: "+grimoire[selectLevel.value]["PP"]+" Durée: "+grimoire[selectLevel.value]["Duree"]+" SD: "+grimoire[selectLevel.value]["SD"]+" Jets: "+grimoire[selectLevel.value]["PP"];
         grimoireTable.innerHTML = baseTableHTML;
         grimoire[selectLevel.value][selectType.value].forEach(obj => {
         let row = document.createElement("tr");

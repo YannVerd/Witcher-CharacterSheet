@@ -22,6 +22,11 @@
             <option value="Compagnon">Compagnon</option>
             <option value="Maitre">Maitre</option>
         </select>
+        <select id="selectType">
+            <option value="">Type...</option>
+            <option value="Sorts">Sorts</option>
+            <option value="Rituels">Rituels</option>
+        </select>
     </nav>
     <div class="infos-container container" style="width: 90%;">
         <table id="grimoireTable">
@@ -45,9 +50,35 @@
 <script type="text/javascript" defer>
     let grimoireTable = document.getElementById("grimoireTable");
     let selectLevel = document.getElementById("selectLevel");
+    let selectType = document.getElementById("selectType");
+    const baseTableHTML = `<tr>
+                <th>Nom</th>
+                <th>Temps_preparation</th>
+                <th>Type</th>
+                <th>Cout</th>
+                <th>Duree</th>
+                <th>Effet</th>
+                <th>SD_Difficulte</th>
+                <th>Defense</th>
+                <th>Degats</th>
+                <th>Classe</th>
+                <th>Source</th>  
+            </tr>`
     selectLevel.addEventListener("change", e => {
-        grimoireTable.innerHTML = "";
-        grimoire[selectLevel.value]["Sorts"].forEach(obj => {
+        grimoireTable.innerHTML = baseTableHTML;
+        grimoire[selectLevel.value][selectType.value].forEach(obj => {
+        let row = document.createElement("tr");
+        for(const prop in obj){
+            let cell = document.createElement("td");
+            cell.innerHTML = obj[prop];
+            row.appendChild(cell);
+        }
+        grimoireTable.appendChild(row);
+    });
+    })
+    selectType.addEventListener("change", e => {
+        grimoireTable.innerHTML = baseTableHTML;
+        grimoire[selectLevel.value][selectType.value].forEach(obj => {
         let row = document.createElement("tr");
         for(const prop in obj){
             let cell = document.createElement("td");

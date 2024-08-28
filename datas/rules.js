@@ -1,4 +1,4 @@
-{
+const rules = {
     "jobs":[
         {
             "Profession": "Artisan",

@@ -1,6 +1,6 @@
-export const attributes = ["cor", "int", "ref", "dex", "emp", "tech", "vol", "cha"];
-export const derivedAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
-export const skills = [
+const attributes = ["cor", "int", "ref", "dex", "emp", "tech", "vol", "cha"];
+const derivedAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
+const skills = [
     // Compétences de Savoir
     "Connaissance de la rue",
     "Connaissance des monstres",

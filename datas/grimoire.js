@@ -1,4 +1,4 @@
-{
+const grimoire ={
     "Novice": {
         "PP": 10,
         "Duree": "4 jours",

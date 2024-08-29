@@ -8,4 +8,4 @@ reste à faire :
     - Système de sauvegarde
 
 Bugs: 
-    - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons
+    - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé

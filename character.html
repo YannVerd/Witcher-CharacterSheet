@@ -70,11 +70,11 @@
                     </tr>
                     <tr>
                         <th>Compétence exclusive</th>
-                        <td><input type="text" size="8"></td>
+                        <td id="nameCompExclu"></td>
                     </tr>
                     <tr>
                         <td>Description Comp. Exclu.</td>
-                        <td><textarea name="Description" id="CompExDescription" cols="8" rows="10"></textarea></td>
+                        <td id="descripCompExclu"></td>
                     </tr>
                 </table>
             </div>
@@ -173,7 +173,7 @@
                 <table>
                     <tr>
                         <th class="vitality-name">Vigueur Base</th>
-                        <td></td>
+                        <td id="vigorBase"></td>
                     </tr>
                     <tr>
                         <th class="vitality-name">Vigueur Utilisée</th>
@@ -465,38 +465,43 @@
                     <table class="weapons-table">
                         <tr>
                             <th>Nom</th>
-                            <td><input type="text" size="8"></td>
+                            <td><input type="text" id="nameWeapon" size="8"></td>
                         </tr>
                         <tr>
-                            <th>PRE</th>
-                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>
+                            <th>Précision</th>
+                            <td><input type="number" id="preWeapon" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <th>Dégâts</th>
-                            <td><input type="text" size="8"></td>
+                            <td><input type="text" size="dgtsWeapon"></td>
                         <tr>
                             <th>Fia.</th>
-                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                            <td><input type="number" id="fiaWeapon" value="0" step="1" min="-22" max="22"></td>                        </tr>
                         <tr>
                             <th>Mains</th>
-                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                            <td><select type="number" id="mainsWeapon">
+                                <option value="uneMain">Une main</option>
+                                <option value="deuxMains">Deux mains</option>
+                            </select></td>                        
+                        </tr>
                         <tr>
                             <th>Portée</th>
-                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                            <td><input type="number" id="portWeapon" value="0" step="1" min="-22" max="22"></td>                        </tr>
                         <tr>
                             <th>Effet</th>
-                            <td><input type="text" size="8"></td>
+                            <td><input type="text" id="effWeapon" size="8"></td>
                         </tr>
                         <tr>
-                            <th>Diss.</th>
-                            <td><input type="text" size="8"></td>
+                            <th>Dissumlation</th>
+                            <td><input type="checkbox" id="dissWeapon" size="8"></td>
                         </tr>
                         <tr>
-                            <th>AM</th>
-                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr> 
+                            <th>Amélioration</th>
+                            <td><input type="text" id="amValue"></td>                        
+                        </tr> 
                         <tr>
                             <th>Poids</th>
-                            <td><input type="number" id="intValue" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                            <td><input type="number" id="poidsValue" value="0" step="0.1" min="-22" max="22"></td>                        </tr>
                     </table>
                 </div>
                 <div class="skills-container">

@@ -1,4 +1,11 @@
-/* set variable for attributes */
+/*------------ set variables ------------*/
+/* Generals Informations */ 
+let jobSelect = document.getElementById("jobSelect");
+let nameCompExclu = document.getElementById("nameCompExclu");
+let descripCompExclu = document.getElementById("descripCompExclu");
+let vigorBase = document.getElementById("vigorBase");
+
+/* attributes */
 let attribHTML =[];
 let derivedAttribHTML = [];
 let ratio = 0;
@@ -12,11 +19,30 @@ derivedAttributes.forEach(d => {
     derivedAttribHTML[d] = document.getElementById(`${d}Value`)
 });
 
-/* Calcul derived attributes */
+/* Skills */
+let raceSelect = document.getElementById("raceSelect");
+
+/* ------------ Generals Informations ---------*/
+
+jobSelect.addEventListener("change", e=> {
+    rules.jobs.forEach(j => {
+        if(j.Profession == e.target.value){
+            descripCompExclu.innerHTML = "";
+            nameCompExclu.innerHTML = "";
+            vigorBase.innerHTML = "";
+            nameCompExclu.innerHTML = j["Nom compétence"];
+            descripCompExclu.innerHTML = j.Description;
+            vigorBase.innerHTML = j.Vigueur;
+        }
+    } )
+})
+
+/* ----------------Derived attributes -----------------*/
+
 attribHTML["cor"].addEventListener("input", e => {
-    console.log(typeof parseInt(e.target.value));
+    
     ratio = (parseInt(attribHTML["vol"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
-    console.log(ratio);
+    console.log("(COR+VOL)/2 = "+ratio);
     rules.physicTable.forEach( t => {
         if(t.ratio === ratio){
             derivedAttribHTML["end"].innerHTML = t.END; 
@@ -41,7 +67,7 @@ attribHTML["cor"].addEventListener("input", e => {
 attribHTML["vol"].addEventListener("input", e => {
     
     ratio = (parseInt(attribHTML["cor"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
-    console.log(ratio)
+    console.log("(COR+VOL)/2 = "+ratio);
     rules.physicTable.forEach( t => {
         if(t.ratio === ratio){
             derivedAttribHTML["end"].innerHTML = t.END;
@@ -59,7 +85,7 @@ attribHTML["vit"].addEventListener("input", e => {
 })
 
 
-
+/*------------------ Skills ----------------------------*/
 
 
 

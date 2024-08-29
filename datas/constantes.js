@@ -1,5 +1,6 @@
 const attributes = ["cor", "int", "ref", "dex", "vit", "emp", "tech", "vol", "cha"];
 const derivedAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
+const weaponAttributes = [];
 const skills = [
     // Compétences de Savoir
     "Connaissance de la rue",

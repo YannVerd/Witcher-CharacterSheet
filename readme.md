@@ -5,7 +5,7 @@ reste à faire :
     - possibilité d'ajouter des sorts
     - possibilité d'ajouter des rituels
     - ajout armes et armures ( encyclopédie ?)
-    - Système de sauvegarde
+    - Système de sauvegarde et de cache - en cours 
 
 Bugs: 
     - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé

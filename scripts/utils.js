@@ -16,11 +16,12 @@ const emptyElementsValues = (array) => {
     })
 }
 
-const assignElementsToArray = (datas, array, suffix) => {
+const assignElementsToArray = (datas, array, suffix, typeOfCache) => {
+    
     return new Promise((resolve, reject) => {
         try {
             datas.forEach( str => {
-                array[str] = document.getElementById(`${str}${suffix}`)
+                array[str] = document.getElementById(`${str}${suffix}`);
             });
             console.log("elements found")
             resolve();

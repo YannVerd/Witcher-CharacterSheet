@@ -12,20 +12,21 @@ encBonus.innerHTML = "0";
 let attribHTML =[];
 let derivedAttribHTML = [];
 let attribBonus = [];
+let subAttribBonus = [];
 let ratio = 0; // (cor+vol)/2 match to the physique table
 //base
-assignElementsToArray(attributes, attribHTML, "Input")
+assignElementsToArray(attributes, attribHTML, "Input", "attributes")
 //derived
-assignElementsToArray(derivedAttributes, derivedAttribHTML, "Value")
+assignElementsToArray(derivedAttributes, derivedAttribHTML, "Value", "subAttributes")
 //bonus
-assignElementsToArray(attributes, attribBonus, "Bonus");
+assignElementsToArray(attributes, attribBonus, "Bonus", "bonusAttributes");
 
 /* Skills */
 let skillsHTML = [];
 assignElementsToArray(skills, skillsHTML, "Input");
 /* Weapons / Armor */
 let weaponAttribHTML = [];
-assignElementsToArray(weaponAttributes, weaponAttribHTML, "Weapon");
+assignElementsToArray(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
 
 /* ------------------------- Generals Informations  ----------------------------*/
 // add bonus by race

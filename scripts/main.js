@@ -12,13 +12,11 @@ derivedAttributes.forEach(d => {
     derivedAttribHTML[d] = document.getElementById(`${d}Value`)
 });
 
-
 /* Calcul derived attributes */
 attribHTML["cor"].addEventListener("input", e => {
-    console.log(e.target.value);
-    console.log(attribHTML["cor"].value);
-    ratio = (e.target.value + attribHTML["vol"].value)/2; // (COR+VOL)/2
-    console.log("ratio "+ratio);
+    console.log(typeof parseInt(e.target.value));
+    ratio = (parseInt(attribHTML["vol"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
+    console.log(ratio);
     rules.physicTable.forEach( t => {
         if(t.ratio === ratio){
             derivedAttribHTML["end"].innerHTML = t.END; 
@@ -27,11 +25,23 @@ attribHTML["cor"].addEventListener("input", e => {
             derivedAttribHTML["rec"].innerHTML = t.REC;
         }
     })
+
+    // clutter
+    derivedAttribHTML["enc"].innerHTML = e.target.value * 10;
+    
+    // hand and foot damage
+    rules.handToHand.forEach(t => {
+        if(e.target.value == t["Corps"]){
+            derivedAttribHTML["poings"].innerHTML = t["Poings"];
+            derivedAttribHTML["pieds"].innerHTML = t["Pieds"];
+        }
+    })
 })
 
 attribHTML["vol"].addEventListener("input", e => {
-    ratio = (attribHTML["cor"].value + e.target.value)/2; // (COR+VOL)/2
-    console.log("ratio "+ratio);
+    
+    ratio = (parseInt(attribHTML["cor"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
+    console.log(ratio)
     rules.physicTable.forEach( t => {
         if(t.ratio === ratio){
             derivedAttribHTML["end"].innerHTML = t.END;
@@ -40,6 +50,12 @@ attribHTML["vol"].addEventListener("input", e => {
             derivedAttribHTML["rec"].innerHTML = t.REC;
         }
     })
+})
+
+attribHTML["vit"].addEventListener("input", e => {
+    console.log(attribHTML["vit"].innerHTML)
+    derivedAttribHTML["cour"].innerHTML = attribHTML["vit"].value*3;
+    derivedAttribHTML["saut"].innerHTML = derivedAttribHTML["cour"].innerHTML/5;
 })
 
 

@@ -29,7 +29,7 @@
         </select>
     </nav>
     
-    <div class="infos-container container" style="width: 90%;">
+    <div class="infos-container container" style="width: 90%; margin-top: 0;">
         <h1>Fiche Personnage - Grimoire</h1>
         <h4 id="infosLevel"></h4>
         <table id="grimoireTable">
@@ -69,6 +69,7 @@
                 <th>Source</th>  
             </tr>`
     selectLevel.addEventListener("change", e => {
+        infosLevel.innerHTML= "";
         infosLevel.innerHTML = "PP: "+grimoire[selectLevel.value]["PP"]+" Durée: "+grimoire[selectLevel.value]["Duree"]+" SD: "+grimoire[selectLevel.value]["SD"]+" Jets: "+grimoire[selectLevel.value]["PP"];
         grimoireTable.innerHTML = baseTableHTML;
         grimoire[selectLevel.value][selectType.value].forEach(obj => {

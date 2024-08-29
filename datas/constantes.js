@@ -1,4 +1,4 @@
-const attributes = ["cor", "int", "ref", "dex", "emp", "tech", "vol", "cha"];
+const attributes = ["cor", "int", "ref", "dex", "vit", "emp", "tech", "vol", "cha"];
 const derivedAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
 const skills = [
     // Compétences de Savoir

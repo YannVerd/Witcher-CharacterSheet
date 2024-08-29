@@ -1,28 +1,65 @@
-/*------------ set variables ------------*/
+/*--------------- set variables -------------*/
 /* Generals Informations */ 
 let jobSelect = document.getElementById("jobSelect");
 let nameCompExclu = document.getElementById("nameCompExclu");
 let descripCompExclu = document.getElementById("descripCompExclu");
+let raceSelect = document.getElementById("raceSelect");
 let vigorBase = document.getElementById("vigorBase");
+let encBonus = document.getElementById("encBonus");
+encBonus.innerHTML = "0";
 
 /* attributes */
 let attribHTML =[];
 let derivedAttribHTML = [];
-let ratio = 0;
-attributes.forEach(att => {
-    
-    attribHTML[att] = document.getElementById(`${att}Input`);
-    
-});
-
-derivedAttributes.forEach(d => {
-    derivedAttribHTML[d] = document.getElementById(`${d}Value`)
-});
+let attribBonus = [];
+let ratio = 0; // (cor+vol)/2 match to the physique table
+//base
+assignElementsToArray(attributes, attribHTML, "Input")
+//derived
+assignElementsToArray(derivedAttributes, derivedAttribHTML, "Value")
+//bonus
+assignElementsToArray(attributes, attribBonus, "Bonus");
 
 /* Skills */
-let raceSelect = document.getElementById("raceSelect");
+let skillsHTML = [];
+assignElementsToArray(skills, skillsHTML, "Input");
+/* Weapons / Armor */
+let weaponAttribHTML = [];
+assignElementsToArray(weaponAttributes, weaponAttribHTML, "Weapon");
 
-/* ------------ Generals Informations ---------*/
+/* ------------------------- Generals Informations  ----------------------------*/
+// add bonus by race
+let isDwarf = false
+raceSelect.addEventListener("change", e => {
+    rules.races.forEach(async race => {
+        await emptyElementsValues(attribBonus);
+        if(e.target.value == race.nom){
+            // empty bonus       
+            if(e.target.value != "Nain" && isDwarf){
+                isDwarf = false;
+                encBonus.innerHTML = 0;
+                (derivedAttribHTML["enc"].innerHTML - 25 >= 0) ? derivedAttribHTML["enc"].innerHTML -= 25: derivedAttribHTML["enc"].innerHTML -= 0;
+            };
+            race.modifs.forEach(modif => {
+                if(Object.keys(modif)[0] === "carac"){
+                    attribBonus[modif["carac"]].innerHTML += parseFloat(modif.bonus);
+                }else if(Object.keys(modif)[0] === "caracDeriv" ){
+                    switch(modif["caracDeriv"]){
+                        // add case for other derived attributs
+                        case "enc":
+                            isDwarf = true;
+                            encBonus.innerHTML = parseFloat(modif.bonus);
+                            break;
+                    }      
+                }else if(Object.keys(modif)[0] === "armure"){
+                    // add PA bonus here
+                }else{
+                    skillsHTML[modif["compétence"]].value = parseFloat(modif.bonus);
+                }
+            })
+        }
+    });
+});
 
 jobSelect.addEventListener("change", e=> {
     rules.jobs.forEach(j => {
@@ -35,12 +72,11 @@ jobSelect.addEventListener("change", e=> {
             vigorBase.innerHTML = j.Vigueur;
         }
     } )
-})
+});
 
 /* ----------------Derived attributes -----------------*/
 
 attribHTML["cor"].addEventListener("input", e => {
-    
     ratio = (parseInt(attribHTML["vol"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
     console.log("(COR+VOL)/2 = "+ratio);
     rules.physicTable.forEach( t => {
@@ -53,8 +89,10 @@ attribHTML["cor"].addEventListener("input", e => {
     })
 
     // clutter
-    derivedAttribHTML["enc"].innerHTML = e.target.value * 10;
-    
+    derivedAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(encBonus.innerHTML);
+    encBonus.addEventListener("change", e => {
+        derivedAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(encBonus.innerHTML);
+    })
     // hand and foot damage
     rules.handToHand.forEach(t => {
         if(e.target.value == t["Corps"]){
@@ -83,11 +121,3 @@ attribHTML["vit"].addEventListener("input", e => {
     derivedAttribHTML["cour"].innerHTML = attribHTML["vit"].value*3;
     derivedAttribHTML["saut"].innerHTML = derivedAttribHTML["cour"].innerHTML/5;
 })
-
-
-/*------------------ Skills ----------------------------*/
-
-
-
-
-

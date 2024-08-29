@@ -212,13 +212,13 @@ const rules = {
     "races": [
         {
             "nom": "Elfe",
-            "modif": [
+            "modifs": [
                 {
-                    "compétence": "Beaux-Arts",
+                    "compétence": "beauxArts",
                     "bonus": 1
                 },
                 {
-                    "compétence": "Archerie",
+                    "compétence": "archerie",
                     "bonus": 2
                 }
             ],
@@ -231,21 +231,21 @@ const rules = {
         },
         {
             "nom": "Nain",
-            "modif": [
+            "modifs": [
                 {
-                    "compétence": "PA",
+                    "armure": "PA",
                     "bonus": 2
                 },
                 {
-                    "compétence": "Physique",
+                    "compétence": "physique",
                     "bonus": 1
                 },
                 {
-                    "compétence": "enc",
+                    "caracDeriv": "enc",
                     "bonus": 25
                 },
                 {
-                    "compétence": "Négoce",
+                    "compétence": "negoce",
                     "bonus": 1
                 }
             ],
@@ -253,9 +253,9 @@ const rules = {
         },
         {
             "nom": "Humain",
-            "modif": [
+            "modifs": [
                 {
-                    "compétence": "Déduction",
+                    "compétence": "deduction",
                     "bonus": 1
                 }
             ],
@@ -266,22 +266,22 @@ const rules = {
         },
         {
             "nom": "Sorceleur",
-            "modif": [
+            "modifs": [
                 {
-                    "compétence": "Vigilance",
+                    "compétence": "vigilance",
                     "bonus": 1
                 },
                 {
-                    "compétence": "ref",
+                    "carac": "ref",
                     "bonus": 1
                 },
                 {
-                    "compétence": "dex",
+                    "carac": "dex",
                     "bonus": 1
                 },
                 {
-                    "compétence": "emp",
-                    "bonus": -4
+                    "carac": "emp",
+                    "bonus": "-4"
                 }
             ],
             "détails" : [

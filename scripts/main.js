@@ -20,12 +20,12 @@ assignElementsToObject(attributes, attribHTML, "Input", "attributes")
 //derived
 assignElementsToObject(subAttributes, subAttribHTML, "Value", "subAttributes")
 //bonus
-assignElementsToObject(attributes, attribBonus, "Bonus", "attribBonus");
-assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttribBonus")
+assignElementsToObject(attributes, attribBonus, "Bonus", "attributes");
+assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttributes")
 
 //total
-assignElementsToObject(attributes, attribTotal, "Tt", "attribTotal");
-assignElementsToObject(subAttributes, subAttribTotal, "Tt", "subAttribTotal");
+assignElementsToObject(attributes, attribTotal, "Tt", "none");
+assignElementsToObject(subAttributes, subAttribTotal, "Tt", "none");
 
 /* Skills */
 let skillsHTML = {};
@@ -79,6 +79,6 @@ jobSelect.addEventListener("change", e=> {
 
 /* ----------------Derived attributes -----------------*/
 
-manageAttributes(attribHTML, false);
-manageAttributes(attribBonus, false);
-manageAttributes(subAttribBonus, true);
+manageAttributes(attribHTML, false, false);
+manageAttributes(attribBonus, false, true);
+manageAttributes(subAttribBonus, true, true);

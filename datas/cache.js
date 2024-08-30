@@ -1,5 +1,5 @@
-let cache = {
-    "characters":[ 
+let cacheDTO = {
+    "character":
         {
             "name": "",
             "race": "",
@@ -9,9 +9,26 @@ let cache = {
             "job": "",
             "excluSkill": "",
             "descripExcluSkill": "",
-            "attributes": [],
-            "subAttributes": [],
-            "skills":[],
+            "attributes": {
+                "base": {
+
+                },
+                "bonus":{
+
+                }
+            },
+            "subAttributes": {
+                "bonus":{
+
+                }
+            },
+            "skills":{
+                "base":{
+
+                },
+                "bonus":{
+
+                }
+            },
         }
-    ]
 }

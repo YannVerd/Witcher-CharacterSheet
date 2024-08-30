@@ -15,4 +15,5 @@ reste à faire :
 Bugs: 
     - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé
     - dans la fonction emptyElementsValues, le programme ne rentre pas dans la boucle forEach // corrigé c'était un objet pas un tableau
+    - Au rafraichissement le total ne se fait pas (avec utilisation du localstore) => il faut adapt lafonciton calculSubAttributsTotal pour qu'elle englobe tous les cas (carac de base et skills en plus);
     

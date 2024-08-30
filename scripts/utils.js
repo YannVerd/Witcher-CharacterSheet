@@ -14,27 +14,36 @@ const emptyElementsValues = (object) => {
     })
 }
 
-const assignElementsToObject = (datas, obj, suffix, typeOfCache) => {
+const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
     return new Promise((resolve, reject) => {
         try {
             datas.forEach( str => {
                 obj[str] = document.getElementById(`${str}${suffix}`);
+                const cache = JSON.parse(localStorage.getItem("character"));
+                if(cache != undefined){
+                    if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
+                        cache[keyOfCache]["base"][str] != undefined? obj[str].value = cache[keyOfCache]["base"][str] : null;
+                    }else if(suffix === "Bonus"){
+                        cache[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache[keyOfCache]["bonus"][str] : null;
+                    }
+                }
+                
             });
-            console.log("elements found")
+            console.log("elements found for "+keyOfCache+" "+suffix)
             resolve();
         }catch(e){
-            console.error("failed to fill an elements array")
+            console.error("failed to fill "+keyOfCache+" "+suffix)
             reject(e);
         }
     })
 }
 
-const manageAttributes = (object, isSub) => {
+const manageAttributes = (object, isSub, isBonus) => {
    return new Promise((resolve, reject) => {
         try{
             for (const key in object) {
                 object[key].addEventListener("input", e => {
-
+                    cachingAttribCharacter(key, isSub, isBonus);
                     if(isSub){
                         calculSubAttributesTotal(key);
                     }else{
@@ -43,6 +52,7 @@ const manageAttributes = (object, isSub) => {
                             case "cor":
                                 //clutter
                                 subAttribHTML["enc"].value = attribTotal["cor"].value * 10;
+                                calculSubAttributesTotal("enc");
                             
                                 // hand and foot damage
                                 rules.handToHand.forEach(t => {

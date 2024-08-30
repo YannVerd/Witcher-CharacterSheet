@@ -82,7 +82,7 @@ th {
 .attributes-container, .general-infos,.skills-container, .vitality-container {
     display: flex;
     flex-direction: column;
-    max-width: 25%;
+    
 }
 .attributes{
     display: flex;
@@ -91,7 +91,6 @@ th {
 .infos-container, .main-skills-container{
     display: flex;
     justify-content: space-between;
-    gap :0.5rem;
     flex-wrap: wrap;
 }
 .main-skills-container{
@@ -103,8 +102,7 @@ td:first-child, .vitality-name{
 }
 
 textarea {
-    width: 100%;
-    
+    width: 100%; 
 }
 
 input[type="number"] {

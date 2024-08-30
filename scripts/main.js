@@ -79,53 +79,6 @@ jobSelect.addEventListener("change", e=> {
 
 /* ----------------Derived attributes -----------------*/
 
-calculTotal(attribHTML, false);
-calculTotal(attribBonus, false);
-calculTotal(subAttribBonus, true);
-
-attribTotal["cor"].addEventListener("change", e => {
-    console.log(e);
-    ratio = (parseInt(attribTotal["vol"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
-    console.log("(COR+VOL)/2 = "+ratio);
-    rules.physicTable.forEach( t => {
-        if(t.ratio === ratio){
-            subAttribHTML["end"].innerHTML = t.END; 
-            subAttribHTML["etou"].innerHTML = t.ETOU;
-            subAttribHTML["ps"].innerHTML = t.PS;
-            subAttribHTML["rec"].innerHTML = t.REC;
-        }
-    })
-
-    // clutter
-    subAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(subAttribBonus["enc"].value);
-    subAttribBonus["enc"].addEventListener("change", e => {
-        subAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(subAttribBonus["enc"].value);
-    })
-    // hand and foot damage
-    rules.handToHand.forEach(t => {
-        if(e.target.value == t["Corps"]){
-            subAttribHTML["poings"].innerHTML = t["Poings"];
-            subAttribHTML["pieds"].innerHTML = t["Pieds"];
-        }
-    })
-})
-
-attribHTML["vol"].addEventListener("change", e => {
-    
-    ratio = (parseInt(attribHTML["cor"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
-    console.log("(COR+VOL)/2 = "+ratio);
-    rules.physicTable.forEach( t => {
-        if(t.ratio === ratio){
-            subAttribHTML["end"].innerHTML = t.END;
-            subAttribHTML["etou"].innerHTML = t.ETOU;
-            subAttribHTML["ps"].innerHTML = t.PS;
-            subAttribHTML["rec"].innerHTML = t.REC;
-        }
-    })
-})
-
-attribHTML["vit"].addEventListener("input", e => {
-    console.log(attribHTML["vit"].innerHTML)
-    subAttribHTML["cour"].innerHTML = attribHTML["vit"].value*3;
-    subAttribHTML["saut"].innerHTML = subAttribHTML["cour"].innerHTML/5;
-})
+manageAttributes(attribHTML, false);
+manageAttributes(attribBonus, false);
+manageAttributes(subAttribBonus, true);

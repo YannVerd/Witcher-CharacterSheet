@@ -5,51 +5,53 @@ let nameCompExclu = document.getElementById("nameCompExclu");
 let descripCompExclu = document.getElementById("descripCompExclu");
 let raceSelect = document.getElementById("raceSelect");
 let vigorBase = document.getElementById("vigorBase");
-let encBonus = document.getElementById("encBonus");
-encBonus.innerHTML = "0";
+
 
 /* attributes */
-let attribHTML =[];
-let derivedAttribHTML = [];
-let attribBonus = [];
-let subAttribBonus = [];
+let attribHTML ={};
+let subAttribHTML = {};
+let attribBonus = {};
+let attribTotal = {};
+let subAttribBonus = {};
+let subAttribTotal = {};
 let ratio = 0; // (cor+vol)/2 match to the physique table
 //base
-assignElementsToArray(attributes, attribHTML, "Input", "attributes")
+assignElementsToObject(attributes, attribHTML, "Input", "attributes")
 //derived
-assignElementsToArray(derivedAttributes, derivedAttribHTML, "Value", "subAttributes")
+assignElementsToObject(subAttributes, subAttribHTML, "Value", "subAttributes")
 //bonus
-assignElementsToArray(attributes, attribBonus, "Bonus", "bonusAttributes");
+assignElementsToObject(attributes, attribBonus, "Bonus", "attribBonus");
+assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttribBonus")
+
+//total
+assignElementsToObject(attributes, attribTotal, "Tt", "attribTotal");
+assignElementsToObject(subAttributes, subAttribTotal, "Tt", "subAttribTotal");
 
 /* Skills */
-let skillsHTML = [];
-assignElementsToArray(skills, skillsHTML, "Input");
+let skillsHTML = {};
+assignElementsToObject(skills, skillsHTML, "Input", "skills");
 /* Weapons / Armor */
-let weaponAttribHTML = [];
-assignElementsToArray(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
+let weaponAttribHTML = {};
+assignElementsToObject(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
 
 /* ------------------------- Generals Informations  ----------------------------*/
 // add bonus by race
-let isDwarf = false
+// let isDwarf = false
 raceSelect.addEventListener("change", e => {
     rules.races.forEach(async race => {
         await emptyElementsValues(attribBonus);
+        await emptyElementsValues(subAttribBonus);
+        await emptyElementsValues(skillsHTML);
         if(e.target.value == race.nom){
-            // empty bonus       
-            if(e.target.value != "Nain" && isDwarf){
-                isDwarf = false;
-                encBonus.innerHTML = 0;
-                (derivedAttribHTML["enc"].innerHTML - 25 >= 0) ? derivedAttribHTML["enc"].innerHTML -= 25: derivedAttribHTML["enc"].innerHTML -= 0;
-            };
             race.modifs.forEach(modif => {
                 if(Object.keys(modif)[0] === "carac"){
-                    attribBonus[modif["carac"]].innerHTML += parseFloat(modif.bonus);
+                    attribBonus[modif["carac"]].value = parseFloat(modif.bonus);
                 }else if(Object.keys(modif)[0] === "caracDeriv" ){
                     switch(modif["caracDeriv"]){
                         // add case for other derived attributs
                         case "enc":
                             isDwarf = true;
-                            encBonus.innerHTML = parseFloat(modif.bonus);
+                            subAttribBonus["enc"].value = parseFloat(modif.bonus);
                             break;
                     }      
                 }else if(Object.keys(modif)[0] === "armure"){
@@ -77,48 +79,53 @@ jobSelect.addEventListener("change", e=> {
 
 /* ----------------Derived attributes -----------------*/
 
-attribHTML["cor"].addEventListener("input", e => {
-    ratio = (parseInt(attribHTML["vol"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
+calculTotal(attribHTML, false);
+calculTotal(attribBonus, false);
+calculTotal(subAttribBonus, true);
+
+attribTotal["cor"].addEventListener("change", e => {
+    console.log(e);
+    ratio = (parseInt(attribTotal["vol"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
     console.log("(COR+VOL)/2 = "+ratio);
     rules.physicTable.forEach( t => {
         if(t.ratio === ratio){
-            derivedAttribHTML["end"].innerHTML = t.END; 
-            derivedAttribHTML["etou"].innerHTML = t.ETOU;
-            derivedAttribHTML["ps"].innerHTML = t.PS;
-            derivedAttribHTML["rec"].innerHTML = t.REC;
+            subAttribHTML["end"].innerHTML = t.END; 
+            subAttribHTML["etou"].innerHTML = t.ETOU;
+            subAttribHTML["ps"].innerHTML = t.PS;
+            subAttribHTML["rec"].innerHTML = t.REC;
         }
     })
 
     // clutter
-    derivedAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(encBonus.innerHTML);
-    encBonus.addEventListener("change", e => {
-        derivedAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(encBonus.innerHTML);
+    subAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(subAttribBonus["enc"].value);
+    subAttribBonus["enc"].addEventListener("change", e => {
+        subAttribHTML["enc"].innerHTML = e.target.value * 10 + parseInt(subAttribBonus["enc"].value);
     })
     // hand and foot damage
     rules.handToHand.forEach(t => {
         if(e.target.value == t["Corps"]){
-            derivedAttribHTML["poings"].innerHTML = t["Poings"];
-            derivedAttribHTML["pieds"].innerHTML = t["Pieds"];
+            subAttribHTML["poings"].innerHTML = t["Poings"];
+            subAttribHTML["pieds"].innerHTML = t["Pieds"];
         }
     })
 })
 
-attribHTML["vol"].addEventListener("input", e => {
+attribHTML["vol"].addEventListener("change", e => {
     
     ratio = (parseInt(attribHTML["cor"].value) + parseInt(e.target.value))/2; // (COR+VOL)/2
     console.log("(COR+VOL)/2 = "+ratio);
     rules.physicTable.forEach( t => {
         if(t.ratio === ratio){
-            derivedAttribHTML["end"].innerHTML = t.END;
-            derivedAttribHTML["etou"].innerHTML = t.ETOU;
-            derivedAttribHTML["ps"].innerHTML = t.PS;
-            derivedAttribHTML["rec"].innerHTML = t.REC;
+            subAttribHTML["end"].innerHTML = t.END;
+            subAttribHTML["etou"].innerHTML = t.ETOU;
+            subAttribHTML["ps"].innerHTML = t.PS;
+            subAttribHTML["rec"].innerHTML = t.REC;
         }
     })
 })
 
 attribHTML["vit"].addEventListener("input", e => {
     console.log(attribHTML["vit"].innerHTML)
-    derivedAttribHTML["cour"].innerHTML = attribHTML["vit"].value*3;
-    derivedAttribHTML["saut"].innerHTML = derivedAttribHTML["cour"].innerHTML/5;
+    subAttribHTML["cour"].innerHTML = attribHTML["vit"].value*3;
+    subAttribHTML["saut"].innerHTML = subAttribHTML["cour"].innerHTML/5;
 })

@@ -26,7 +26,7 @@
         <section class="infos-container">
             <div class="general-infos">
                 <h2>Informations Générales</h2>
-                <table>
+                <table class="attrib-table">
                     <tr>
                         <td>Nom</td>
                         <td><input type="text" size="8"></td>
@@ -81,117 +81,137 @@
             </div>
             <div class="attributes-container">
                 <h2>Caractéristiques</h2>
-                <table>
+                <table class="attrib-table">
                     <tr>
                         <th>Attribut</th>
                         <th>Valeur</th>
                         <th>Bonus</th>
+                        <th>Total</th>
                     </tr>
                     <tr>
                         <td>Corps (COR)</td>
                         <td><input type="number" id="corInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="corBonus"></td>
+                        <td ><input type="number" id="corBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td ><input type="number" id="corTt" value="0" step="1" min="-22" max="22" readonly></td>
                     </tr>
                     <tr>
                         <td>Intelligence (INT)</td>
                         <td><input type="number" id="intInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="intBonus"></td>
+                        <td ><input type="number" id="intBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td ><input type="number" id="intTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Réflexes (REF)</td>
                         <td><input type="number" id="refInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="refBonus"></td>
+                        <td ><input type="number" id="refBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td ><input type="number" id="refTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Dextérité (DEX)</td>
                         <td><input type="number" id="dexInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="dexBonus"></td>
+                        <td ><input type="number" id="dexBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td ><input type="number" id="dexTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Vitesse (VIT)</td>
                         <td><input type="number" id="vitInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="vitBonus"></td>
+                        <td><input type="number" id="vitBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="vitTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Empathie (EMP)</td>
                         <td><input type="number" id="empInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="empBonus"></td>
+                        <td><input type="number" id="empBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="empTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Technique (TECH)</td>
                         <td><input type="number" id="techInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="techBonus"></td>
+                        <td><input type="number" id="techBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="techTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Volonté (VOL)</td>
                         <td><input type="number" id="volInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="volBonus"></td>
+                        <td><input type="number" id="volBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="volTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Chance (CHA)</td>
                         <td><input type="number" id="chaInput" value="0" step="1" min="-22" max="22"></td>
-                        <td id="chaBonus"></td>
+                        <td><input type="number" id="chaBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="chaTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                 </table>
             </div>
             <div class="attributes-container">
                 <h2>Caractéristiques dérivées</h2>
-                <table>
+                <table class="attrib-table">
                     <tr>
                         <th>Attribut</th>
                         <th>Valeur</th>
                         <th>Bonus</th>
+                        <th>Total</th>
                     </tr>
                     <tr>
                         <td>Etourdissement (ETOU)</td>
                         <td id="etouValue"></td>
-                        <td></td>
+                        <td><input type="number" id="etouBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="etouTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Course (COUR)</td>
                         <td id="courValue"></td>
-                        <td></td>
+                        <td><input type="number" id="courBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="courTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Saut</td>
                         <td id="sautValue"></td>
-                        <td></td>
+                        <td><input type="number" id="sautBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="sautTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Point Santé (PS)</td>
                         <td id="psValue"></td>
-                        <td></td>
+                        <td><input type="number" id="psBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="psTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Endurance (END)</td>
                         <td id="endValue"></td>
-                        <td></td>
+                        <td><input type="number" id="endBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="endTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Encombrement (ENC)</td>
                         <td id="encValue"></td>
-                        <td id="encBonus"></td>
+                        <td><input type="number" id="encBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="encTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Récupération (REC)</td>
                         <td id="recValue"></td>
-                        <td></td>
+                        <td><input type="number" id="recBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="recTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Poings</td>
                         <td id="poingsValue"></td>
-                        <td></td>
+                        <td><input type="number" id="poingsBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="poingsTt" value="0" step="1" min="-22" max="22"></td>
                     </tr>
                     <tr>
                         <td>Pieds</td>
                         <td id="piedsValue"></td>
-                        <td></td>
+                        <td><input type="number" id="piedsBonus" value="0" step="1" min="-22" max="22"></td>
+                        <td><input type="number" id="piedTt" value="0" step="1" min="-22" max="22"></td>                     
                     </tr>
                 </table>
             </div>
             <div class="vitality-container">
                 <h2>Vigueur et Endurance</h2>
-                <table>
+                <table class="attrib-table">
                     <tr>
                         <th class="vitality-name">Vigueur Base</th>
                         <td id="vigorBase"></td>
@@ -212,11 +232,11 @@
                     <table class="skills-table">
                         <tr>
                             <td>Connaissance de la rue</td>
-                            <td><input type="number" id="ConnRueInput" value="0" step="1" min="-22" max="22"></td>
+                            <td><input type="number" id="connRueInput" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Connaissance des monstres</td>
-                            <td><input type="number" id="ConnMonsInput" value="0" step="1" min="-22" max="22"></td>
+                            <td><input type="number" id="connMonstreInput" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Déduction</td>
@@ -322,7 +342,7 @@
                         </tr>
                         <tr>
                             <td>Furtivité</td>
-                            <td><input type="number" id="furtivite" value="0" step="1" min="-22" max="22"></td>
+                            <td><input type="number" id="furtiviteInput" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                     </table>
                 </div>
@@ -389,7 +409,7 @@
                     <table class="skills-table">
                         <tr>
                             <td>Alchimie</td>
-                            <td><input type="number" id="artisanatInput" value="0" step="1" min="-22" max="22"></td>
+                            <td><input type="number" id="alchimieInput" value="0" step="1" min="-22" max="22"></td>
                         </tr>
                         <tr>
                             <td>Artisanat</td>

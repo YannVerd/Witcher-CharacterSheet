@@ -88,7 +88,7 @@
     const fillTable = () => {
         grimoireTable.innerHTML = baseTableHTML;
         grimoire[selectLevel.value][selectType.value].forEach(obj => {
-            let isLearned = false;
+            let isLearned = cache.character[selectType.value.toLowerCase()].find(e => e.Nom === obj.Nom);
             let row = document.createElement("tr");
             for(const prop in obj){
                 let cell = document.createElement("td");
@@ -100,13 +100,12 @@
             actionButton.innerText = isLearned ? "appris" : "apprendre";
             actionButton.addEventListener('click', e => {
                 let pathObject = ""; // path of cacheDTO object
+                selectType.value === "Sorts" ? pathObject = cache.character.sorts : pathObject = cache.character.rituels;
                 if(!isLearned){
-                    selectType.value === "Sorts" ? pathObject = cache.character.sorts : pathObject = cache.character.rituels;
                     pathObject.push(obj);
                     actionButton.innerText = "appris";
                     localStorage.setItem(keys.storage, JSON.stringify(cache));
                 }else{
-                    selectType.value === "Sorts" ? pathObject = cache.character.sorts : pathObject = cache.character.rituels;
                     let index = pathObject.findIndex( i => i.Nom === pathObject.Nom) // find item in cache
                     pathObject.splice(index, 1); // delete match element
                     actionButton.innerText = "apprendre";

@@ -34,6 +34,10 @@ assignElementsToObject(skills, skillsHTML, "Input", "skills");
 let weaponAttribHTML = {};
 assignElementsToObject(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
 
+/* Sorts and rituals */
+let sortsTable = document.getElementById('sorts-table');
+let ritualsTable = document.getElementById('rituals-table');
+
 /* ------------------------- Generals Informations  ----------------------------*/
 // add bonus by race
 // let isDwarf = false
@@ -82,3 +86,8 @@ jobSelect.addEventListener("change", e=> {
 manageAttributes(attribHTML, false, false);
 manageAttributes(attribBonus, false, true);
 manageAttributes(subAttribBonus, true, true);
+
+/*-------------------Magic -----------------------------*/
+fillMagicTables(sortsTable);
+fillMagicTables(ritualsTable);
+    

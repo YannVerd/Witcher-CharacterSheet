@@ -568,7 +568,7 @@
 
         <section>
             <h2>Sorts / Invocations / Signes</h2>
-            <table id="sort-table">
+            <table id="sorts-table">
                 <tr>
                     <th>Nom</th>
                     <th>Effet</th>
@@ -582,7 +582,7 @@
 
         <section>
             <h2>Rituels</h2>
-            <table id="ritual-table">
+            <table id="rituals-table">
                 <tr>
                     <th>Nom</th>
                     <th>Coût</th>
@@ -619,15 +619,4 @@
 
 </body>
 
-<script type="text/javascript">
-
-    function fillMagicTables(type) {
-        let cache = type === "Sorts" ? cacheDTO.character.sorts : cacheDTO.character.rituels;
-        
-    }
-
-    let sortsTable = document.getElementById('sort-table');
-    let ritualsTable = document.getElementById('ritual-table');
-
-</script>
 </html>

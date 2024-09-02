@@ -19,12 +19,12 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
         try {
             datas.forEach( str => {
                 obj[str] = document.getElementById(`${str}${suffix}`);
-                const cache = JSON.parse(localStorage.getItem("character"));
+                const cache = loadCache();
                 if(cache != undefined){
                     if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
-                        cache[keyOfCache]["base"][str] != undefined? obj[str].value = cache[keyOfCache]["base"][str] : null;
+                        cache.character[keyOfCache]["base"][str] != undefined? obj[str].value = cache.character[keyOfCache]["base"][str] : null;
                     }else if(suffix === "Bonus"){
-                        cache[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache[keyOfCache]["bonus"][str] : null;
+                        cache.character[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache.character[keyOfCache]["bonus"][str] : null;
                     }
                 }
                 
@@ -108,3 +108,35 @@ const calculSubAttributesTotal = (key)=> {
     subAttribTotal[key].value = parseFloat(subAttribHTML[key].value) + parseFloat(subAttribBonus[key].value);
 }
 
+function fillMagicTables(table) {
+    let cache = loadCache();
+    const baseTableHTML = `<tr>
+                <th>Nom</th>
+                <th>Temps_preparation</th>
+                <th>Type</th>
+                <th>Cout</th>
+                <th>Duree</th>
+                <th>Effet</th>
+                <th>SD_Difficulte</th>
+                <th>Defense</th>
+                <th>Degats</th>
+                <th>Classe</th>
+                <th>Source</th>  
+            </tr>`
+    sortsTable.innerHTML = baseTableHTML;
+    ritualsTable.innerHTML = baseTableHTML;
+    let path = "";
+    table.id === "sorts-table" ? path = cache.character.sorts : path = cache.character.rituels;
+    if(path.length > 0){
+        path.forEach(obj => {
+            let row = document.createElement("tr");
+            for (const key in obj) {
+                let cell = document.createElement("td");
+                cell.innerText = obj[key];
+                row.appendChild(cell);
+            }
+            table.appendChild(row)
+        });
+    }
+    
+}

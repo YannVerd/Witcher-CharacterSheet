@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
-    <script src="../datas/grimoire.js"></script>
+    <script src="../datas/cache.js"></script>
+    <script src="../datas/constantes.js"></script>
+    <script src="../scripts/saveSystem.js"></script>
     <link href="../styles/styles.css" rel="stylesheet">
     
 </head>
@@ -21,6 +23,7 @@
             <option value="Novice">Novice</option>
             <option value="Compagnon">Compagnon</option>
             <option value="Maitre">Maitre</option>
+            <option value="Archipretre">Archiprêtre</option>
         </select>
         <select id="selectType">
             <option value="">Type...</option>
@@ -51,6 +54,11 @@
 
 </body>
 <script type="text/javascript" defer>
+    let cache = loadCache();
+    let grimoire = "";
+    fetch("http://localhost:3000/grimoire")
+    .then(res=>res.json())
+    .then((d)=>{ grimoire = d })
     let infosLevel = document.getElementById("infosLevel");
     let grimoireTable = document.getElementById("grimoireTable");
     let selectLevel = document.getElementById("selectLevel");
@@ -71,30 +79,45 @@
     selectLevel.addEventListener("change", e => {
         infosLevel.innerHTML= "";
         infosLevel.innerHTML = "PP: "+grimoire[selectLevel.value]["PP"]+" Durée: "+grimoire[selectLevel.value]["Duree"]+" SD: "+grimoire[selectLevel.value]["SD"]+" Jets: "+grimoire[selectLevel.value]["PP"];
-        grimoireTable.innerHTML = baseTableHTML;
-        grimoire[selectLevel.value][selectType.value].forEach(obj => {
-        let row = document.createElement("tr");
-        for(const prop in obj){
-            let cell = document.createElement("td");
-            cell.innerHTML = obj[prop];
-            row.appendChild(cell);
-        }
-        grimoireTable.appendChild(row);
-    });
+        fillTable();
     })
     selectType.addEventListener("change", e => {
-        grimoireTable.innerHTML = baseTableHTML;
-        grimoire[selectLevel.value][selectType.value].forEach(obj => {
-        let row = document.createElement("tr");
-        for(const prop in obj){
-            let cell = document.createElement("td");
-            cell.innerHTML = obj[prop];
-            row.appendChild(cell);
-        }
-        grimoireTable.appendChild(row);
-    });
+        fillTable();
     })
     
-
+    const fillTable = () => {
+        grimoireTable.innerHTML = baseTableHTML;
+        grimoire[selectLevel.value][selectType.value].forEach(obj => {
+            let isLearned = false;
+            let row = document.createElement("tr");
+            for(const prop in obj){
+                let cell = document.createElement("td");
+                cell.innerHTML = obj[prop];
+                row.appendChild(cell);
+            }
+            let cellAction = document.createElement("td");
+            let actionButton = document.createElement("button");
+            actionButton.innerText = isLearned ? "appris" : "apprendre";
+            actionButton.addEventListener('click', e => {
+                let pathObject = ""; // path of cacheDTO object
+                if(!isLearned){
+                    selectType.value === "Sorts" ? pathObject = cache.character.sorts : pathObject = cache.character.rituels;
+                    pathObject.push(obj);
+                    actionButton.innerText = "appris";
+                    localStorage.setItem(keys.storage, JSON.stringify(cache));
+                }else{
+                    selectType.value === "Sorts" ? pathObject = cache.character.sorts : pathObject = cache.character.rituels;
+                    let index = pathObject.findIndex( i => i.Nom === pathObject.Nom) // find item in cache
+                    pathObject.splice(index, 1); // delete match element
+                    actionButton.innerText = "apprendre";
+                    localStorage.setItem(keys.storage, JSON.stringify(cache)); // save on cache
+                }
+                isLearned = !isLearned;
+            })
+            cellAction.appendChild(actionButton);
+            row.appendChild(cellAction);
+            grimoireTable.appendChild(row);
+        });
+    }
 </script>
 </html>

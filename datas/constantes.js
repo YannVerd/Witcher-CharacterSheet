@@ -78,3 +78,7 @@ const skills = [
     "resMagie",
     "rituels"
 ];
+
+const keys = {
+    storage: "character"
+}

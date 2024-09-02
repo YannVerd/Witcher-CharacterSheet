@@ -107,3 +107,4 @@ const manageAttributes = (object, isSub, isBonus) => {
 const calculSubAttributesTotal = (key)=> {
     subAttribTotal[key].value = parseFloat(subAttribHTML[key].value) + parseFloat(subAttribBonus[key].value);
 }
+

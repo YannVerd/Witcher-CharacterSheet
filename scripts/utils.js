@@ -122,9 +122,9 @@ function fillMagicTables(table) {
                 <th>Degats</th>
                 <th>Classe</th>
                 <th>Source</th>  
+                <th>Actions</th>
             </tr>`
-    sortsTable.innerHTML = baseTableHTML;
-    ritualsTable.innerHTML = baseTableHTML;
+    table.innerHTML = baseTableHTML;
     let path = "";
     table.id === "sorts-table" ? path = cache.character.sorts : path = cache.character.rituels;
     if(path.length > 0){
@@ -135,6 +135,15 @@ function fillMagicTables(table) {
                 cell.innerText = obj[key];
                 row.appendChild(cell);
             }
+            let delButton = document.createElement('button');
+            delButton.innerText = "supprimer";
+            delButton.addEventListener('click', e => {
+                let index = path.findIndex( i => i.Nom === path.Nom) // find item in cache
+                path.splice(index, 1); // delete match element
+                localStorage.setItem(keys.storage, JSON.stringify(cache)); // save on cache
+                fillMagicTables(table);
+            })
+            row.appendChild(delButton);
             table.appendChild(row)
         });
     }

@@ -281,7 +281,7 @@ const rules = {
                 },
                 {
                     "carac": "emp",
-                    "bonus": "-4"
+                    "bonus": -4
                 }
             ],
             "détails" : [

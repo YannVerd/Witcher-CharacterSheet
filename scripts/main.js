@@ -71,15 +71,17 @@ raceSelect.addEventListener("change", e => {
         if(e.target.value == race.nom){
             race.modifs.forEach(modif => {
                 if(Object.keys(modif)[0] === "carac"){
+                    console.log(modif.bonus)
+                    console.log(attribBonus[modif["carac"]].value);
                     attribBonus[modif["carac"]].value = parseFloat(modif.bonus);
-                    calculSubAttributesTotal(modif["carac"], false); // recalcul total
+                    calculTotal(modif["carac"], false); // recalcul total
                     cachingAttribCharacter(modif["carac"], false, false, true);
                 }else if(Object.keys(modif)[0] === "caracDeriv" ){
                     switch(modif["caracDeriv"]){
                         // add case for other derived attributs
                         case "enc":
                             subAttribBonus["enc"].value = parseFloat(modif.bonus);
-                            calculSubAttributesTotal("enc", false);
+                            calculTotal("enc", true, false);
                             cachingAttribCharacter(modif["enc"], true, false, true); //caching
                             break;
                     }      
@@ -88,7 +90,7 @@ raceSelect.addEventListener("change", e => {
                 }else{
                     console.log(skillsBonus[modif["compétence"]])
                     skillsBonus[modif["compétence"]].value = parseFloat(modif.bonus);
-                    calculSubAttributesTotal(modif["compétence"], true)
+                    calculTotal(modif["compétence"], false, true)
                     cachingAttribCharacter(modif["compétence"], false, true, true);
                 }
             })

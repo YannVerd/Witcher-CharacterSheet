@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="./styles/styles.css" rel="stylesheet">
-    <script src="./datas/grimoire.js" type="text/javascript"></script>
     <script src="./datas/rules.js" type="text/javascript"></script>
     <script src="./datas/constantes.js" type="text/javascript"></script>
     <script src="./scripts/utils.js" type="text/javascript"></script>
@@ -31,7 +30,7 @@
                 <table class="attrib-table">
                     <tr>
                         <td>Nom</td>
-                        <td><input type="text" size="8"></td>
+                        <td><input id="name" type="text" size="8"></td>
                     </tr>
                     <tr>
                         <th>Race</th>
@@ -45,15 +44,15 @@
                     </tr>
                     <tr>
                         <td>Genre</td>
-                        <td><input type="text" size="8"></td>
+                        <td><input id="gender" type="text" size="8"></td>
                     </tr>
                     <tr>
                         <td>Âge</td>
-                        <td><input type="text" size="8"></td>
+                        <td><input id="age" type="text" size="8"></td>
                     </tr>
                     <tr>
                         <td>Terre natale</td>
-                        <td><input type="text" size="8"></td>
+                        <td><input id="nativeLand" type="text" size="8"></td>
                     </tr>
                     <tr>
                         <th>Profession</th>
@@ -73,11 +72,11 @@
                     </tr>
                     <tr>
                         <th>Compétence exclusive</th>
-                        <td id="nameCompExclu"></td>
+                        <td id="excluSkill"></td>
                     </tr>
                     <tr>
                         <td>Description Comp. Exclu.</td>
-                        <td id="descripCompExclu"></td>
+                        <td id="descripExcluSkill"></td>
                     </tr>
                 </table>
             </div>
@@ -228,250 +227,7 @@
         
         <section>
             <h2>Compétences</h2>
-            <div class="main-skills-container">
-                <div class="skills-container">
-                    <h3>Compétences d’Intelligence</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Connaissance de la rue</td>
-                            <td><input type="number" id="connRueInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Connaissance des monstres</td>
-                            <td><input type="number" id="connMonstreInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Déduction</td>
-                            <td><input type="number" id="deductionInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Éducation</td>
-                            <td><input type="number" id="educationInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Enseignement</td>
-                            <td><input type="number" id="enseignementInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Étiquette</td>
-                            <td><input type="number" id="etiquetteInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Langue ancienne</td>
-                            <td><input type="number" id="langueAncienneInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Langue commune</td>
-                            <td><input type="number" id="langueCommuneInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Langue naine</td>
-                            <td><input type="number" id="langueNaineInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Négoce</td>
-                            <td><input type="number" id="negoceInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Survie</td>
-                            <td><input type="number" id="survieInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Tactique</td>
-                            <td><input type="number" id="tactiqueInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Vigilance</td>
-                            <td><input type="number" id="vigilanceInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="skills-container">
-                    <h3>Compétences de Réflexe</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Bagarre</td>
-                            <td><input type="number" id="bagarreInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Bâton/Lance</td>
-                            <td><input type="number" id="batonLanceInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Équitation</td>
-                            <td><input type="number" id="equitationInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Escrime</td>
-                            <td><input type="number" id="escrimeInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Esquive/Évasion</td>
-                            <td><input type="number" id="esquiveEvasionInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Lames courtes</td>
-                            <td><input type="number" id="lamesCourtesInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Mêlée</td>
-                            <td><input type="number" id="meleeInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Navigation</td>
-                            <td><input type="number" id="navigationInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="skills-container">
-                    <h3>Compétences de Dextérité</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Adresse</td>
-                            <td><input type="number" id="adresseInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Arbalète</td>
-                            <td><input type="number" id="arbaleteInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Archerie</td>
-                            <td><input type="number" id="archerieInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Athlétisme</td>
-                            <td><input type="number" id="athletismeInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Furtivité</td>
-                            <td><input type="number" id="furtiviteInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="skills-container">
-                    <h3>Compétences de Corps</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Physique</td>
-                            <td><input type="number" id="physiqueInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Résilience</td>
-                            <td><input type="number" id="resilienceInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="skills-container">
-                    <h3>Compétences d’Empathie</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Beaux-arts</td>
-                            <td><input type="number" id="beauxArtsInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Charisme</td>
-                            <td><input type="number" id="charismeInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Commandement</td>
-                            <td><input type="number" id="commandementInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Duperie</td>
-                            <td><input type="number" id="duperieInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Jeu</td>
-                            <td><input type="number" id="jeuInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Persuasion</td>
-                            <td><input type="number" id="persuasionInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Psychologie</td>
-                            <td><input type="number" id="psychologieInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Représentation</td>
-                            <td><input type="number" id="representationInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Séduction</td>
-                            <td><input type="number" id="seductionInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Stylisme</td>
-                            <td><input type="number" id="stylismeInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="skills-container">
-                    <h3>Compétences de Technique</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Alchimie</td>
-                            <td><input type="number" id="alchimieInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Artisanat</td>
-                            <td><input type="number" id="artisanatInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Contre-Façon</td>
-                            <td><input type="number" id="contreFaconInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Crochetage</td>
-                            <td><input type="number" id="crochetageInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Deguisement</td>
-                            <td><input type="number" id="deguisementInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Fabrication de pièges</td>
-                            <td><input type="number" id="fabricationPiegesInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Premier soins</td>
-                            <td><input type="number" id="premierSoinsInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="skills-container">
-                    <h3>Compétences de Volonté</h3>
-                    <table class="skills-table">
-                        <tr>
-                            <td>Concentration</td>
-                            <td><input type="number" id="concentrationInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Courage</td>
-                            <td><input type="number" id="courageInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Intimidation</td>
-                            <td><input type="number" id="intimidationInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Résistance à la douleur</td>
-                            <td><input type="number" id="resDouleurInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Résistance à la contrainte</td>
-                            <td><input type="number" id="resContrainteInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Résistance à la magie</td>
-                            <td><input type="number" id="resMagieInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                        <tr>
-                            <td>Rituels</td>
-                            <td><input type="number" id="rituelsInput" value="0" step="1" min="-22" max="22"></td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="main-skills-container" id="mainSkillsContainer">
             </div>
             
         </section>

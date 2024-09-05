@@ -1,6 +1,6 @@
 /* functions */
 
-const emptyElementsValues = (object) => {
+const emptyElementsValues = (object, isSkill) => {
     return new Promise((resolve, reject) => {
         try {
             for (const key in object) {
@@ -17,18 +17,36 @@ const emptyElementsValues = (object) => {
 const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
     return new Promise((resolve, reject) => {
         try {
-            datas.forEach( str => {
-                obj[str] = document.getElementById(`${str}${suffix}`);
-                const cache = loadCache();
-                if(cache != undefined){
-                    if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
-                        cache.character[keyOfCache]["base"][str] != undefined? obj[str].value = cache.character[keyOfCache]["base"][str] : null;
-                    }else if(suffix === "Bonus"){
-                        cache.character[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache.character[keyOfCache]["bonus"][str] : null;
+            if(keyOfCache != "skills"){
+                datas.forEach( str => {
+                    obj[str] = document.getElementById(`${str}${suffix}`);
+                    const cache = loadCache();
+                    if(cache != undefined){
+                        if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
+                            cache.character[keyOfCache]["base"][str] != undefined? obj[str].value = cache.character[keyOfCache]["base"][str] : null;
+                        }else if(suffix === "Bonus"){
+                            cache.character[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache.character[keyOfCache]["bonus"][str] : null;
+                        }
                     }
+                    
+                });
+            }else { // if is skills 
+                for (const key in datas) {
+                    datas[key].forEach( skill => {
+                        obj[skill.abrv] = document.getElementById(`${skill.abrv}${suffix}`)
+                        const cache = loadCache();
+                    if(cache != undefined){
+                        if(suffix === "Input") {
+                            cache.character[keyOfCache]["base"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["base"][skill.abrv] : null;
+                        }else if(suffix === "Bonus"){
+                            cache.character[keyOfCache]["bonus"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["bonus"][skill.abrv] : null;
+                        }
+                    }
+                    })
+                    
                 }
-                
-            });
+            }
+            
             console.log("elements found for "+keyOfCache+" "+suffix)
             resolve();
         }catch(e){
@@ -38,12 +56,12 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
     })
 }
 
-const manageAttributes = (object, isSub, isBonus) => {
+const manageAttributes = (object, isSub, isSkill, isBonus) => {
    return new Promise((resolve, reject) => {
         try{
             for (const key in object) {
                 object[key].addEventListener("input", e => {
-                    cachingAttribCharacter(key, isSub, isBonus);
+                    cachingAttribCharacter(key, isSub, isSkill, isBonus);
                     if(isSub){
                         calculSubAttributesTotal(key);
                     }else{
@@ -104,8 +122,50 @@ const manageAttributes = (object, isSub, isBonus) => {
     
 }
 
-const calculSubAttributesTotal = (key)=> {
-    subAttribTotal[key].value = parseFloat(subAttribHTML[key].value) + parseFloat(subAttribBonus[key].value);
+const manageSkills = (object, isBonus) => {
+    for (const key in object) {
+        object[key].addEventListener('input', e=>{
+            calculSubAttributesTotal(key, true);
+            cachingAttribCharacter(key, false, true, isBonus);
+        })
+    }
+}
+
+const calculSubAttributesTotal = (key, isSkill)=> {
+    if(!isSkill){
+        subAttribTotal[key].value = parseFloat(subAttribHTML[key].value) + parseFloat(subAttribBonus[key].value);
+    }else{
+        skillsTotal[key].value = parseFloat(skillsBonus[key].value) + parseFloat(skillsHTML[key].value);
+    }
+    
+}
+
+const displaySkills = () => {
+    const mainSkillsSContainer = document.getElementById("mainSkillsContainer");
+    for (const key in skills) {
+        const div = document.createElement('div');
+        div.className="skills-container";
+        const h3 = document.createElement('h3');
+        h3.innerText = key;
+        div.appendChild(h3);
+        const table = document.createElement("table");
+        table.className = "skills-table";
+        skills[key].forEach( skill => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <tr>
+                    <td>${skill.nom}</td>
+                    <td><input type="number" id="${skill.abrv}Input" value="0" step="1" min="-22" max="22"></td>
+                    <td><input type="number" id="${skill.abrv}Bonus" value="0" step="1" min="-22" max="22"></td>
+                    <td><input type="number" id="${skill.abrv}Tt" value="0" step="1" min="-22" max="22"></td>
+                </tr>
+            `;
+        table.appendChild(tr);
+        })
+        
+        div.appendChild(table)
+        mainSkillsSContainer.appendChild(div);
+    }    
 }
 
 function fillMagicTables(table) {

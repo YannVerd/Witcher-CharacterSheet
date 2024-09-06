@@ -25,6 +25,8 @@ raceSelect.dispatchEvent(new Event("change", {'bubbles': true }));
 let vigorBase = document.getElementById("vigorBase");
 let raceDetails = document.getElementById("raceDetails");
 let weightTt = document.getElementById('weightTt');
+weightTt.value = cache.character.currentWeight;
+
  
 
 /* attributes */
@@ -139,3 +141,7 @@ fillMagicTables(ritualsTable);
 /*-------------------skills ----------------------------*/
 manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
+
+/*----------------encumbrement -------------------------*/
+
+weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) > parseFloat(weightTt.value) ? "red" : "lightgreen";

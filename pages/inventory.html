@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="../styles/styles.css" rel="stylesheet">
+    <script src="../datas/constantes.js"></script>
     <script src="../scripts/utils.js"></script>
     <script src="../datas/cache.js"></script>
     <script src="../scripts/saveSystem.js"></script>
@@ -52,6 +53,7 @@
                     <th>Nom</th>
                     <th>Type</th>
                     <th>Précision</th>
+                    <th>Poids</th>
                     <th>Dégâts</th>
                     <th>Fia.</th>
                     <th>Mains</th>
@@ -59,7 +61,6 @@
                     <th>Effet</th>
                     <th>Dissumlation</th>
                     <th>Amélioration</th>
-                    <th>Poids</th>
                     <th>Equipé</th>
                     <th>Actions</th>
                 </tr>
@@ -76,9 +77,9 @@
                     <th>Nom</th>
                     <th>Localisation</th>
                     <th>PA</th>
+                    <th>Poids</th>
                     <th>Dégâts</th>
                     <th>Effet</th>
-                    <th>Poids</th>
                     <th>Equipé</th>
                     <th>Actions</th>
                 </tr>
@@ -93,10 +94,10 @@
             <table id="miscellaneous-table">
                 <tr>
                     <th>Nom</th>
-                    <th>Notes</th>
                     <th>Quantité</th>
                     <th>Poids Unité</th>
                     <th>Poids total</th>
+                    <th>Notes</th>
                     <th>Couts</th>
                     <th>Actions</th>
                 </tr>
@@ -124,11 +125,14 @@
 </body>
 <script type="text/javascript">
     let weightInputList = "";
+    let weightTt = 0;
+    let cache = loadCache();
     function addRow(type) {
         const weaponsRowBase = `
             <td><input type="text" size="10"></td> 
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
+            <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
             <td><input type="number" size="2"></td>
@@ -136,7 +140,6 @@
             <td><textarea rows="1" cols="auto"></textarea></td>
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="checkbox"></td>
             
         `;
@@ -145,17 +148,17 @@
             <td><input type="text" size="10"></td>
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
+            <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="number" size="2"></td>
             <td><textarea rows="1" cols="auto"></textarea></td>
-            <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="checkbox"></td>
         `;
         const miscellaneousRowBase = `
             <td><input type="text" size="10"></td>
-            <td><textarea rows="1" cols="auto"></textarea></td>
             <td><input type="number" size="2" value="1"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="number" size="2" class="weightInput" readonly></td>
+            <td><input type="number" size="2" class="weightInput"></td>
+            <td><textarea rows="1" cols="auto"></textarea></td>
             <td><input type="number" size="2"></td>
             
         `;
@@ -163,7 +166,7 @@
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2" value="1"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="number" size="2" class="weightInput" readonly></td>
+            <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="number" size="2"></td>
             <td><input type="text" size="10"></td>
             
@@ -203,9 +206,26 @@
         buttonDel.innerText = "supprimer";
         buttonDel.style.backgroundColor = "red";
         buttonDel.addEventListener("click", e=> {
+            weightTt -= parseFloat(row.children[3].firstChild.value); // search cell of weigth total then the input's value
+            cache.character.currentWeight = weightTt;
+            localStorage.setItem(keys.storage, JSON.stringify(cache))
             table.deleteRow(row.rowIndex);
         })
-        weightInputList = document.getElementsByTagName("weightInput");
+        weightInputList = document.getElementsByClassName("weightInput");
+        for(let w of weightInputList){
+            let timeout = null;
+            w.addEventListener('input', e => {
+            
+                clearTimeout(timeout);
+                // Make a new timeout set to go off in 1000ms (1 second)
+                timeout = setTimeout(function () {
+                    weightTt += parseFloat(e.target.value);
+                    cache.character.currentWeight = weightTt;
+                    localStorage.setItem(keys.storage, JSON.stringify(cache))
+                }, 1000);
+                        
+            })
+        }
     }
 </script>
 </html>

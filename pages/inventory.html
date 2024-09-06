@@ -204,7 +204,6 @@
         let cell = document.createElement("td");
         let buttonDel = document.createElement("button");
         cell.appendChild(buttonDel);
-        console.log(cell)
         row.appendChild(cell);
         buttonDel.innerText = "supprimer";
         buttonDel.style.backgroundColor = "red";
@@ -214,11 +213,36 @@
             localStorage.setItem(keys.storage, JSON.stringify(cache))
             table.deleteRow(row.rowIndex);
         })
+        for(i = 0; i < row.children.length; i++){
+            row.children[i].firstChild.addEventListener('input', e => {
+                switch(type){
+                    case "weapon":
+                        weaponDTO[keysWeaponDTO[i]] = e.target.value;
+                        cache.character.inventory.weapons[row.rowIndex] = weaponDTO ;
+                        console.log(cache)
+                        break;
+                    case "armor":
+                        armorDTO[keysArmorDTO[i]] = e.target.value;
+                        cache.character.inventory.armors[row.rowIndex] = weaponDTO;
+                        break;
+
+                    case "miscellaneous":
+                        miscDTO[keysMiscDTO[i]] = e.target.value;
+                        cache.character.inventory.miscellaneous[row.rowIndex] = weaponDTO;
+                        break;
+
+                    case "component":
+                        componentDTO[keysComponentDTO[i]] = e.target.value;
+                        cache.character.inventory.components[row.rowIndex] = weaponDTO;
+                        break;
+                }
+                
+            })
+        }
         weightInputList = document.getElementsByClassName("weightInput");
         for(let w of weightInputList){
             let timeout = null;
             w.addEventListener('input', e => {
-            
                 clearTimeout(timeout);
                 // Make a new timeout set to go off in 1000ms (1 second)
                 timeout = setTimeout(function () {

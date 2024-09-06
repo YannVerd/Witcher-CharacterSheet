@@ -40,7 +40,7 @@ let cacheDTO = {
                 "components":[]
             },
             "weaponEquipped": {},
-            "armorsEqupidded":{
+            "armorsEquipped":{
                 "head": {},
                 "torso": {},
                 "leftHand": {},
@@ -67,6 +67,21 @@ let weaponDTO = {
     "equiped": "",
 };
 
+const keysWeaponDTO = [
+    "name",
+    "type",
+    "prec",
+    "weigth",
+    "damages",
+    "fia",
+    "hands",
+    "scope",
+    "effect",
+    "diss",
+    "am",
+    "equiped",
+];
+
 let armorDTO = {
     "name": "",
     "location": "",
@@ -76,6 +91,15 @@ let armorDTO = {
     "effect": "",
     "equiped":"",
 };
+const keysArmorDTO = [
+    "name",
+    "location",
+    "PA",
+    "weigth",
+    "damages",
+    "effect",
+    "equiped",
+];
 
 let miscDTO = {
     "name": "",
@@ -84,9 +108,16 @@ let miscDTO = {
     "weigthTt": "",
     "notes": "",
     "cost": "",
-
 };
 
+const keysMiscDTO = [
+    "name",
+    "quantity",
+    "wieghtUn",
+    "weigthTt",
+    "notes",
+    "cost",
+];
 let componentDTO = {
     "name": "",
     "quantity": "",
@@ -95,3 +126,11 @@ let componentDTO = {
     "cost": "",
     "substance": "",
 }
+const keysComponentDTO = [
+    "name",
+    "quantity",
+    "wieghtUn",
+    "weigthTt",
+    "cost",
+    "substance",
+]

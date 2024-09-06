@@ -23,7 +23,9 @@ let raceSelect = document.getElementById("raceSelect");
 raceSelect.value = cache.character.race;
 raceSelect.dispatchEvent(new Event("change", {'bubbles': true }));
 let vigorBase = document.getElementById("vigorBase");
-
+let raceDetails = document.getElementById("raceDetails");
+let weightTt = document.getElementById('weightTt');
+ 
 
 /* attributes */
 let attribHTML ={};
@@ -64,6 +66,7 @@ let ritualsTable = document.getElementById('rituals-table');
 /* ------------------------- Generals Informations  ----------------------------*/
 // add bonus by race
 raceSelect.addEventListener("change", e => {
+    raceDetails.innerText = "";
     rules.races.forEach(async race => {
         await emptyElementsValues(attribBonus, false);
         await emptyElementsValues(subAttribBonus, false);
@@ -94,6 +97,14 @@ raceSelect.addEventListener("change", e => {
                     cachingAttribCharacter(modif["compétence"], false, true, true);
                 }
             })
+            if(race["détails"].length > 0){
+                race["détails"].forEach(detail => {
+                    raceDetails.innerText += `${detail}\n`
+                })
+            }else{
+                raceDetails.innerText = "aucuns détails";
+            }
+
         }
         cache.character.race = e.target.value;
         localStorage.setItem(keys.storage, JSON.stringify(cache));

@@ -32,7 +32,12 @@ let cacheDTO = {
             },
             "sorts": [],
             "rituels": [],
-            "inventory": [],
+            "inventory": {
+                "weapons":[],
+                "armors":[],
+                "miscellaneous":[],
+                "components":[]
+            },
             "components": [],
             "weapon": {}
         }

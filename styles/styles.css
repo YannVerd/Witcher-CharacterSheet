@@ -1,10 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 2px;
     background-color: #f4f4f4;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     gap: 2px;
+    width: 98%;
 }
 
 a{
@@ -12,7 +13,7 @@ a{
     color: black;
 }
 .container {
-    max-width: 90%;
+    max-width: 98%;
     margin: auto;
     background-color: #fff;
     padding: 20px;
@@ -21,12 +22,10 @@ a{
 nav{
     background-color: #fff;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.8rem;
-    height: 12rem;
-    padding: 5px;
+    justify-content: space-around;
+    height: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
     
 }
 
@@ -63,7 +62,6 @@ table {
 }
 
 th, td {
-    padding: 8px;
     text-align: left;
     border: 1px solid #ddd;
 }
@@ -92,6 +90,7 @@ th {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    width: 98%;
 }
 .main-skills-container{
     flex-wrap: wrap;

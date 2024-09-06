@@ -13,17 +13,17 @@
     <script src="./scripts/main.js" type="text/javascript" defer></script>
 </head>
 <body>
-    
-        <nav>
-            <button><a href="./character.html">Fiche</a></button>
-            <button><a href="./pages/grimoire.html">Grimoire</a></button>
-            <button><a href="#">Aide/Rappels</a></button>
-            <button><a href="#">Notes/Background</a></button>
-            <button><a href="./pages/inventory.html">Inventaire/Composants</a></button>
-        </nav>
+    <h1> The Witcher</h1>
+    <nav>
+        <button><a href="./character.html">Fiche</a></button>
+        <button><a href="./pages/grimoire.html">Grimoire</a></button>
+        <button><a href="#">Aide/Rappels</a></button>
+        <button><a href="#">Notes/Background</a></button>
+        <button><a href="./pages/inventory.html">Inventaire/Composants</a></button>
+    </nav>
     
     <div class="container">
-        <h1>Fiche de Personnage - The Witcher</h1>
+        <h1>Fiche de Personnage</h1>
         <section class="infos-container">
             <div class="general-infos">
                 <h2>Informations Générales</h2>
@@ -41,6 +41,10 @@
                             <option value="Humain">Humain</option>
                             <option value="Sorceleur">Sorceleur</option>
                         </select></td>
+                    </tr>
+                    <tr>
+                        <th>Détails race</th>
+                        <td id="raceDetails"></td>
                     </tr>
                     <tr>
                         <td>Genre</td>
@@ -211,7 +215,7 @@
                 </table>
             </div>
             <div class="vitality-container">
-                <h2>Vigueur et Endurance</h2>
+                <h2>Vigueur/Endurance/Encombrement</h2>
                 <table class="attrib-table">
                     <tr>
                         <th class="vitality-name">Vigueur Base</th>
@@ -221,6 +225,10 @@
                         <th class="vitality-name">Endurance Utilisée</th>
                         <td><input type="number" id="endUseInput" value="0" step="1" min="-22" max="22"></td>
                     </tr>
+                    <tr>
+                        <th>Encombre Actuel</th>
+                        <td><input id="weightTt" type="number" style="width: 3rem;" readonly ></td>
+                    </tr> 
                 </table>
             </div>
         </section>

@@ -17,7 +17,8 @@ reste à faire :
     - Système de sauvegarde et de cache - nécessité d'un serveur et bdd - en cours
     - Ajouter la page Notes
     - Ajouter avec la page Note/background
-    - Faire un beau style css
+    - Faire un beau style css - fait
+    - ajouter un conteneur avec l'évolution des métiers et leurs valeurs
 
 Bugs: 
     - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé

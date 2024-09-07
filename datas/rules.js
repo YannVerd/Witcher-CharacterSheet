@@ -4,55 +4,154 @@ const rules = {
             "Profession": "Artisan",
             "Nom compétence": "Rafistolage(Tech)",
             "Description": "Coût un tour. SD de fabrication objet. Si réussite: Objet réutilisable mais PA ou Fiabilité / 2. Dégats d'arme /2.",
-            "Vigueur": 0
+            "Vigueur": 0,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Barde",
             "Nom compétence": "Prestation(Emp)",
             "Description": "Prestation dur 1h. Résultat du jet prestation = Couronnes amassées. Si échec critique peut perdre de l'argent et malus de -2 en charisme jusqu'à fin de journée.",
-            "Vigueur": 0
+            "Vigueur": 0,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Criminel",
             "Nom compétence": "Paranoïa exercée(Int)",
             "Description": "Si piège a 10m: jet SD(piège, furtivité ou MJ).",
-            "Vigueur": 0
+            "Vigueur": 0,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Docteur",
             "Nom compétence": "Mains thérapeutiques(Tech)",
             "Description": "Capable de soigner blessure critique: nombre de jets nécessaires dépend de la blessure critique.",
-            "Vigueur": 0
+            "Vigueur": 0,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Homme d'armes",
             "Nom compétence": "Dur à cuir(Cor)",
             "Description": "Peut échapper à la mort imminente si réussit un jet Dur à Cuir de SD égal au double de santé négatif.",
-            "Vigueur": 0
+            "Vigueur": 0,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Mage",
             "Nom compétence": "Exercice de la Magie(Int)",
             "Description": "Si phénomène magique inconnu... Jet d'exercice Magique contre SD du MJ. Si réussit, identifie le phénomène. Peut détecter magie en cours ou/et spectres.",
-            "Vigueur": 5
+            "Vigueur": 5,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Marchand",
             "Nom compétence": "Grand Voyageur(Int)",
             "Description": "Jet de Grand Voyageur de SD fixé par MJ. Permet de pouvoir répondre à des questions sur des connaissances concernant un objet, une culture ou une région.",
-            "Vigueur": 0
+            "Vigueur": 0,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Prêtre",
             "Nom compétence": "Initié des Dieux(Emp)",
             "Description": "Jet d'initié des dieux permet d'obtenir, soin hébergement, nourriture, etc., auprès d'un bâtiment de sa religion (en fonction). SD fixé par MJ.",
-            "Vigueur": 2
+            "Vigueur": 2,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         },
         {
             "Profession": "Sorceleur",
             "Nom compétence": "Formation de Sorceleur",
             "Description": "Formation sorceleur diminue pénalités zone hostile ( = score jet Formation de Sorceleur /2). Peut être utilisé pour connaissance des monstres.",
-            "Vigueur": 2
+            "Vigueur": 2,
+            "evos":{
+                "a1": "",
+                "a2": "",
+                "a3": "",
+                "b1": "",
+                "b2": "",
+                "b3": "",
+                "c1": "",
+                "c2": "",
+                "c3": "",
+            }
         }
     ],
     "physicTable": [

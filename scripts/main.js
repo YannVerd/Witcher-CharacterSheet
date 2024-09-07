@@ -19,6 +19,7 @@ jobSelect.value = cache.character.job;
 jobSelect.dispatchEvent(new Event("hange", {'bubbles': true }));
 let excluSkill = document.getElementById("excluSkill");
 let descripExcluSkill = document.getElementById("descripExcluSkill");
+let excluSkillEvos = document.getElementById('excluSkillsEvos');
 let raceSelect = document.getElementById("raceSelect");
 raceSelect.value = cache.character.race;
 raceSelect.dispatchEvent(new Event("change", {'bubbles': true }));

@@ -10,6 +10,52 @@ let cacheDTO = {
             "excluSkill": "",
             "descripExcluSkill": "",
             "currentWeight": "",
+            "excluSkillsEvos": {
+                "excluSkill": {
+                    "base": "",
+                    "bonus": "",
+                },
+                "a1": {
+                    "base": "",
+                    "bonus": "",
+                },
+                "a2": { 
+                    "base": "",
+                    "bonus": "",
+                },
+                "a3": {
+
+                    "base": "",
+                    "bonus": "",
+                },
+                "b1": {
+                    
+                    "base": "",
+                    "bonus": "",
+                },
+                "b2": {
+                   
+                    "base": "",
+                    "bonus": "",
+                },
+                "b3": {
+                    "base": "",
+                    "bonus": "",
+                },
+                "c1": {
+                    "base": "",
+                    "bonus": "",
+                },
+                "c2": {
+                    "base": "",
+                    "bonus": "",
+                },
+                "c3": {
+                    "base": "",
+                    "bonus": "",
+                },
+
+            },
             "attributes": {
                 "base": {
 

@@ -1,6 +1,6 @@
 /* functions */
 
-const emptyElementsValues = (object, isSkill) => {
+const emptyElementsValues = (object) => {
     return new Promise((resolve, reject) => {
         try {
             for (const key in object) {

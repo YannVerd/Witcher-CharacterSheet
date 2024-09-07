@@ -1,7 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url("../pictures/background.jpg");
-    background-repeat: no-repeat;
+    background: url('../pictures/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -18,7 +20,7 @@ a{
 .container {
     max-width: 98%;
     margin: auto;
-    background-color: #fff;
+    background-color: transparent;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -44,6 +46,7 @@ h1 {
     font-size: 24px;
     margin-bottom: 20px;
     text-transform: uppercase;
+    color: #fff;
 }
 
 h2 {
@@ -65,7 +68,7 @@ h3 {
     margin-top: 20px;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 2px;
@@ -78,7 +81,7 @@ th, td {
 
 th {
     background-color: #f2f2f2;
-}
+} */
 
 .section-title {
     font-size: 20px;
@@ -500,4 +503,37 @@ button{
   }
 }
 
-  
+  /**-------table ------------------*/
+p { max-width: 47%; }
+
+table {
+  width: 100%;
+  color: #fff;
+  text-align: left;
+  border-collapse: collapse;
+  background-color: rgba(45,45,55, 0.8); 
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+th p{
+    color: black
+}
+
+th, td { 
+  padding: 1em 1.5em; 
+  font-weight: normal;
+  border: 1px solid #974;
+}
+
+thead { text-transform: uppercase; }
+th { white-space: nowrap; }
+td { width: 100%; }
+
+tbody tr:first-child * { 
+  border-top: 0; /* fixes that border */
+}
+
+thead tr,
+tr:nth-child(even) {
+  background-color: rgba(24,24,34,0.8);
+}

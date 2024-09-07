@@ -127,11 +127,10 @@
 
 </body>
 <script type="text/javascript">
-    let weightInputList = "";
-    let weightTt = 0;
+    let weightInputList = ""; 
+    let weightTt = 0; // total of character weigth (centralised on this page)
     let cache = loadCache();
-    function addRow(type) {
-        const weaponsRowBase = `
+    const weaponsRowBase = `
             <td><input type="text" size="10"></td> 
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
@@ -160,7 +159,7 @@
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2" value="1"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="number" size="2" class="weightInput"></td>
+            <td><input type="number" size="2" class="weightInput" readonly></td>
             <td><textarea rows="1" cols="auto"></textarea></td>
             <td><input type="number" size="2"></td>
             
@@ -169,15 +168,94 @@
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2" value="1"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="number" size="2" class="weightInput"></td>
+            <td><input type="number" size="2" class="weightInput" readonly></td>
             <td><input type="number" size="2"></td>
             <td><input type="text" size="10"></td>
             
         `;
+    completeTableWithCache(cache.character.inventory)
+    function completeTableWithCache(datas) {
+        let table = "";
+        for(const key in datas){
+            if (datas[key].length > 0){
+                datas[key].forEach(element => {
+                    let row = document.createElement('tr');
+                    let baseKeys = null
+                    switch(key){
+                        case 'weapons':
+                            table = document.getElementById('weapons-table')
+                            row.innerHTML = weaponsRowBase;
+                            baseKeys = keysWeaponDTO;
+                            table.appendChild(row)
+                            break;
+                    
+                        case 'armors':
+                            table = document.getElementById('armors-table')
+                            row.innerHTML = armorsRowBase;
+                            baseKeys = keysArmorDTO;
+                            table.appendChild(row)
+                            break;
+
+                        case 'miscellaneous':
+                            table = document.getElementById('miscellaneous-table')
+                            row.innerHTML = miscellaneousRowBase;
+                            baseKeys = keysMiscDTO;
+                            table.appendChild(row)
+                            break;
+
+                        case 'components':
+                            table = document.getElementById('components-table')
+                            row.innerHTML = componentRowBase;
+                            baseKeys = keysComponentDTO;
+                            table.appendChild(row)
+                            break;
+                    }
+                    for(i=0; i < row.children.length; i++){
+                        row.children[i].firstChild.value = element[baseKeys[i]];
+                        row.dispatchEvent(new Event('input'));
+                    }
+                    let cell = document.createElement("td");
+                    let buttonDel = document.createElement("button");
+                    cell.appendChild(buttonDel);
+                    row.appendChild(cell);
+                    buttonDel.innerText = "supprimer";
+                    buttonDel.style.backgroundColor = "red";
+                    // manage delete row when button "supprimer" cliked
+                    buttonDel.addEventListener("click", e=> {
+                        weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
+                        cache.character.currentWeight = weightTt;
+                        // delete cache element based on "type" parameter
+                        switch(key){
+                            case "weapons":
+                                cache.character.inventory.weapons.splice(row.rowIndex -1, 1); // delete the target row (index retrieve with row.rowIndex property)
+                                break;
+                            case "armors":
+                                cache.character.inventory.armors.splice(row.rowIndex -1, 1);
+                                break;
+
+                            case "miscellaneous":
+                                cache.character.inventory.miscellaneous.splice(row.rowIndex -1, 1);
+                                break;
+
+                            case "components":
+                                cache.character.inventory.components.splice(row.rowIndex -1, 1);
+                                break;
+                        }
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
+                        table.deleteRow(row.rowIndex);
+                    })
+                });
+            }  
+            
+        }
+    }
+    function addRow(type) {
+        
 
         let table ="";
         let row = document.createElement("tr");
-        switch(type){
+        // select base html depending on type parameter
+        switch(type){ 
             case "weapon":
                 table = document.getElementById("weapons-table");
                 row.innerHTML = weaponsRowBase;
@@ -201,52 +279,124 @@
                 table.appendChild(row);
                 break;
         }
+        // create button for each new row
         let cell = document.createElement("td");
         let buttonDel = document.createElement("button");
         cell.appendChild(buttonDel);
         row.appendChild(cell);
         buttonDel.innerText = "supprimer";
         buttonDel.style.backgroundColor = "red";
+        // manage delete row when button "supprimer" cliked
         buttonDel.addEventListener("click", e=> {
-            weightTt -= parseFloat(row.children[3].firstChild.value); // search cell of weigth total then the input's value
+            weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
             cache.character.currentWeight = weightTt;
+            // delete cache element based on "type" parameter
+            switch(type){
+                case "weapon":
+                    cache.character.inventory.weapons.splice(row.rowIndex -1, 1); // delete the target row (index retrieve with row.rowIndex property)
+                    break;
+                case "armor":
+                    cache.character.inventory.armors.splice(row.rowIndex -1, 1);
+                    break;
+
+                case "miscellaneous":
+                    cache.character.inventory.miscellaneous.splice(row.rowIndex -1, 1);
+                    break;
+
+                case "component":
+                    cache.character.inventory.components.splice(row.rowIndex -1, 1);
+                    break;
+            }
             localStorage.setItem(keys.storage, JSON.stringify(cache))
             table.deleteRow(row.rowIndex);
         })
         for(i = 0; i < row.children.length; i++){
+            let timeout = null
+            let index = i; // fix i for each event
             row.children[i].firstChild.addEventListener('input', e => {
+
                 switch(type){
                     case "weapon":
-                        weaponDTO[keysWeaponDTO[i]] = e.target.value;
-                        cache.character.inventory.weapons[row.rowIndex] = weaponDTO ;
-                        console.log(cache)
+                        if(index === 3){ // auto calcul of total weight
+                            clearTimeout(timeout);
+                        // Make a new timeout set to go off in 1000ms (1 second)
+                            timeout = setTimeout(function () {
+                                miscDTO[3] = e.target.value;
+                                weightTt += parseFloat(e.target.value);// add to total the target value
+                                cache.character.currentWeight = weightTt;
+                                localStorage.setItem(keys.storage, JSON.stringify(cache))
+                            }, 1000);
+                            
+                        }
+                        weaponDTO[keysWeaponDTO[index]] = e.target.value;
+                        cache.character.inventory.weapons[row.rowIndex -1] = weaponDTO ;
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
                         break;
                     case "armor":
-                        armorDTO[keysArmorDTO[i]] = e.target.value;
-                        cache.character.inventory.armors[row.rowIndex] = weaponDTO;
+                    if(index === 3){ // auto calcul of total weight
+                        clearTimeout(timeout);
+                        // Make a new timeout set to go off in 1000ms (1 second)
+                            timeout = setTimeout(function () {
+                                miscDTO[3] = e.target.value;
+                                weightTt += parseFloat(e.target.value);// add to total the target value
+                                cache.character.currentWeight = weightTt;
+                                localStorage.setItem(keys.storage, JSON.stringify(cache))
+                            }, 1000);
+                            
+                        }
+                        armorDTO[keysArmorDTO[index]] = e.target.value;
+                        cache.character.inventory.armors[row.rowIndex - 1] = armorDTO;
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
                         break;
 
                     case "miscellaneous":
-                        miscDTO[keysMiscDTO[i]] = e.target.value;
-                        cache.character.inventory.miscellaneous[row.rowIndex] = weaponDTO;
+                        if(index === 1 || index === 2){ // auto calcul of total weight
+                            clearTimeout(timeout);
+                        // Make a new timeout set to go off in 1000ms (1 second)
+                            timeout = setTimeout(function () {
+                                row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
+                                miscDTO[keysMiscDTO[3]] = row.children[3].firstChild.value
+                                weightTt += parseFloat(row.children[3].firstChild.value);// add to total the target value
+                                cache.character.currentWeight = weightTt;
+                                localStorage.setItem(keys.storage, JSON.stringify(cache))
+                            }, 1000);
+                            
+                        }
+                        miscDTO[keysMiscDTO[index]] = e.target.value;
+                        cache.character.inventory.miscellaneous[row.rowIndex - 1] = miscDTO;
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
                         break;
 
                     case "component":
-                        componentDTO[keysComponentDTO[i]] = e.target.value;
-                        cache.character.inventory.components[row.rowIndex] = weaponDTO;
+                    if(index === 1 || index === 2){
+                            clearTimeout(timeout);
+                        // Make a new timeout set to go off in 1000ms (1 second)
+                            timeout = setTimeout(function () {
+                                row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
+                                componentDTO[keysComponentDTO[3]] = row.children[3].firstChild.value
+                                weightTt += parseFloat(row.children[3].firstChild.value);// add to total the target value
+                                cache.character.currentWeight = weightTt;
+                                localStorage.setItem(keys.storage, JSON.stringify(cache))
+                            }, 1000);
+                            
+                        }
+                        componentDTO[keysComponentDTO[index]] = e.target.value;
+                        cache.character.inventory.components[row.rowIndex - 1] = componentDTO;
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
                         break;
                 }
                 
             })
         }
-        weightInputList = document.getElementsByClassName("weightInput");
-        for(let w of weightInputList){
+        weightInputList = document.getElementsByClassName("weightInput"); // list of all input weigthInput class (refresh of each deletion/creation)
+        // add all weight total
+        for(let w of weightInputList){ 
             let timeout = null;
             w.addEventListener('input', e => {
                 clearTimeout(timeout);
                 // Make a new timeout set to go off in 1000ms (1 second)
                 timeout = setTimeout(function () {
-                    weightTt += parseFloat(e.target.value);
+                    weightTt += parseFloat(e.target.value);// add to total the target value
                     cache.character.currentWeight = weightTt;
                     localStorage.setItem(keys.storage, JSON.stringify(cache))
                 }, 1000);

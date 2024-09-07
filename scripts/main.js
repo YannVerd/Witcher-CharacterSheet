@@ -123,6 +123,48 @@ jobSelect.addEventListener("change", e=> {
             excluSkill.innerHTML = j["Nom compétence"];
             descripExcluSkill.innerHTML = j.Description;
             vigorBase.innerHTML = j.Vigueur;
+            let tr = document.createElement('tr');
+            let cellInitialJobValue = document.createElement('td');
+            tr.appendChild(cellInitialJobValue);
+            excluSkillsEvosTable.appendChild(tr);
+            let inputInitialJobValue = document.createElement('input');
+            inputInitialJobValue.type = "number";
+            inputInitialJobValue.value = cache.character.excluSkillsEvos.excluSkill.base || 0;
+            cellInitialJobValue.appendChild(inputInitialJobValue)
+            let cellInitialJobBonus = document.createElement('td');
+            tr.appendChild(cellInitialJobValue);
+            let inputInitialJobBonus = document.createElement('input');
+            inputInitialJobBonus.type = "number";
+            inputInitialJobBonus.value = cache.character.excluSkillsEvos.excluSkill.bonus || 0;
+            cellInitialJobBonus.appendChild(inputInitialJobBonus);
+            let inputInitialJobTt = document.createElement('input');
+            inputInitialJobTttype = "number";
+            inputInitialJobTt.value = cache.character.excluSkillsEvos.excluSkill.bonus || 0;
+            cellInitialJobTt.appendChild(inputInitialJobBonus);
+            for(const key in j.evos){
+                let rowEvo = document.createElement('tr');
+                let cellName = document.createElement('td');
+                let cellBase = document.createElement('td');
+                let inputBase = document.createElement('input');
+                inputBase.type = "number";
+                cellBase.appendChild(inputBase)
+                let cellBonus = document.createElement('td');
+                let inputBonus = document.createElement('input');
+                inputBonus.type = "number";
+                cellBonus.appendChild(inputBonus)
+                let cellTt = document.createElement('td');
+                let inputTt = document.createElement('input');
+                inputTt.type = "number";
+                cellTt.appendChild(inputTt)
+                rowEvo.append([cellName, cellBase, cellBonus, cellTt])
+                cellName.innerText = j.evos[key];
+                inputBase.value = cache.character.excluSkillsEvos[key].base || 0;
+                inputBonus = cache.character.excluSkillsEvos[key].bonus || 0;
+                inputTt = parseFloat(inputBase.value) + parseFloat(inputBonus.value);
+                excluSkillsEvosTable.appendChild(rowEvo);
+                
+
+            }
         }
     } )
     cache.character.job = e.target.value;
@@ -131,7 +173,7 @@ jobSelect.addEventListener("change", e=> {
 
 /*------------------- exclusiv skills evolutions---------------- */
 
-let tr 
+
 
 /* ----------------Derived attributes -----------------*/
 

@@ -142,6 +142,8 @@ const calculTotal = (key, isSub, isSkill)=> {
     
 }
 
+
+
 const displaySkills = () => {
     const mainSkillsSContainer = document.getElementById("mainSkillsContainer");
     for (const key in skills) {

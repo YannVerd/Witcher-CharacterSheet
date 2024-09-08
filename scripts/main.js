@@ -201,7 +201,6 @@ jobSelect.addEventListener("change", e=> {
                     inputTt = parseFloat(inputBase.value) + parseFloat(inputBonus.value);
                     excluSkillsEvosTable.appendChild(rowEvo);
                     /*----- input event managment -----*/
-                    console.log(cache.character.excluSkillsEvos[indexKey].base)
                     eventInputExcluSkill(excluSkillsHTML, indexKey, false)
                     eventInputExcluSkill(excluSkillsBonus, indexKey, true)
                 }

@@ -125,7 +125,7 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
 const manageSkills = (object, isBonus) => {
     for (const key in object) {
         object[key].addEventListener('input', e=>{
-            calculTotal(key, false, true);
+            calculTotal(key, keys.inputType.skill);
             cachingAttribCharacter(key, false, true, isBonus);
         })
     }

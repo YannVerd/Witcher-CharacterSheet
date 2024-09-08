@@ -41,7 +41,7 @@ const rules = {
                     "Acclimatation (int)",
                 ],
                 "Manipulateur": [
-                    "Manipulateur (emp)",
+                    "Empoisonner le puit (emp)",
                     "Pique (emp)",
                     "Suspicion (emp)",
                 ]

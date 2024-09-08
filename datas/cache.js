@@ -93,7 +93,9 @@ let cacheDTO = {
                 "rightHand": {},
                 "leftLeg": {},
                 "rightLeg": {}
-            }
+            },
+            "background": "",
+            "notes": ""
             
         }
 }

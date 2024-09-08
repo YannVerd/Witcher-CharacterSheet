@@ -63,14 +63,14 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
                 object[key].addEventListener("input", e => {
                     cachingAttribCharacter(key, isSub, isSkill, isBonus);
                     if(isSub){
-                        calculTotal(key, true, false);
+                        calculTotal(key, keys.inputType.subAttrib);
                     }else{
                         attribTotal[key].value = parseFloat(attribHTML[key].value) + parseFloat(attribBonus[key].value);
                         switch(key){
                             case "cor":
                                 //clutter
                                 subAttribHTML["enc"].value = attribTotal["cor"].value * 10;
-                                calculTotal("enc", true, false);
+                                calculTotal("enc", keys.inputType.subAttrib);
                             
                                 // hand and foot damage
                                 rules.handToHand.forEach(t => {
@@ -90,10 +90,10 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
                                         subAttribHTML["etou"].value = t.ETOU;
                                         subAttribHTML["ps"].value = t.PS;
                                         subAttribHTML["rec"].value = t.REC;
-                                        calculTotal("end", true, false);
-                                        calculTotal("etou", true, false);
-                                        calculTotal("ps", true, false);
-                                        calculTotal("rec", true, false);
+                                        calculTotal("end", keys.inputType.subAttrib);
+                                        calculTotal("etou", keys.inputType.subAttrib);
+                                        calculTotal("ps", keys.inputType.subAttrib);
+                                        calculTotal("rec", keys.inputType.subAttrib);
                                     }
                                 })
 
@@ -104,8 +104,8 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
                             case "vit":
                                 subAttribHTML["cour"].value = attribHTML["vit"].value*3;
                                 subAttribHTML["saut"].value = Math.floor(subAttribHTML["cour"].value/5);
-                                calculTotal("cour", true, false);
-                                calculTotal("saut", true, false);
+                                calculTotal("cour", keys.inputType.subAttrib);
+                                calculTotal("saut", keys.inputType.subAttrib);
                             
                             default:
                                 break;
@@ -125,22 +125,33 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
 const manageSkills = (object, isBonus) => {
     for (const key in object) {
         object[key].addEventListener('input', e=>{
-            calculTotal(key, false, true);
+            calculTotal(key, keys.inputType.skill);
             cachingAttribCharacter(key, false, true, isBonus);
         })
     }
 }
 
-const calculTotal = (key, isSub, isSkill)=> {
-    if(isSkill){
-        skillsTotal[key].value = parseFloat(skillsBonus[key].value) + parseFloat(skillsHTML[key].value);
-    }else if(isSub){
-        subAttribTotal[key].value = parseFloat(subAttribHTML[key].value) + parseFloat(subAttribBonus[key].value);
-    }else{
-        attribTotal[key].value = parseFloat(attribBonus[key].value) + parseFloat(attribHTML[key].value);
-    }
+const calculTotal = (key, type)=> {
+    switch (type) {
+        case keys.inputType.skill:
+            skillsTotal[key].value = parseFloat(skillsBonus[key].value) + parseFloat(skillsHTML[key].value);
+            break;
     
+        case keys.inputType.subAttrib:
+            subAttribTotal[key].value = parseFloat(subAttribHTML[key].value) + parseFloat(subAttribBonus[key].value);
+            break;
+        
+        case keys.inputType.attrib:
+            attribTotal[key].value = parseFloat(attribBonus[key].value) + parseFloat(attribHTML[key].value);
+            break;
+
+        case keys.inputType.excluSkill:
+            excluSkillsTt[key].value = parseFloat(excluSkillsBonus[key].value) + parseFloat(excluSkillsHTML[key].value)
+            break;
+    }
 }
+
+
 
 const displaySkills = () => {
     const mainSkillsSContainer = document.getElementById("mainSkillsContainer");
@@ -210,4 +221,12 @@ function fillMagicTables(table) {
         });
     }
     
+}
+
+function eventInputExcluSkill(input, key, isBonus){
+    input[key].addEventListener('input', e => {
+        isBonus ? cache.character.excluSkillsEvos[key].bonus = e.target.value : cache.character.excluSkillsEvos[key].base = e.target.value;
+        calculTotal(key, keys.inputType.excluSkill)
+        localStorage.setItem(key.storage, JSON.stringify(cache));
+    })
 }

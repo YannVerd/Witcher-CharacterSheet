@@ -81,7 +81,11 @@ h3 {
     display: flex;
     flex-direction: column;
 }
-    
+.weapons-container {
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+}  
 
 .attributes{
     display: flex;
@@ -116,6 +120,10 @@ button{
     font-size: 1rem;
 }
 
+.titleExcluSkillCell{
+  width: 100%;
+  text-align: center;
+}
 
 /*-------- Fantasy buttons -------*/
 @layer fantasy-btn, fantasy-presets;

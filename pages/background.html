@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Personnage - The Witcher</title>
+    <script src="../datas/cache.js"></script>
+    <script src="../datas/constantes.js"></script>
+    <script src="../scripts/saveSystem.js"></script>
+    <link href="../styles/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
+    
+</head>
+<body>
+    <div class="mainTitle">
+        <img src="../pictures/logo.png" style="height: 10rem; width: 10rem;">
+        <h1> The Witcher</h1>
+    </div>
+    <nav>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='../character.html'">Fiche</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./grimoire.html'">Grimoire</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='#'">Aide et Rappels</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./background.html'">Background et Notes </button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./inventory.html'">Inventaire</button>
+    </nav>
+    
+    <div class="attributes-container" style="width: 98%; margin-top: 0;">
+        <section>
+            <h2>Background et Notes</h2>
+            <table style="width: 95%;">
+                <tr>
+                    <th>Background</th>
+                </tr>
+                <tr>
+                    <td><textarea name="background" id="background" rows="20" cols="96"></textarea></td>
+                </tr>
+                <tr>
+                <tr>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><textarea name="notes" id="notes" rows="20"></textarea></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</body>
+<script type="text/javascript">
+    let cache = loadCache();
+    let textAreas = document.getElementsByTagName('textarea');
+    textAreas[0].value = cache.character.background;
+    textAreas[1].value = cache.character.notes;
+    for (const textArea of textAreas){
+        textArea.addEventListener('input', e => {
+            
+            textArea.name === 'background' ? cache.character.background = e.target.value : cache.character.notes = e.target.value;
+            localStorage.setItem(keys.storage, JSON.stringify(cache));
+        })
+    };
+</script>
+</html>

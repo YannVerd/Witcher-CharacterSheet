@@ -6,15 +6,22 @@ const rules = {
             "Description": "Coût un tour. SD de fabrication objet. Si réussite: Objet réutilisable mais PA ou Fiabilité / 2. Dégats d'arme /2.",
             "Vigueur": 0,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Maitre artisant": [
+                    "Catalogue étendu (int)",
+                    "Compagnon (tech)",
+                    "Maître Compagnon (tech)",
+                ],
+                "Alchimiste" :[
+                    "Pharmacie mentale (int)",
+                    "Double dose (tech)",
+                    "Adaptation (tech)",
+                ],
+                "Improvisateur": [
+                    "Amélioration (tech)",
+                    "Plaqué argent (tech)",
+                    "Déceler (tech)"
+                ]
+              
             }
         },
         {
@@ -23,15 +30,23 @@ const rules = {
             "Description": "Prestation dur 1h. Résultat du jet prestation = Couronnes amassées. Si échec critique peut perdre de l'argent et malus de -2 en charisme jusqu'à fin de journée.",
             "Vigueur": 0,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Charmeur": [
+                    "Notoriété (emp)",
+                    "Captiver la foule (emp)",
+                    "Bon ami (emp)",
+                ],
+                "Informateur": [
+                    "Disparition (int)",
+                    "Ragots (int)",
+                    "Acclimatation (int)",
+                ],
+                "Manipulateur": [
+                    "Empoisonner le puit (emp)",
+                    "Pique (emp)",
+                    "Suspicion (emp)",
+                ]
+                
+                
             }
         },
         {
@@ -40,15 +55,24 @@ const rules = {
             "Description": "Si piège a 10m: jet SD(piège, furtivité ou MJ).",
             "Vigueur": 0,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Voleur": [
+                    "Plan mental (int)",
+                    "Clé mentale (int)",
+                    "Planque (int)",
+                ],
+                "Chef de Bande": [
+                    "Point faible(emp)",
+                    "Marquage (vol)",
+                    "Recrutement (vol)",
+                ],
+                "Assassin": [
+                    "Visée précise (dex)",
+                    "pique aux yeux (dex)",
+                    "Frappe assassine (dex)",
+                ]
+                
+               
+                
             }
         },
         {
@@ -57,15 +81,24 @@ const rules = {
             "Description": "Capable de soigner blessure critique: nombre de jets nécessaires dépend de la blessure critique.",
             "Vigueur": 0,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Chirurgien": [
+                    "Diagnostic (int) (a1)",
+                    "Analyse (int) (a2)",
+                    "chirurgie miraculeuse (tech) (a3)",
+                ],
+                "Herboriste":[
+                    "Espace de soins (tech) (b1)",
+                    "Improvisation (techt) (b2)",
+                    "remède Naturel (tech) (b3)",
+                ],
+                "Anatomiste": [
+                    "Plaie ouverte (int) (c1)",
+                    "Carnage (int) (c2)",
+                    "Blessure incapacitante (int) (c3)",
+                ]
+                
+                
+                
             }
         },
         {

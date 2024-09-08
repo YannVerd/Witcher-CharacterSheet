@@ -244,5 +244,12 @@ const skills = {
 
 
 const keys = {
-    storage: "character"
+    storage: "character",
+    excluSkill: ['a', 'b', 'c'],
+    inputType: {
+        attrib: "attrib",
+        subAttrib: "subAttrib",
+        skill : "skill",
+        excluSkill: "excluSkill"
+    }
 }

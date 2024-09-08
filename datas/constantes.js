@@ -244,5 +244,6 @@ const skills = {
 
 
 const keys = {
-    storage: "character"
+    storage: "character",
+    excluSkill: ['a', 'b', 'c']
 }

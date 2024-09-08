@@ -15,13 +15,14 @@ for(i = 0; i < listMainInfos.length; i++){
 }
 
 let jobSelect = document.getElementById("jobSelect");
-jobSelect.value = cache.character.job;
-jobSelect.dispatchEvent(new Event("hange", {'bubbles': true }));
+jobSelect.value = cache.character.job || "default";
+// jobSelect.dispatchEvent(new Event("change", {'bubbles': true }));
+jobSelect.dispatchEvent(new InputEvent('change'))
 let excluSkill = document.getElementById("excluSkill");
 let descripExcluSkill = document.getElementById("descripExcluSkill");
 let excluSkillsEvosTable = document.getElementById('excluSkillsEvos-table');
 let raceSelect = document.getElementById("raceSelect");
-raceSelect.value = cache.character.race;
+raceSelect.value = cache.character.race || "default";
 raceSelect.dispatchEvent(new Event("change", {'bubbles': true }));
 let vigorBase = document.getElementById("vigorBase");
 let raceDetails = document.getElementById("raceDetails");
@@ -70,15 +71,14 @@ let ritualsTable = document.getElementById('rituals-table');
 // add bonus by race
 raceSelect.addEventListener("change", e => {
     raceDetails.innerText = "";
+    
     rules.races.forEach(async race => {
-        await emptyElementsValues(attribBonus, false);
-        await emptyElementsValues(subAttribBonus, false);
-        await emptyElementsValues(skillsBonus, true);
+        await emptyElementsValues(attribBonus);
+        await emptyElementsValues(subAttribBonus);
+        await emptyElementsValues(skillsBonus);
         if(e.target.value == race.nom){
             race.modifs.forEach(modif => {
                 if(Object.keys(modif)[0] === "carac"){
-                    console.log(modif.bonus)
-                    console.log(attribBonus[modif["carac"]].value);
                     attribBonus[modif["carac"]].value = parseFloat(modif.bonus);
                     calculTotal(modif["carac"], false); // recalcul total
                     cachingAttribCharacter(modif["carac"], false, false, true);
@@ -94,7 +94,6 @@ raceSelect.addEventListener("change", e => {
                 }else if(Object.keys(modif)[0] === "armure"){
                     // add PA bonus here
                 }else{
-                    console.log(skillsBonus[modif["compétence"]])
                     skillsBonus[modif["compétence"]].value = parseFloat(modif.bonus);
                     calculTotal(modif["compétence"], false, true)
                     cachingAttribCharacter(modif["compétence"], false, true, true);
@@ -115,6 +114,12 @@ raceSelect.addEventListener("change", e => {
 });
 
 jobSelect.addEventListener("change", e=> {
+    excluSkillsEvosTable.innerHTML = `<tr>
+                                        <th>Attribut</th>
+                                        <th>Valeur</th>
+                                        <th>Bonus</th>
+                                        <th>Total</th>
+                                    </tr>`;
     rules.jobs.forEach(j => {
         if(j.Profession == e.target.value){
             descripExcluSkill.innerHTML = "";
@@ -124,46 +129,68 @@ jobSelect.addEventListener("change", e=> {
             descripExcluSkill.innerHTML = j.Description;
             vigorBase.innerHTML = j.Vigueur;
             let tr = document.createElement('tr');
+            let cellInitialJobName = document.createElement('td');
+            tr.appendChild(cellInitialJobName);
+            cellInitialJobName.innerText = e.target.value;
+            cellInitialJobName.className = "textExcluSkills";
             let cellInitialJobValue = document.createElement('td');
             tr.appendChild(cellInitialJobValue);
             excluSkillsEvosTable.appendChild(tr);
             let inputInitialJobValue = document.createElement('input');
             inputInitialJobValue.type = "number";
-            inputInitialJobValue.value = cache.character.excluSkillsEvos.excluSkill.base || 0;
+            inputInitialJobValue.className = "inputExcluSkills";
+            inputInitialJobValue.value = cache.character.excluSkillsEvos.excluSkill.base  === "" ? 0 : cache.character.excluSkillsEvos.excluSkill.base;
             cellInitialJobValue.appendChild(inputInitialJobValue)
             let cellInitialJobBonus = document.createElement('td');
-            tr.appendChild(cellInitialJobValue);
+            tr.appendChild(cellInitialJobBonus);
             let inputInitialJobBonus = document.createElement('input');
             inputInitialJobBonus.type = "number";
-            inputInitialJobBonus.value = cache.character.excluSkillsEvos.excluSkill.bonus || 0;
+            inputInitialJobBonus.className = "inputExcluSkills";
+            inputInitialJobBonus.value = cache.character.excluSkillsEvos.excluSkill.bonus === "" ? 0 : cache.character.excluSkillsEvos.excluSkill.bonus;
             cellInitialJobBonus.appendChild(inputInitialJobBonus);
+            let cellInitialJobTt = document.createElement('td');
             let inputInitialJobTt = document.createElement('input');
-            inputInitialJobTttype = "number";
-            inputInitialJobTt.value = cache.character.excluSkillsEvos.excluSkill.bonus || 0;
-            cellInitialJobTt.appendChild(inputInitialJobBonus);
+            inputInitialJobTt.type = "number";
+            inputInitialJobTt.className = "inputExcluSkills";
+            cellInitialJobTt.appendChild(inputInitialJobTt);
+            tr.appendChild(cellInitialJobTt);
+            let indexKey = 0 // index of key
             for(const key in j.evos){
-                let rowEvo = document.createElement('tr');
-                let cellName = document.createElement('td');
-                let cellBase = document.createElement('td');
-                let inputBase = document.createElement('input');
-                inputBase.type = "number";
-                cellBase.appendChild(inputBase)
-                let cellBonus = document.createElement('td');
-                let inputBonus = document.createElement('input');
-                inputBonus.type = "number";
-                cellBonus.appendChild(inputBonus)
-                let cellTt = document.createElement('td');
-                let inputTt = document.createElement('input');
-                inputTt.type = "number";
-                cellTt.appendChild(inputTt)
-                rowEvo.append([cellName, cellBase, cellBonus, cellTt])
-                cellName.innerText = j.evos[key];
-                inputBase.value = cache.character.excluSkillsEvos[key].base || 0;
-                inputBonus = cache.character.excluSkillsEvos[key].bonus || 0;
-                inputTt = parseFloat(inputBase.value) + parseFloat(inputBonus.value);
-                excluSkillsEvosTable.appendChild(rowEvo);
-                
-
+                let titleExcluSkillRow = document.createElement('tr');
+                excluSkillsEvosTable.appendChild(titleExcluSkillRow);
+                let titleExcluSkillCell = document.createElement('td');
+                titleExcluSkillRow.appendChild(titleExcluSkillCell)
+                titleExcluSkillCell.innerText = key;
+                titleExcluSkillCell.setAttribute('colspan', '4');
+                titleExcluSkillCell.className = "titleExcluSkillCell";
+                for(i = 0; i < j.evos[key].length; i++){
+                    let rowEvo = document.createElement('tr');
+                    let cellName = document.createElement('td');
+                    cellName.innerText = j.evos[key][i]; 
+                    let cellBase = document.createElement('td');
+                    let inputBase = document.createElement('input');
+                    inputBase.type = "number";
+                    cellBase.appendChild(inputBase)
+                    let cellBonus = document.createElement('td');
+                    let inputBonus = document.createElement('input');
+                    inputBonus.type = "number";
+                    cellBonus.appendChild(inputBonus)
+                    let cellTt = document.createElement('td');
+                    let inputTt = document.createElement('input');
+                    inputTt.type = "number";
+                    inputBase.readOnly = true;
+                    cellTt.appendChild(inputTt)
+                    rowEvo.append(cellName);
+                    rowEvo.append(cellBase);
+                    rowEvo.append(cellBonus);
+                    rowEvo.append(cellTt);
+                    inputBase.value = cache.character.excluSkillsEvos[keys.excluSkill[indexKey]+ (i+1)].base === "" ? 0: cache.character.excluSkillsEvos[keys.excluSkill[indexKey]+ (i+1)].base;
+                    inputBonus = cache.character.excluSkillsEvos[keys.excluSkill[indexKey]+ (i+1)].bonus === "" ?  0: cache.character.excluSkillsEvos[keys.excluSkill[indexKey]+ (i+1)].bonus;
+                    inputTt = parseFloat(inputBase.value) + parseFloat(inputBonus.value);
+                    excluSkillsEvosTable.appendChild(rowEvo);
+                    /*----- input event managment -----*/
+                }
+                indexKey++;
             }
         }
     } )

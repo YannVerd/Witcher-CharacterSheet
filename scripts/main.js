@@ -178,7 +178,7 @@ jobSelect.addEventListener("change", e=> {
                     let cellTt = document.createElement('td');
                     let inputTt = document.createElement('input');
                     inputTt.type = "number";
-                    inputBase.readOnly = true;
+                    inputTt.readOnly = true;
                     cellTt.appendChild(inputTt)
                     rowEvo.append(cellName);
                     rowEvo.append(cellBase);

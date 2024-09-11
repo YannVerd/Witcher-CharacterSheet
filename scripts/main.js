@@ -32,8 +32,11 @@ raceSelect.dispatchEvent(new Event("change", {'bubbles': true }));
 let vigorBase = document.getElementById("vigorBase");
 let raceDetails = document.getElementById("raceDetails");
 let weightTt = document.getElementById('weightTt');
+let pp = document.getElementById('pp');
+let cash = document.getElementById('cash');
 weightTt.value = cache.character.currentWeight;
-
+pp.value = cache.character.pp;
+cash.value = cache.character.cash;
  
 
 /* attributes */
@@ -233,6 +236,14 @@ fillMagicTables(ritualsTable);
 manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
 
-/*----------------encumbrement -------------------------*/
+/*----------------encumbrement cash and pp-------------------------*/
 
 weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) > parseFloat(weightTt.value) ? "red" : "lightgreen";
+cash.addEventListener('input', e => {
+    cache.character.cash = e.target.value;
+    localStorage.setItem(keys.storage, JSON.stringify(cache));
+})
+pp.addEventListener('input', e => {
+    cache.character.pp = e.target.value;
+    localStorage.setItem(keys.storage, JSON.stringify(cache));
+})

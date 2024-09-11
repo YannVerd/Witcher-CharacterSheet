@@ -95,7 +95,9 @@ let cacheDTO = {
                 "rightLeg": {}
             },
             "background": "",
-            "notes": ""
+            "notes": "",
+            "cash": "",
+            "pp": "",
             
         }
 }

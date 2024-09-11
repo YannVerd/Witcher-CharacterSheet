@@ -19,13 +19,12 @@
         <h1> The Witcher</h1>
     </div>
     <nav>
-        
-        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./character.html'">Fiche</button>
         <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./pages/grimoire.html'">Grimoire</button>
         <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='#'">Aide et Rappels</button>
         <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./pages/background.html'">Background et Notes </button>
         <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./pages/inventory.html'">Inventaire</button>
-        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="saveCharacter()">Sauvegarde personnage</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./pages/saves.html'">Choix du Personnage</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="saveCharacter()">Sauvegarder personnage</button>
     </nav>
     
     <div class="container">
@@ -386,25 +385,4 @@
     </div>
 
 </body>
-<script type="text/javascript">
-    function saveCharacter(){
-        fetch("http://localhost:3000/character",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Accept':'application/json'
-            },
-            body: JSON.stringify(cache.character)
-        })
-        .then( res => res.json())
-        .then(res => {
-            console.log(res)
-            if(res._id){
-                cache.character["_id"] = res._id; // add id to indicate that is a saved character
-                localStorage.setItem("character", JSON.stringify(cache))
-            }
-            alert(res.message)
-        })
-    }
-</script>
 </html>

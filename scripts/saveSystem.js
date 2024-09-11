@@ -21,3 +21,23 @@ const loadCache = () => {
     let cache = JSON.parse(localStorage.getItem(keys.storage)) || cacheDTO;
     return cache;
 }
+
+function saveCharacter(){
+    fetch("http://localhost:3000/character",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            'Accept':'application/json'
+        },
+        body: JSON.stringify(cache.character)
+    })
+    .then( res => res.json())
+    .then(res => {
+        console.log(res)
+        if(res._id){
+            cache.character["_id"] = res._id; // add id to indicate that is a saved character
+            localStorage.setItem("character", JSON.stringify(cache))
+        }
+        alert(res.message)
+    })
+}

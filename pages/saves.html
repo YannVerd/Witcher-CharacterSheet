@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Personnage - The Witcher</title>
+    <script src="../datas/cache.js"></script>
+    <script src="../datas/constantes.js"></script>
+    <script src="../scripts/saveSystem.js"></script>
+    <link href="../styles/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
+    
+</head>
+<body>
+    <div class="mainTitle">
+        <img src="../pictures/logo.png" style="height: 10rem; width: 10rem;">
+        <h1> The Witcher</h1>
+    </div>
+    <nav>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='../character.html'">Fiche</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./grimoire.html'">Grimoire</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./background.html'">Aide et Rappels</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='#'">Background et Notes </button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./inventory.html'">Inventaire</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="saveCharacter()">Sauvegarder personnage</button>
+    </nav>
+    
+    <div class="attributes-container" style="width: 98%; margin-top: 0;">
+        <h1>Choix du Personnage</h1>
+        <table id="charactersTable">
+            <thead>
+                <th>Nom</th>
+                <th>Race</th>
+                <th>Genre</th>
+                <th>Metier</th>
+                <th>Actions</th> 
+            </thead>       
+        </table>
+    </div>
+
+</body>
+<script type="text/javascript" defer>
+    let cache = loadCache();
+    let charactersTable = document.getElementById('charactersTable');
+    const cellsOrder = ["name", "race", "gender", "job"];
+
+    fetch("http://localhost:3000/characters")
+        .then(res => res.json())
+        .then((datas) => {
+            console.log("character load",datas)
+            datas.forEach(element => {
+                let row = document.createElement('tr');
+                for (let i = 0; i< cellsOrder.length; i++) {
+                    let cell = document.createElement('td');
+                    cell.innerText = element[cellsOrder[i]]
+                    row.appendChild(cell)
+                }
+                let cellAction = document.createElement('td');
+                let buttonLoad = document.createElement('button')
+                buttonLoad.innerText = "Charger";
+                buttonLoad.classList.add(...["fantasy-btn-sm"]);
+                cellAction.appendChild(buttonLoad);
+                row.appendChild(cellAction)
+
+                buttonLoad.addEventListener('click', e => {               
+                    cache.character = {...element}
+                    localStorage.setItem(keys.storage, JSON.stringify(cache));
+                    window.location.href="../character.html"
+                })
+
+                charactersTable.appendChild(row)
+            });
+        })
+</script>
+</html>

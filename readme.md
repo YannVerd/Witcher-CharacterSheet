@@ -14,12 +14,14 @@ reste à faire :
     - ajout armes et armures ( magasin) - trop d'élément (plus de 300) opté pour un system qui entre à la main 
     - ajouter objet du magasin à son inventaire - sera fait à la main
     - gestion du poids - bouton qui appelle dans les tables une fonction pour créer une ligne avec les cellule correspondante. Les cellules de poids auront la même classe : "weigthCell" et seront additionner dans une cellule de la page principale qui sera comparé à la valeur total encombrement
-    - Système de sauvegarde et de cache - nécessité d'un serveur et bdd - en cours
-    - Ajouter la page Notes
-    - Ajouter avec la page Note/background
+    - Système de sauvegarde et de cache - nécessité d'un serveur et bdd - fait
+    - Ajouter la page Notes - fait
+    - Ajouter avec la page Note/background -fait
     - Faire un beau style css - fait
     - ajouter un conteneur avec l'évolution des métiers et leurs valeurs - fait
-    - ajouter les event listener pour les valeurs des évoltions de métier et l'ajout au cache - en cours
+    - ajouter les event listener pour les valeurs des évoltions de métier et l'ajout au cache - fait
+    - préparer le serveur priver pour le futur docker compose - en cours
+    - compléter la page "aide et rappels"
 
 Bugs: 
     - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé

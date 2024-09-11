@@ -16,7 +16,6 @@ for(i = 0; i < listMainInfos.length; i++){
 
 let jobSelect = document.getElementById("jobSelect");
 jobSelect.value = cache.character.job || "default";
-// jobSelect.dispatchEvent(new Event("change", {'bubbles': true }));
 let excluSkillsHTML = {}
 let excluSkillsBonus = {}
 let excluSkillsTt = {}

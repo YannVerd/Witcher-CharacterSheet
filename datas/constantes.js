@@ -9,8 +9,7 @@ gender: "gender",
 age: "age",
 nativeLand: "nativeLand",
 job: "job",
-excluSkill: "excluSkill",
-descripExcluSkill: "descripExcluSkill"
+
 };
 const skills = {
     savoir: [

@@ -159,9 +159,12 @@ jobSelect.addEventListener("change", e=> {
             let inputInitialJobTt = document.createElement('input');
             inputInitialJobTt.type = "number";
             inputInitialJobTt.className = "inputExcluSkills";
+            inputInitialJobTt.readOnly = true;
             excluSkillsTt[keys.inputType.excluSkill] = inputInitialJobTt;
             cellInitialJobTt.appendChild(inputInitialJobTt);
             tr.appendChild(cellInitialJobTt);
+            eventInputExcluSkill(excluSkillsHTML, keys.inputType.excluSkill, false)
+            eventInputExcluSkill(excluSkillsBonus, keys.inputType.excluSkill, true)
             let index = 0 // index of key
             for(const key in j.evos){
                 let titleExcluSkillRow = document.createElement('tr');

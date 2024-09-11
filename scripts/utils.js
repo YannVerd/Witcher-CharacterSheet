@@ -63,7 +63,10 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
                 object[key].addEventListener("input", e => {
                     cachingAttribCharacter(key, isSub, isSkill, isBonus);
                     if(isSub){
-                        calculTotal(key, keys.inputType.subAttrib);
+                        if(key != "poings" && key != "pieds"){
+                            calculTotal(key, keys.inputType.subAttrib);
+                        }
+                        
                     }else{
                         attribTotal[key].value = parseFloat(attribHTML[key].value) + parseFloat(attribBonus[key].value);
                         switch(key){
@@ -225,8 +228,8 @@ function fillMagicTables(table) {
 
 function eventInputExcluSkill(input, key, isBonus){
     input[key].addEventListener('input', e => {
-        isBonus ? cache.character.excluSkillsEvos[key].bonus = e.target.value : cache.character.excluSkillsEvos[key].base = e.target.value;
+        isBonus ? cache.character.excluSkills[key].bonus = e.target.value : cache.character.excluSkills[key].base = e.target.value;
         calculTotal(key, keys.inputType.excluSkill)
-        localStorage.setItem(key.storage, JSON.stringify(cache));
+        localStorage.setItem(keys.storage, JSON.stringify(cache));
     })
 }

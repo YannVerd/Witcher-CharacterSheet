@@ -7,10 +7,8 @@ let cacheDTO = {
             "age": "",
             "nativeLand": "",
             "job": "",
-            "excluSkill": "",
-            "descripExcluSkill": "",
             "currentWeight": "",
-            "excluSkillsEvos": {
+            "excluSkills": {
                 "excluSkill": {
                     "base": "",
                     "bonus": "",

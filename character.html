@@ -221,13 +221,11 @@
                         <td>Poings</td>
                         <td><input type="text" id="poingsValue" value="Not Found" size="5" readonly></td>
                         <td><input type="number" id="poingsBonus" value="0" step="1" min="-22" max="22"></td>
-                        <td><input type="text" id="poingsTt" value="Not Found" size="5" readonly></td>
                     </tr>
                     <tr>
                         <td>Pieds</td>
                         <td><input type="text" id="piedsValue" value="Not Found" size="5" readonly></td>
-                        <td><input type="number" id="piedsBonus" value="0" step="1" min="-22" max="22"></td>
-                        <td><input type="text" id="piedTt" value="Not Found" size="5" readonly></td>                     
+                        <td><input type="number" id="piedsBonus" value="0" step="1" min="-22" max="22"></td>                                           
                     </tr>
                 </table>
             </div>
@@ -390,8 +388,6 @@
 </body>
 <script type="text/javascript">
     function saveCharacter(){
-        
-        console.log(cache.character)
         fetch("http://localhost:3000/character",{
             method: "POST",
             headers: {

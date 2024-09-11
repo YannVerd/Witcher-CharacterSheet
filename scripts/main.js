@@ -17,7 +17,6 @@ for(i = 0; i < listMainInfos.length; i++){
 let jobSelect = document.getElementById("jobSelect");
 jobSelect.value = cache.character.job || "default";
 // jobSelect.dispatchEvent(new Event("change", {'bubbles': true }));
-jobSelect.dispatchEvent(new InputEvent('change'));
 let excluSkillsHTML = {}
 let excluSkillsBonus = {}
 let excluSkillsTt = {}
@@ -28,7 +27,6 @@ let descripExcluSkill = document.getElementById("descripExcluSkill");
 let excluSkillsEvosTable = document.getElementById('excluSkillsEvos-table');
 let raceSelect = document.getElementById("raceSelect");
 raceSelect.value = cache.character.race || "default";
-raceSelect.dispatchEvent(new Event("change", {'bubbles': true }));
 let vigorBase = document.getElementById("vigorBase");
 let raceDetails = document.getElementById("raceDetails");
 let weightTt = document.getElementById('weightTt');
@@ -57,7 +55,7 @@ assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttributes")
 
 //total
 assignElementsToObject(attributes, attribTotal, "Tt", "none");
-assignElementsToObject(subAttributes, subAttribTotal, "Tt", "none");
+assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt", "none");
 
 /* Skills */
 displaySkills()
@@ -147,7 +145,7 @@ jobSelect.addEventListener("change", e=> {
             let inputInitialJobValue = document.createElement('input');
             inputInitialJobValue.type = "number";
             inputInitialJobValue.className = "inputExcluSkills";
-            inputInitialJobValue.value = cache.character.excluSkillsEvos.excluSkill.base  === "" ? 0 : cache.character.excluSkillsEvos.excluSkill.base;
+            inputInitialJobValue.value = cache.character.excluSkills.excluSkill.base  === "" ? 0 : cache.character.excluSkills.excluSkill.base;
             excluSkillsHTML[keys.inputType.excluSkill] = inputInitialJobValue;
             cellInitialJobValue.appendChild(inputInitialJobValue)
             let cellInitialJobBonus = document.createElement('td');
@@ -155,7 +153,7 @@ jobSelect.addEventListener("change", e=> {
             let inputInitialJobBonus = document.createElement('input');
             inputInitialJobBonus.type = "number";
             inputInitialJobBonus.className = "inputExcluSkills";
-            inputInitialJobBonus.value = cache.character.excluSkillsEvos.excluSkill.bonus === "" ? 0 : cache.character.excluSkillsEvos.excluSkill.bonus;
+            inputInitialJobBonus.value = cache.character.excluSkills.excluSkill.bonus === "" ? 0 : cache.character.excluSkills.excluSkill.bonus;
             excluSkillsBonus[keys.inputType.excluSkill] = inputInitialJobBonus
             cellInitialJobBonus.appendChild(inputInitialJobBonus);
             let cellInitialJobTt = document.createElement('td');
@@ -202,8 +200,8 @@ jobSelect.addEventListener("change", e=> {
                     rowEvo.append(cellBase);
                     rowEvo.append(cellBonus);
                     rowEvo.append(cellTt);
-                    inputBase.value = cache.character.excluSkillsEvos[indexKey].base === "" ? 0 : cache.character.excluSkillsEvos[indexKey].base;
-                    inputBonus.value = cache.character.excluSkillsEvos[indexKey].bonus === "" ?  0 : cache.character.excluSkillsEvos[indexKey].bonus;
+                    inputBase.value = cache.character.excluSkills[indexKey].base === "" ? 0 : cache.character.excluSkills[indexKey].base;
+                    inputBonus.value = cache.character.excluSkills[indexKey].bonus === "" ?  0 : cache.character.excluSkills[indexKey].bonus;
                     inputTt = parseFloat(inputBase.value) + parseFloat(inputBonus.value);
                     excluSkillsEvosTable.appendChild(rowEvo);
                     /*----- input event managment -----*/
@@ -247,3 +245,14 @@ pp.addEventListener('input', e => {
     cache.character.pp = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));
 })
+
+/*-----dispatch event for load or load page--------*/
+jobSelect.dispatchEvent(new InputEvent('change'));
+raceSelect.dispatchEvent(new InputEvent('change'));
+
+
+
+let inputs = document.querySelectorAll("input[type='number']") // need to retrieve all input (my existing collections are not iterable)
+for (let element of inputs) {
+    element.dispatchEvent( new InputEvent('input'));
+}

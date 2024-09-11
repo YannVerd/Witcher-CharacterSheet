@@ -381,7 +381,7 @@ const rules = {
                     "bonus": 1
                 }
             ],
-            "détails":[]
+            "détails":["rien de spécial"]
         },
         {
             "nom": "Humain",

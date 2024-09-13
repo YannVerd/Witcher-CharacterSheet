@@ -27,6 +27,9 @@ let excluSkillsEvosTable = document.getElementById('excluSkillsEvos-table');
 let raceSelect = document.getElementById("raceSelect");
 raceSelect.value = cache.character.race || "default";
 let vigorBase = document.getElementById("vigorBase");
+let vigorBonus = document.getElementById("vigorBonus");
+let vigorTt = document.getElementById("vigorTt");
+vigorBonus.value = cache.character.vigorBonus || 0
 let raceDetails = document.getElementById("raceDetails");
 let weightTt = document.getElementById('weightTt');
 let pp = document.getElementById('pp');
@@ -233,7 +236,7 @@ fillMagicTables(ritualsTable);
 manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
 
-/*----------------encumbrement cash and pp-------------------------*/
+/*----------------encumbrement, cash, pp, vigor-------------------------*/
 
 weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) > parseFloat(weightTt.value) ? "red" : "lightgreen";
 cash.addEventListener('input', e => {
@@ -242,6 +245,12 @@ cash.addEventListener('input', e => {
 })
 pp.addEventListener('input', e => {
     cache.character.pp = e.target.value;
+    localStorage.setItem(keys.storage, JSON.stringify(cache));
+})
+
+vigorBonus.addEventListener('input', e => {
+    cache.character.vigorBonus = e.target.value;
+    vigorTt.value = parseFloat(vigorBase.innerText) + parseFloat(vigorBonus.value)
     localStorage.setItem(keys.storage, JSON.stringify(cache));
 })
 

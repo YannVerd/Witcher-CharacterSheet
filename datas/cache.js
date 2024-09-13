@@ -96,6 +96,7 @@ let cacheDTO = {
             "notes": "",
             "cash": "",
             "pp": "",
+            "vigorBonus":"",
             
         }
 }

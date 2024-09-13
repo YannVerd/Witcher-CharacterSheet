@@ -23,7 +23,7 @@ const loadCache = () => {
 }
 
 function saveCharacter(){
-    fetch("http://localhost:3000/character",{
+    fetch(`http://${url.prod}:3000/character`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json",

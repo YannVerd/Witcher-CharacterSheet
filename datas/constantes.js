@@ -253,3 +253,8 @@ const keys = {
         excluSkill: "excluSkill"
     }
 }
+
+const url = {
+    prod :"192.168.1.62",
+    dev: "localhost"
+}

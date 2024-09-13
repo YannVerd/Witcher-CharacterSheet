@@ -61,7 +61,7 @@
 <script type="text/javascript" defer>
     let cache = loadCache();
     let grimoire = "";
-    fetch("http://localhost:3000/grimoire")
+    fetch(`http://${url.prod}:3000/grimoire`)
     .then(res=>res.json())
     .then((d)=>{ grimoire = d })
     let infosLevel = document.getElementById("infosLevel");

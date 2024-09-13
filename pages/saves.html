@@ -44,10 +44,9 @@
     let charactersTable = document.getElementById('charactersTable');
     const cellsOrder = ["name", "race", "gender", "job"];
 
-    fetch("http://localhost:3000/characters")
+    fetch(`http://${url.prod}:3000/characters`)
         .then(res => res.json())
         .then((datas) => {
-            console.log("character load",datas)
             datas.forEach(element => {
                 let row = document.createElement('tr');
                 for (let i = 0; i< cellsOrder.length; i++) {

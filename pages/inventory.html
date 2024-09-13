@@ -17,11 +17,6 @@
         width: 10rem;
     }
 
-    .addRowButton{
-        height: 2rem;
-        background-color: lightgreen;
-    }
-
     .titleDiv{
         display: flex;
         justify-content: flex-start;
@@ -51,7 +46,7 @@
         <section class="infos-container"></section>
             <div class="titleDiv">
                 <h2>Armes</h2> 
-                <button class="addRowButton" onclick="addRow('weapon')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="addRow('weapon')">Ajouter</button>
             </div>
             <table id="weapons-table">
                 <tr>
@@ -75,7 +70,7 @@
         <section class="infos-container"></section>
             <div class="titleDiv">
                 <h2>Armures</h2>
-                <button class="addRowButton" onclick="addRow('armor')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="addRow('armor')">Ajouter</button>
             </div>
             <table id="armors-table">
                 <tr>
@@ -94,7 +89,7 @@
         <section class="infos-container">
             <div class="titleDiv">
                 <h2>Divers</h2>
-                <button class="addRowButton" onclick="addRow('miscellaneous')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="addRow('miscellaneous')">Ajouter</button>
             </div>
             <table id="miscellaneous-table">
                 <tr>
@@ -111,7 +106,7 @@
         <section class="infos-container">
             <div class="titleDiv">
                 <h2>Composants</h2>
-                <button class="addRowButton" onclick="addRow('component')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="addRow('component')">Ajouter</button>
             </div>
             <table id="components-table">
                 <tr>
@@ -221,7 +216,7 @@
                     cell.appendChild(buttonDel);
                     row.appendChild(cell);
                     buttonDel.innerText = "supprimer";
-                    buttonDel.style.backgroundColor = "red";
+                    buttonDel.className = "fantasy-btn-sm";
                     // manage delete row when button "supprimer" cliked
                     buttonDel.addEventListener("click", e=> {
                         weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
@@ -287,7 +282,7 @@
         cell.appendChild(buttonDel);
         row.appendChild(cell);
         buttonDel.innerText = "supprimer";
-        buttonDel.style.backgroundColor = "red";
+        buttonDel.className = "fantasy-btn-sm";
         // manage delete row when button "supprimer" cliked
         buttonDel.addEventListener("click", e=> {
             weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 

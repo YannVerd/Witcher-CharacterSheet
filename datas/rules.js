@@ -82,19 +82,19 @@ const rules = {
             "Vigueur": 0,
             "evos":{
                 "Chirurgien": [
-                    "Diagnostic (int) (a1)",
-                    "Analyse (int) (a2)",
-                    "chirurgie miraculeuse (tech) (a3)",
+                    "Diagnostic (int)",
+                    "Analyse (int)",
+                    "chirurgie miraculeuse (tech)",
                 ],
                 "Herboriste":[
-                    "Espace de soins (tech) (b1)",
-                    "Improvisation (techt) (b2)",
-                    "remède Naturel (tech) (b3)",
+                    "Espace de soins (tech)",
+                    "Improvisation (techt)",
+                    "remède Naturel (tech)",
                 ],
                 "Anatomiste": [
-                    "Plaie ouverte (int) (c1)",
-                    "Carnage (int) (c2)",
-                    "Blessure incapacitante (int) (c3)",
+                    "Plaie ouverte (int)",
+                    "Carnage (int)",
+                    "Blessure incapacitante (int)",
                 ]
                 
                 
@@ -107,15 +107,21 @@ const rules = {
             "Description": "Peut échapper à la mort imminente si réussit un jet Dur à Cuir de SD égal au double de santé négatif.",
             "Vigueur": 0,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Tireur d'élite": [
+                    "Portée extrême (dex)",
+                    "Double tir (dex)",
+                    "Traits précis (dex)"
+                ],
+                "Chasseur de prime": [
+                    "Limier (int)",
+                    "Chause-Trappe (tech)",
+                    "Sens du combat (int)"
+                ],
+                "Ravageur": [
+                    "Fureur (vol)",
+                    "Zweihand (cor)",
+                    "Même pas mal (cor)"
+                ]
             }
         },
         {
@@ -124,15 +130,21 @@ const rules = {
             "Description": "Si phénomène magique inconnu... Jet d'exercice Magique contre SD du MJ. Si réussit, identifie le phénomène. Peut détecter magie en cours ou/et spectres.",
             "Vigueur": 5,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Politicien": [
+                    "Intrigue (int)",
+                    "commérage (int)",
+                    "Atout (int)"
+                ],
+                "Scientifique": [
+                    "Rétro-ingénierie (int)",
+                    "Distillation (tech)",
+                    "Mutation (int)"
+                ],
+                "Archimage": [
+                    "Contact magique",
+                    "Immuable (vol)",
+                    "Magie étendue (vol)"
+                ]
             }
         },
         {
@@ -141,15 +153,22 @@ const rules = {
             "Description": "Jet de Grand Voyageur de SD fixé par MJ. Permet de pouvoir répondre à des questions sur des connaissances concernant un objet, une culture ou une région.",
             "Vigueur": 0,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Courtier": [
+                    "Choix (int)",
+                    "Dur en affaires (emp)",
+                    "Promesse (emp)"
+                ],
+                "Contact": [
+                    "Gueusaille (emp)",
+                    "Espion (int)",
+                    "Carte aux trésors (int)",
+                ],
+                "Havekar": [
+                    "Bonne réputation (vol)",
+                    "Receleur (int)",
+                    "Débiteur martial (emp)"
+                ]
+                
             }
         },
         {
@@ -158,15 +177,21 @@ const rules = {
             "Description": "Jet d'initié des dieux permet d'obtenir, soin hébergement, nourriture, etc., auprès d'un bâtiment de sa religion (en fonction). SD fixé par MJ.",
             "Vigueur": 2,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Prêcheur": [
+                    "Puissance divine",
+                    "Autorité divine (emp)",
+                    "Précognition (vol)"
+                ],
+                "Druide": [
+                    "Harmonisation naturelle",
+                    "Déchiffrer la nature (int)",
+                    "Pacte animal (vol)"
+                ],
+                "Fanatique": [
+                    "Rituels sanglants (vol)",
+                    "Ferveur (emp)",
+                    "Emissaire des dieux (emp)",
+                ]
             }
         },
         {
@@ -175,15 +200,21 @@ const rules = {
             "Description": "Formation sorceleur diminue pénalités zone hostile ( = score jet Formation de Sorceleur /2). Peut être utilisé pour connaissance des monstres.",
             "Vigueur": 2,
             "evos":{
-                "a1": "",
-                "a2": "",
-                "a3": "",
-                "b1": "",
-                "b2": "",
-                "b3": "",
-                "c1": "",
-                "c2": "",
-                "c3": "",
+                "Sorcelame": [
+                    "Méditation",
+                    "Source magique",
+                    "Héliotrope (vol)",
+                ],
+                "Mutant": [
+                    "Estomac de fer",
+                    "Frénésie",
+                    "Transmutation (cor)"
+                ],
+                "Tueur": [
+                    "Déviation de flèches (dex)",
+                    "Frappe rapide (ref)",
+                    "Tourbillon (ref)"
+                ]
             }
         }
     ],

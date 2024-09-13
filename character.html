@@ -268,7 +268,7 @@
             <h2>Armes et Armures</h2>
             <div class="weapons-container">
                 <div class="skills-container">
-                    <h3>Armes</h3>
+                    <h3>Arme Principale</h3>
                     <table class="weapons-table">
                         <tr>
                             <th>Nom</th>
@@ -283,7 +283,8 @@
                             <td><input type="text" size="dgtsWeapon"></td>
                         <tr>
                             <th>Fia.</th>
-                            <td><input type="number" id="fiaWeapon" value="0" step="1" min="-22" max="22"></td>                        </tr>
+                            <td><input type="number" id="fiaWeapon" value="0" step="1" min="-22" max="22"></td> 
+                       </tr>
                         <tr>
                             <th>Mains</th>
                             <td><select type="number" id="mainsWeapon">
@@ -308,7 +309,55 @@
                         </tr> 
                         <tr>
                             <th>Poids</th>
-                            <td><input type="number" id="poidsValue" value="0" step="0.1" min="-22" max="22"></td>                        </tr>
+                            <td><input type="number" id="poidsValue" value="0" step="0.1" min="-22" max="22"></td>                        
+                        </tr>
+                    </table>
+                </div>
+                <div class="skills-container">
+                    <h3>Arme Secondaire</h3>
+                    <table class="secWeapons-table">
+                        <tr>
+                            <th>Nom</th>
+                            <td><input type="text" id="nameSecWeapon" size="8"></td>
+                        </tr>
+                        <tr>
+                            <th>Précision</th>
+                            <td><input type="number" id="preSecWeapon" value="0" step="1" min="-22" max="22"></td>
+                        </tr>
+                        <tr>
+                            <th>Dégâts</th>
+                            <td><input type="text" size="dgtsSecWeapon"></td>
+                        <tr>
+                            <th>Fia.</th>
+                            <td><input type="number" id="fiaSecWeapon" value="0" step="1" min="-22" max="22"></td> 
+                       </tr>
+                        <tr>
+                            <th>Mains</th>
+                            <td><select type="number" id="mainsSecWeapon">
+                                <option value="uneMain">Une main</option>
+                                <option value="deuxMains">Deux mains</option>
+                            </select></td>                        
+                        </tr>
+                        <tr>
+                            <th>Portée</th>
+                            <td><input type="number" id="portSecWeapon" value="0" step="1" min="-22" max="22"></td>                        
+                        </tr>
+                        <tr>
+                            <th>Effet</th>
+                            <td><input type="text" id="effSecWeapon" size="8"></td>
+                        </tr>
+                        <tr>
+                            <th>Dissumlation</th>
+                            <td><input type="checkbox" id="dissSecWeapon" size="8"></td>
+                        </tr>
+                        <tr>
+                            <th>Amélioration</th>
+                            <td><input type="text" id="amSecValue"></td>                        
+                        </tr> 
+                        <tr>
+                            <th>Poids</th>
+                            <td><input type="number" id="poidsSecValue" value="0" step="0.1" min="-22" max="22"></td>                       
+                        </tr>
                     </table>
                 </div>
                 <div class="skills-container">
@@ -316,40 +365,68 @@
                     <table class="armor-table">
                         <tr>
                             <th>Localisation</th>
+                            <th>Nom</th>
                             <th>PA</th>
                             <th>Dégâts</th>
                         </tr>
                         <tr>
                             <td>Tête</td>
-                            <td></td>
-                            <td></td>
+                            <td id="nameHeadArmor"></td>
+                            <td id="paHeadArmor"></td>
+                            <td id="dmgHeadArmor"></td>
                         </tr>
                         <tr>
                             <td>Torse</td>
-                            <td></td>
-                            <td></td>
+                            <td id="nameHeadArmor"></td>
+                            <td id="paHeadArmor"></td>
+                            <td id="dmgHeadArmor"></td>
                         </tr>
                         <tr>
                             <td>Bras droit</td>
-                            <td></td>
-                            <td></td>
+                            <td id="nameHeadArmor"></td>
+                            <td id="paHeadArmor"></td>
+                            <td id="dmgHeadArmor"></td>
                         </tr>
                         <tr>
                             <td>Bras gauche</td>
-                            <td></td>
-                            <td></td>
+                            <td id="nameHeadArmor"></td>
+                            <td id="paHeadArmor"></td>
+                            <td id="dmgHeadArmor"></td>
                         </tr>
                         <tr>
                             <td>Jambe droite</td>
-                            <td></td>
-                            <td></td>
+                            <td id="nameHeadArmor"></td>
+                            <td id="paHeadArmor"></td>
+                            <td id="dmgHeadArmor"></td>
                         </tr>
                         <tr>
                             <td>Jambe gauche</td>
-                            <td></td>
-                            <td></td>
+                            <td id="nameHeadArmor"></td>
+                            <td id="paHeadArmor"></td>
+                            <td id="dmgHeadArmor"></td>
                         </tr>
                     </table>
+                    <div class="skills-container">
+                        <h3>Bouclier</h3>
+                        <table class="armor-table">
+                            <tr>
+                                <th>Nom</th>
+                                <th>PA</th>
+                                <th>Dégâts</th>
+                            </tr>
+                            <tr>
+                                <td id="nameShield"></td>
+                                <td id="paHeadArmor"></td>
+                                <td id="dmgHeadArmor"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Notes</th>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><textarea rows="5" cols="10"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>

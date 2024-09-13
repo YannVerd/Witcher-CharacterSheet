@@ -83,14 +83,18 @@ let cacheDTO = {
                 "miscellaneous":[],
                 "components":[]
             },
-            "weaponEquipped": {},
+            "weaponEquipped": {
+                "main": {},
+                "sec": {}
+            },
             "armorsEquipped":{
                 "head": {},
                 "torso": {},
                 "leftHand": {},
                 "rightHand": {},
                 "leftLeg": {},
-                "rightLeg": {}
+                "rightLeg": {},
+                "shield": {}
             },
             "background": "",
             "notes": "",

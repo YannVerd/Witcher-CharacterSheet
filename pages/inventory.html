@@ -21,11 +21,12 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: 2rem;
     }
     table{
         width: 100vw;
+        text-align: center;
     }
+ 
     
 </style>
 <body>
@@ -61,7 +62,8 @@
                     <th>Effet</th>
                     <th>Dissumlation</th>
                     <th>Amélioration</th>
-                    <th>Equipé</th>
+                    <th>Equipé Principale</th>
+                    <th>Equipé Secondaire</th>
                     <th>Actions</th>
                 </tr>
 
@@ -80,7 +82,8 @@
                     <th>Poids</th>
                     <th>Dégâts</th>
                     <th>Effet</th>
-                    <th>Equipé</th>
+                    <th>Equipé Principale</th>
+                    <th>Equipé Secondaire</th>
                     <th>Actions</th>
                 </tr>
             </table>
@@ -139,7 +142,8 @@
             <td><textarea rows="1" cols="auto"></textarea></td>
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" id="mainEquipedWeapon"></td>
+            <td><input type="checkbox" id="secEquipedWeapon"></td>
             
         `;
 
@@ -150,7 +154,8 @@
             <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="number" size="2"></td>
             <td><textarea rows="1" cols="auto"></textarea></td>
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" id="mainEquipedArmor"></td>
+            <td><input type="checkbox" id="secEquipedArmor"></td>
         `;
         const miscellaneousRowBase = `
             <td><input type="text" size="10"></td>

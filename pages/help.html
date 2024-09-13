@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Personnage - The Witcher</title>
+    <script src="../datas/cache.js"></script>
+    <script src="../datas/constantes.js"></script>
+    <script src="../scripts/saveSystem.js"></script>
+    <link href="../styles/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
+    
+</head>
+<style>
+    .title{
+        font-size: x-large;
+        font-weight: bold;
+        text-align: center;
+    }
+    .subtitle{
+        font-size: large;
+        font-weight: bolder;
+        text-align: center;
+        color: red;
+    }
+    table{
+        width: 30%;
+        height: fit-content;
+    }
+    th{
+        width: 3rem;
+    }
+    section{
+        display: flex;
+        justify-content: space-between;
+        width: 98%;
+    }
+</style>
+<body>
+    <div class="mainTitle">
+        <img src="../pictures/logo.png" style="height: 10rem; width: 10rem;">
+        <h1> The Witcher</h1>
+    </div>
+    <nav>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='../character.html'">Fiche</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./grimoire.html'">Grimoire</button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./background.html'">Background et Notes </button>
+        <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./inventory.html'">Inventaire</button>
+    </nav>
+    
+    <section>
+            <table>
+                <thead>
+                    <th colspan="2" class="title">Caractéristiques dérivées</th>
+                </thead>
+                <tr>
+                    <th>Vigueur</th>
+                    <td>déterminé par la profession. Correspond à la dépense d'END possible en un round pour un sort/rituel</td>
+                </tr>
+                <tr>
+                <tr>
+                    <th>ETOU/END/PS/REC </th>
+                    <td>déterminé par la table physique</td>
+                </tr>
+                <tr>
+                    <th>ETOU</th>
+                    <td>valeur de référence pour test au Etourdissement. Jet sauvegarde > Etou = Etourdi.</td>
+                </tr>
+                <tr>
+                    <th>END</th>
+                    <td>Energie disponible pour effort physique ou magique.(Difficulté à vous mettre KO). 1 minute d'effort intense ou 1h de travail = 2 points. Toutes actions supplémentaire combat, sorts, dégats non létaux ou sorts utilisent ces points. Action Récupérer = valeur de REC (récupération) en point point d'END. </td>
+                </tr>
+                <tr>
+                    <th>PS</th>
+                    <td>point de santé </td>
+                </tr>
+                <tr>
+                    <th>REC</th>
+                    <td>nombre de points santé récupérer par jour de repos dans un lit si jet de premiers soins (ou Mains Thérapeutiques) réussi.</td>
+                </tr>
+                
+            </table>
+            <table>
+                <thead>
+                    <th class="title">Les Bases du combat</th>
+                </thead>
+                <tr>
+                    <th class="subtitle" >Actions</th>
+                </tr>
+                <tr>
+                    <td>Attaques : effectuer une attaque rapide (deux attaques avec ciblage libre) ou forte (malus de -3 mais degats *2)</td>
+                </tr>
+                <tr>
+                    <td>Lancer un sort : vérifier le temps d'incantation</td>
+                </tr>
+                <tr>
+                    <td>Utiliser une compétence </td>
+                </tr>
+                <tr>
+                    <td>Prendre/dégainer objet</td>
+                </tr>
+                <tr>
+                    <td>Action décalée : Vous pouvez retarder votre action mais pas attendre le round suivant (dans ce cas l'action est utilisée) Exemple: " Je me prépare à porter un coup juste après mon coéquipier"</td>
+                </tr>
+                <tr>
+                    <th class="subtitle">Actions ou Défenses supplémentaire</th>
+                </tr>
+                <tr>
+                    <td>Par choix : Vous pouvez dépenser 3 points d'END pour une action supplémentaire à -3.</td>
+                </tr>
+                <tr>
+                    <td>Forcé : Si vous êtes forcés de faire plus d'une action défensive dans le round (repositionnement, blocage, etc...) elle côute 1 point d'END. Sauf si vous êtes en esquive active.</td>
+                </tr>
+                <tr>
+                    <th class="subtitle">Défense (1 gratuite)</th>
+                </tr>
+                <tr>
+                    <td>Esquive : jet d'Esquive/Evasion contre jet d'attaque</td>
+                </tr>
+                <tr>
+                    <td>Repositionnement : mouvement qui évite un encerclement. Jet d'athlétisme contre jet d'attaque. Déplacement égal à votre VIT</td>
+                </tr>
+                <tr>
+                    <td>Blocage : Réalisable avec bouclier, arme, ou armure. (attaque à distance seulement bouclier). Jet de compétence d'arme contre jet d'attaque. Si bouclier: Jet de Mêlée qui subit 1 de dégâts. Si avec votre corps: Compétence bagarre</td>
+                </tr>
+                <tr>
+                    <td> Parade : Idem que Blocage mais malus de -3. Si réussite : Arme déviée (pas de dégats sur l'arme). Adversaire stupéfait. Flèche et Carreaux imparables. Armes lancés parable mais malus de -5</td>
+                </tr>
+                <tr>
+                    <th class="subtitle">Infos déroulement et Argent</th>
+                </tr>
+                <tr>
+                    <td>Initiative : 1d10 + REF</td>
+                </tr>
+                <tr>
+                    <td>deux type d'action : Se déplacer : Valeur VIT en mètres Effectuer une action décrites plus bas</td>
+                </tr>
+                <tr>
+                    <td>Attaque au corps à corps : REF + compétence d'arme + modificateur + 1d10</td>
+                </tr>
+                <tr>
+                    <td>Attaque à distance : DEX + compétence d'arme + modificateur de POR + 1d10</td>
+                </tr>
+                <tr>
+                    <td>Argent et Monstre : si arme non en argent dégâts/2 après avoir soustrait les PA.</td>
+                </tr>
+                <tr>
+                    <th class="subtitle">Actions necessitant un round complet</th>
+                </tr>
+                <tr>
+                    <td>Courir : utiliser son tour pour effectuer la distance de course (COU) en metre</td>
+                </tr>
+                <tr>
+                    <td>Esquive active : Passer son tour à esquiver. -2 à quiconque tente de vous attaquer au corps à corps pendant ce tour.</td>
+                </tr>
+                <tr>
+                    <td>Viser : +1 à votre attaque à distance. Cumulable 3 fois. (max +3)</td>
+                </tr>
+                <tr>
+                    <td>Action de Récupération : Récupérer votre score de Récupération (REC) en Endurance (END)</td>
+                </tr>
+            </table>
+            <table>
+                <thead>
+                    <th colspan="2" class="title">Les bases de la Magie</th>
+                </thead>
+                <tr>
+                    <th colspan="2" class="subtitle">Résolution de la magie</th>
+                </tr>
+                <tr>
+                    <th> Attaques Magiques</th>
+                    <td> VOL + compétence de lancement de sort + 1D10</td>
+                </tr>
+                <tr>
+                    <th>Vigueur et Endurance</th>
+                    <td>Seuil de Vigueur = quantité de magie canalisable en 1 round avant dégats. Le coût en End doit rester inférieur ou égal à votre seuil de Vigueur sous peine de conséquences dangereuses voir mortelles</td>
+                </tr>
+                <tr>
+                    <th>END</th>
+                    <td>Quantité de magie utilisable avant évanouissement. Pour lancer un sort ou utiliser la magie, soustrayez le coût en END du sort à votre END. Si END inférieur ou égal 0 : vous êtes étourdi.
+                        Vous devez récupérer 20 points en Endurance (action Récupération) + jet de sauvegarde étourdissement pour etrouver vos esprit</td>
+                </tr>
+                <tr>
+                    <th>Dépassement/Echec Crit.</th>
+                    <td>Possibilité de lancer des sorts plus coûteux en END que votre Vigueur en sacrifiant des Points de Santés: 1 point END supp = 5 PS si échec critique, risque de dommages physiques graves</td>
+                </tr>
+                <tr>
+                    <th>Focus Magiques </th>
+                    <td>Réduction des coûts en END d'un sort. Ne peut jamais faire tomber le coût en dessous de 1.</td>
+                </tr>
+                <tr>
+                    <th>Diméritium </th>
+                    <td>Simple présence : réduit le seuil de Vigueur de 1 par unité dans les 5m du magicien Contact : Seuil de Vigueur à 0. Jet de Résilience de SD16 toutes les 30 min (voir table effet diméritium page 167)</td>
+                </tr>
+                <tr>
+                    <th>Utilisateurs Experts</th>
+                    <td>La magie nécessite des gestes précis mais leur expertise dans la compétence permet d'omettre certaine difficulté: 1- 6 : Tout usage de la magie nécessite parole et gestes effectués avec les mains / 7 - 8 : Sorts et Invocations ne nécessitent que des gestes effectués avec les mains / 9- 10 et +: Gestes minimes avec n'importe quelle partie du corps</td>
+                </tr>
+                <tr>
+                    <th>Ciblage Magique </th>
+                    <td>Direct: affecte une ou plusieurs cible mais pas la zone et le lanceur 
+                        Aire d'effet: affectent tous ceux présents dans la zone (jet défensif contre votre jet d'invocation). Si un sort ne possède pas de défense, il suffit de ne pas obtenir d'échec critiqué à un jet d'incantation. 
+                        Personnel: cible uniquement le lanceur de sort"</td>
+                </tr>
+                <tr>
+                    <th>Rituels</th>
+                    <td>Nécessite ingrédients spécifiques et un laps de temps significatif. Une fois le temps écouler, effectuer un jet de Rituels contre le SD du rituel. Si échec critique: 1 point d'endurance dépensé = un point de santé perdu</td>
+                </tr>
+                <tr>
+                    <th>Interruption</th>
+                    <td>Lors d'un rituel, si vous êtes interrompu vous devez faire un jet de rituel contre un SD en fonction de la situation pour le poursuire: Bousculé, secoué, crié dessus, jeté quelque chose = SD 15 Attaqué = SD 18 Si explusé de la zone: doit réussir à revenir et SD 16</td>
+                </tr>
+                <tr>
+                    <th>Rituels Collectifs</th>
+                    <td>Chaque personne (valide) qui aide au rituel fait baisser le SD de 1 du rituel. Max 4</td>
+                </tr>
+                <tr>
+                    <th>Envoutement </th>
+                    <td>Si échec critique: 50% de chances que le lanceur subisse les effets</td>
+                </tr>
+            </table>
+    </section>
+</body>
+</html>

@@ -254,7 +254,7 @@ const keys = {
     }
 }
 
-const url = {
+const domain = {
     prod :"192.168.1.62",
     dev: "localhost"
 }

@@ -21,8 +21,9 @@ reste à faire :
     - ajouter un conteneur avec l'évolution des métiers et leurs valeurs - fait
     - ajouter les event listener pour les valeurs des évoltions de métier et l'ajout au cache - fait
     - préparer le serveur priver pour le futur docker compose - fait
-    - compléter la page "aide et rappels"
-    - ajouter gestion arme principale, secondaire et armure
+    - compléter la page "aide et rappels" - fait
+    - ajouter gestion automatique arme principale, secondaire et armure
+    - repasser "grimoire" en local/ supprimer la gestion par le serveur
 
 Bugs: 
     - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé

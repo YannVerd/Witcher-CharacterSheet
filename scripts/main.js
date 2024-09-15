@@ -217,11 +217,6 @@ jobSelect.addEventListener("change", e=> {
     cache.character.job = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));
 });
-
-/*------------------- exclusiv skills evolutions---------------- */
-
-
-
 /* ----------------Derived attributes -----------------*/
 
 manageAttributes(attribHTML, false, false, false);

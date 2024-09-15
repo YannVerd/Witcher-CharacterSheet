@@ -24,6 +24,7 @@ reste à faire :
     - compléter la page "aide et rappels" - fait
     - ajouter gestion automatique arme principale, secondaire et armure
     - repasser "grimoire" en local/ supprimer la gestion par le serveur
+    - Documenter le code
 
 Bugs: 
     - le ratio (Vol + Cor)/2 dans le addEvent de "cor" est multiplié par 5 sans raisons // corrigé

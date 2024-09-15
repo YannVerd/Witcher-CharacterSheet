@@ -212,14 +212,17 @@ function fillMagicTables(table) {
                 row.appendChild(cell);
             }
             let delButton = document.createElement('button');
+            let cellDell = document.createElement("td");
+            row.appendChild(cellDell);
             delButton.innerText = "supprimer";
+            delButton.className = "fantasy-btn-sm"
             delButton.addEventListener('click', e => {
                 let index = path.findIndex( i => i.Nom === path.Nom) // find item in cache
                 path.splice(index, 1); // delete match element
                 localStorage.setItem(keys.storage, JSON.stringify(cache)); // save on cache
                 fillMagicTables(table);
             })
-            row.appendChild(delButton);
+            cellDell.appendChild(delButton);
             table.appendChild(row)
         });
     }

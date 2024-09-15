@@ -104,7 +104,7 @@ let cacheDTO = {
             
         }
 }
-
+// need to change below in class, one day may be if i have time
 let weaponDTO = {
     "name": "",
     "type": "",
@@ -157,7 +157,7 @@ const keysArmorDTO = [
 let miscDTO = {
     "name": "",
     "quantity": "",
-    "wieghtUn": "",
+    "weightUn": "",
     "weigthTt": "",
     "notes": "",
     "cost": "",
@@ -166,7 +166,7 @@ let miscDTO = {
 const keysMiscDTO = [
     "name",
     "quantity",
-    "wieghtUn",
+    "weightUn",
     "weigthTt",
     "notes",
     "cost",
@@ -174,7 +174,7 @@ const keysMiscDTO = [
 let componentDTO = {
     "name": "",
     "quantity": "",
-    "wieghtUn": "",
+    "weightUn": "",
     "weigthTt": "",
     "cost": "",
     "substance": "",
@@ -182,7 +182,7 @@ let componentDTO = {
 const keysComponentDTO = [
     "name",
     "quantity",
-    "wieghtUn",
+    "wieightUn",
     "weigthTt",
     "cost",
     "substance",

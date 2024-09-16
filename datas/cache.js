@@ -121,6 +121,7 @@ let weaponDTO = {
 };
 
 const keysWeaponDTO = [
+    "id",
     "name",
     "type",
     "prec",
@@ -157,7 +158,7 @@ const keysArmorDTO = [
 let miscDTO = {
     "name": "",
     "quantity": "",
-    "weightUn": "",
+    "weight": "",
     "weigthTt": "",
     "notes": "",
     "cost": "",
@@ -166,7 +167,7 @@ let miscDTO = {
 const keysMiscDTO = [
     "name",
     "quantity",
-    "weightUn",
+    "weight",
     "weigthTt",
     "notes",
     "cost",
@@ -174,7 +175,7 @@ const keysMiscDTO = [
 let componentDTO = {
     "name": "",
     "quantity": "",
-    "weightUn": "",
+    "weightU": "",
     "weigthTt": "",
     "cost": "",
     "substance": "",
@@ -182,7 +183,7 @@ let componentDTO = {
 const keysComponentDTO = [
     "name",
     "quantity",
-    "wieightUn",
+    "weight",
     "weigthTt",
     "cost",
     "substance",

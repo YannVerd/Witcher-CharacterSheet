@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="../styles/styles.css" rel="stylesheet">
+    <script src="../class/Equipment.js"></script>
+    <script src="../class/Weapon.js"></script>
     <script src="../datas/constantes.js"></script>
     <script src="../scripts/utils.js"></script>
     <script src="../datas/cache.js"></script>
@@ -232,7 +234,7 @@
                             break;
                     }
                     for(i=0; i < row.children.length; i++){
-                        row.children[i].firstChild.value = element[baseKeys[i]];
+                        row.children[i].firstChild.value = element[baseKeys[i+1]];
                         row.dispatchEvent(new Event('input'));
                     }
                     let cell = document.createElement("td");
@@ -273,12 +275,13 @@
     function addRow(type) {  
         let table ="";
         let row = document.createElement("tr");
+        let equipment = null;
         // select base html depending on type parameter
         switch(type){ 
             case "weapon":
                 table = document.getElementById("weapons-table");
                 row.innerHTML = weaponsRowBase;
-                weaponDTO["isSaveable"] = false;
+                equipment = new Weapon();
                 table.appendChild(row);
                 break;
             case "armor":
@@ -338,10 +341,10 @@
             // managment of equipped weapons
             if(i === 11 && type ==="weapon" || i === 6 && type==="armor"){ 
                 if(type === "weapon"){
-                    equipmentManagement(type, row.children[i].firstElementChild, weaponDTO)
+                    equipmentManagement(type, row.children[i].firstElementChild, equipment)
                 }else{
                     
-                    equipmentManagement(type, row.children[i].firstElementChild, armorDTO, row.children[1].firstElementChild.value)
+                    equipmentManagement(type, row.children[i].firstElementChild, equipment, row.children[1].firstElementChild.value)
                 }
                 
             }else {
@@ -359,10 +362,10 @@
                                 }, 1000);
                                 
                             }
-                                weaponDTO[keysWeaponDTO[index]] = e.target.value;
-                                cache.character.inventory.weapons[row.rowIndex -1] = weaponDTO ;
+                                equipment[keysWeaponDTO[index+1]] = e.target.value;
+                                cache.character.inventory.weapons[row.rowIndex -1] = equipment ;
                                 localStorage.setItem(keys.storage, JSON.stringify(cache))
-                                weaponDTO["isSaveable"] = true;
+                                equipment.isEquippable = true;
                             break;
                         case "armor":
                             if(index === 3){ // auto calcul of total weight
@@ -441,16 +444,17 @@
         }
     }
 
-    function equipmentManagement(type, element, dto, location = null){       
+    function equipmentManagement(type, element, equipment, location = null){       
             element.addEventListener('change', e => {
-                console.log(dto)
+                console.log(equipment)
                 if(type === 'weapon'){
                     switch(e.target.value){
                         case 'main':
-                            if(dto.isSaveable){
+                            if(equipment.isEquippable){
                                 if(Object.keys(cache.character.weaponEquipped.main).length === 0){
-                                    cache.character.weaponEquipped.main = dto
-                                    if(isEqualEquipment(cache.character.weaponEquipped.sec, dto)) { // in the case that was the secondary weapon
+                                    equipment.equiped = "main"
+                                    cache.character.weaponEquipped.main = equipment;
+                                    if(isEqualEquipment(cache.character.weaponEquipped.sec, equipment)) { // in the case that was the secondary weapon
                                         cache.character.weaponEquipped.sec = {};
                                     }
                                     localStorage.setItem(keys.storage, JSON.stringify(cache))
@@ -465,10 +469,11 @@
                             break;
                         
                         case 'secondary':
-                            if(dto.isSaveable){
+                            if(equipment.isEquippable){
                                 if(Object.keys(cache.character.weaponEquipped.sec).length === 0){
-                                    cache.character.weaponEquipped.sec = dto
-                                    if(isEqualEquipment(cache.character.weaponEquipped.main, dto)) { // in the case that was the main weapon
+                                    equipment.equiped = "sec";
+                                    cache.character.weaponEquipped.sec = equipment;
+                                    if(isEqualEquipment(cache.character.weaponEquipped.main, equipment)) { // in the case that was the main weapon
                                         cache.character.weaponEquipped.main = {};
                                     }
                                     localStorage.setItem(keys.storage, JSON.stringify(cache))
@@ -482,10 +487,10 @@
                             
                             break;
 
-                        default:
-                            if(isEqualEquipment(cache.character.weaponEquipped.main, dto)){
+                        case 'false':
+                            if(isEqualEquipment(cache.character.weaponEquipped.main, equipment)){
                                 cache.character.weaponEquipped.main = {};
-                            } else if(isEqualEquipment(cache.character.weaponEquipped.sec, dto)) {
+                            } else if(isEqualEquipment(cache.character.weaponEquipped.sec, equipment)) {
                                 cache.character.weaponEquipped.sec = {};
                             }
                             break;
@@ -506,11 +511,9 @@
      * @return {boolean}
     */
     function isEqualEquipment(obj1, obj2){
-        for(const key in obj1){
-            if(obj1[key] !== obj2[key]){
-                return false;
-            } 
-        }
+        if(obj1.id !== obj2.id){
+            return false;
+        } 
         return true;
     }
 </script>

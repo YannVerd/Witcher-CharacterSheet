@@ -83,7 +83,7 @@ let cacheDTO = {
                 "miscellaneous":[],
                 "components":[]
             },
-            "weaponEquipped": {
+            "weaponsEquipped": {
                 "main": {},
                 "sec": {}
             },

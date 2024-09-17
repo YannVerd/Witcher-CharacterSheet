@@ -104,7 +104,6 @@ let cacheDTO = {
             
         }
 }
-// need to change below in class, one day may be if i have time
 
 
 const keysWeaponDTO = [

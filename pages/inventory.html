@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="../styles/styles.css" rel="stylesheet">
+    <script src="../datas/cache.js"></script>
+    <script src="../datas/constantes.js"></script>
     <script src="../class/Equipment.js"></script>
     <script src="../class/Weapon.js"></script>
     <script src="../class/Armor.js"></script>
     <script src="../class/Misc.js"></script>
     <script src="../class/Component.js"></script>
-    <script src="../datas/constantes.js"></script>
     <script src="../scripts/utils.js"></script>
-    <script src="../datas/cache.js"></script>
     <script src="../scripts/saveSystem.js"></script>
     <script src="../scripts/main.js" defer></script>
     <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
@@ -280,11 +280,11 @@
             switch(type){
                 case "weapon":
                     cache.character.inventory.weapons.splice(row.rowIndex -1, 1); // delete the target row (index retrieve with row.rowIndex property)
-                    searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment, true)
+                    Equipment.searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment, true)
                     break;
                 case "armor":
                     cache.character.inventory.armors.splice(row.rowIndex -1, 1);
-                    searchAndUpdateEquipment(cache.character.armorsEquipped, equipment, true)
+                    Equipment.searchAndUpdateEquipment(cache.character.armorsEquipped, equipment, true)
                     break;
 
                 case "miscellaneous":
@@ -423,7 +423,6 @@
 
     function equipmentManagement(type, element, equipment, element2 = null, index = null){      
             element.addEventListener('change', e => {
-                console.log(index)
                 if(type === 'weapon'){
                     switch(e.target.value){
                         case 'main':
@@ -431,7 +430,7 @@
                                 if(Object.keys(cache.character.weaponsEquipped.main).length === 0){
                                     equipment.equiped = "main"
                                     cache.character.weaponsEquipped.main = equipment;
-                                    if(isEqualEquipment(cache.character.weaponsEquipped.sec, equipment)) { // in the case that was the secondary weapon
+                                    if(Equipment.isEqualEquipment(cache.character.weaponsEquipped.sec, equipment)) { // in the case that was the secondary weapon
                                         cache.character.weaponsEquipped.sec = {};
                                     }
                                     localStorage.setItem(keys.storage, JSON.stringify(cache))
@@ -450,7 +449,7 @@
                                 if(Object.keys(cache.character.weaponsEquipped.sec).length === 0){
                                     equipment.equiped = "sec";
                                     cache.character.weaponsEquipped.sec = equipment;
-                                    if(isEqualEquipment(cache.character.weaponsEquipped.main, equipment)) { // in the case that was the main weapon
+                                    if(Equiment.isEqualEquipment(cache.character.weaponsEquipped.main, equipment)) { // in the case that was the main weapon
                                         cache.character.weaponsEquipped.main = {};
                                     }
                                     localStorage.setItem(keys.storage, JSON.stringify(cache))
@@ -465,11 +464,11 @@
                             break;
 
                         case 'false':
-                            searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment)
+                            Equipment.searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment)
                             break;
                     }
                 }else{ // for equipped armor
-                    if(index === 1){                 
+                    if(index === 1){ // equiped option depending on location value          
                         e.target.value === "arm" || e.target.value === "leg" ? equipment.equipmentLocationOptions = ["false", "right", "left"] : equipment.equipmentLocationOptions = ["false", "true"];
                         equipment.location = e.target.value;
                         element2.innerHTML = ""; // remove all options
@@ -486,14 +485,13 @@
                         })
                         // search element in cache
                         cache.character.inventory.armors.forEach(eqpt => {
-                            eqpt.id = equipment.id ? eqpt = equipment : null
+                            eqpt.id === equipment.id ? eqpt = equipment : null
                         })
                         localStorage.setItem(keys.storage, JSON.stringify(cache))
                     }else{ // cache equiped armor
                         if(equipment.isEquippable){
                             equipment.equiped = e.target.value; // update with new value
-                            if(equipment.equiped !== "false"){
-                                
+                            if(equipment.equiped !== "false"){                               
                                 if(equipment.location === "arm" || equipment.location === "leg"){
                                     const str = equipment.location[0].toUpperCase() + equipment.location.slice(1);
                                     
@@ -504,7 +502,7 @@
                                 }
                                 localStorage.setItem(keys.storage, JSON.stringify(cache));
                             } else { // if we desequipped
-                                searchAndUpdateEquipment(cache.character.armorsEquipped, equipment, true);
+                                Equipment.searchAndUpdateEquipment(cache.character.armorsEquipped, equipment, true);
                             }
                         }else{
                             alert("veuillez saisir des informations pour pouvoir equiper l'armure")
@@ -528,24 +526,24 @@
      * @param {Object} second bject to compare
      * @return {boolean}
     */
-    function isEqualEquipment(obj1, obj2){
-        if(obj1.id !== obj2.id){
-            return false;
-        } 
-        return true;
-    }
+    // function isEqualEquipment(obj1, obj2){
+    //     if(obj1.id !== obj2.id){
+    //         return false;
+    //     } 
+    //     return true;
+    // }
 
-    function searchAndUpdateEquipment(cacheField, equipment, remove = false){
-        console.log(cacheField) 
-        for(const key in cacheField){  
+    // function searchAndUpdateEquipment(cacheField, equipment, remove = false){
+    //     console.log(cacheField) 
+    //     for(const key in cacheField){  
                                 
-            if(isEqualEquipment(cacheField[key], equipment)){
-                remove ? cacheField[key] = {}: cacheField[key] = equipment;       
-                localStorage.setItem(keys.storage, JSON.stringify(cache))
-                break;
-            } 
-        }
-    }
+    //         if(Equipment.isEqualEquipment(cacheField[key], equipment)){
+    //             remove ? cacheField[key] = {}: cacheField[key] = equipment;       
+    //             localStorage.setItem(keys.storage, JSON.stringify(cache))
+    //             break;
+    //         } 
+    //     }
+    // }
 
 
 

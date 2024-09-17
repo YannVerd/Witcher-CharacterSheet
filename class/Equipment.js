@@ -7,14 +7,21 @@ class Equipment {
         Equipment.count++;
     }
 
-    static isEqual(obj1, obj2){
-        for(const key in obj1){
-            if(!obj1[key] === obj2[key]){
-                return false
-            }
+    static isEqualEquipment(obj1, obj2){
+        if(obj1.id !== obj2.id){
+            return false
         }
         return true
     }
 
-
+    static searchAndUpdateEquipment(cacheField, equipment, remove = false){
+        for(const key in cacheField){ 
+            console.log(Equipment.isEqualEquipment(cacheField[key], equipment))                  
+            if(Equipment.isEqualEquipment(cacheField[key], equipment)){
+                remove ? cacheField[key] = {}: cacheField[key] = equipment;       
+                localStorage.setItem(keys.storage, JSON.stringify(cache))
+                break;
+            } 
+        }
+    }
 }

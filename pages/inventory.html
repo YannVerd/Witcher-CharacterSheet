@@ -7,13 +7,13 @@
     <link href="../styles/styles.css" rel="stylesheet">
     <script src="../datas/cache.js"></script>
     <script src="../datas/constantes.js"></script>
+    <script src="../scripts/saveSystem.js"></script>
     <script src="../class/Equipment.js"></script>
     <script src="../class/Weapon.js"></script>
     <script src="../class/Armor.js"></script>
     <script src="../class/Misc.js"></script>
     <script src="../class/Component.js"></script>
     <script src="../scripts/utils.js"></script>
-    <script src="../scripts/saveSystem.js"></script>
     <script src="../scripts/main.js" defer></script>
     <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
 </head>
@@ -256,7 +256,7 @@
             case "component":
                 table = document.getElementById("components-table");
                 row.innerHTML = componentRowBase;
-                equipment === null ? equipment = Component(): null;
+                equipment === null ? equipment = new Component(): null;
                 baseKeys = keysComponentDTO;
                 table.appendChild(row);
                 break;
@@ -264,6 +264,10 @@
         // assign default value
         for(i=0; i < row.children.length; i++){
             row.children[i].firstElementChild.value = equipment[baseKeys[i+1]];
+            if(i === 1 && type === "armor"){
+                Equipment.fillEquipedSelectOptions(row.children[i].firstElementChild.value, equipment, row.children[7].firstElementChild);
+                
+            }
         }
         // create button for each new row
         let cell = document.createElement("td");
@@ -414,7 +418,7 @@
                     equipment[keysComponentDTO[index + 1]] = e.target.value;
                     cache.character.inventory.components[row.rowIndex - 1] = equipment;
                     localStorage.setItem(keys.storage, JSON.stringify(cache))
-                    index === 0 ? aequipment.isEquippable = true : null;
+                    index === 0 ? equipment.isEquippable = true : null;
                     break;
             }
 
@@ -449,9 +453,10 @@
                                 if(Object.keys(cache.character.weaponsEquipped.sec).length === 0){
                                     equipment.equiped = "sec";
                                     cache.character.weaponsEquipped.sec = equipment;
-                                    if(Equiment.isEqualEquipment(cache.character.weaponsEquipped.main, equipment)) { // in the case that was the main weapon
+                                    if(Equipment.isEqualEquipment(cache.character.weaponsEquipped.main, equipment)) { // in the case that was the main weapon
                                         cache.character.weaponsEquipped.main = {};
                                     }
+                                    Equipment.searchAndUpdateEquipment(cache.character.inventory.weapons, equipment, false, true)
                                     localStorage.setItem(keys.storage, JSON.stringify(cache))
                                 }else{
                                     alert("Une arme secondaire est déjà assignée")
@@ -464,30 +469,13 @@
                             break;
 
                         case 'false':
-                            Equipment.searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment)
+                            equipment.equiped = e.target.value
+                            Equipment.searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment, true)
                             break;
                     }
                 }else{ // for equipped armor
                     if(index === 1){ // equiped option depending on location value          
-                        e.target.value === "arm" || e.target.value === "leg" ? equipment.equipmentLocationOptions = ["false", "right", "left"] : equipment.equipmentLocationOptions = ["false", "true"];
-                        equipment.location = e.target.value;
-                        element2.innerHTML = ""; // remove all options
-                        equipment.equipmentLocationOptions.forEach( (str, key)=> {
-                            if(str === "false"){
-                                element2[key] = new Option("non", str, true, false)
-                            }else if(str === "left"){
-                                element2[key] = new Option("gauche", str,false, false)
-                            }else if(str === "right"){
-                                element2[key] = new Option("droite", str,false, false)
-                            }else{
-                                element2[key] = new Option("oui", str,false, false)
-                            }     
-                        })
-                        // search element in cache
-                        cache.character.inventory.armors.forEach(eqpt => {
-                            eqpt.id === equipment.id ? eqpt = equipment : null
-                        })
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
+                        Equipment.fillEquipedSelectOptions(e.target.value, equipment, element2);
                     }else{ // cache equiped armor
                         if(equipment.isEquippable){
                             equipment.equiped = e.target.value; // update with new value
@@ -519,33 +507,5 @@
             })
 
     }
-
-    /** 
-     * function to test if is an object is equal to an other
-     * @param {Object} first object to compare
-     * @param {Object} second bject to compare
-     * @return {boolean}
-    */
-    // function isEqualEquipment(obj1, obj2){
-    //     if(obj1.id !== obj2.id){
-    //         return false;
-    //     } 
-    //     return true;
-    // }
-
-    // function searchAndUpdateEquipment(cacheField, equipment, remove = false){
-    //     console.log(cacheField) 
-    //     for(const key in cacheField){  
-                                
-    //         if(Equipment.isEqualEquipment(cacheField[key], equipment)){
-    //             remove ? cacheField[key] = {}: cacheField[key] = equipment;       
-    //             localStorage.setItem(keys.storage, JSON.stringify(cache))
-    //             break;
-    //         } 
-    //     }
-    // }
-
-
-
 </script>
 </html>

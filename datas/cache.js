@@ -1,6 +1,7 @@
 let cacheDTO = {
     "character":
         {
+            "maxIdInventory": "",
             "name": "",
             "race": "",
             "gender": "",

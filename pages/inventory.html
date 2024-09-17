@@ -353,7 +353,7 @@
             
             let index = i; // fix i for each event 
             // managment of equipped weapons
-            if(i === 11 && type ==="weapon" || i === 6 && type==="armor" || index === 1 && type === "armor"){ 
+            if(i === 11 && type ==="weapon" || i === 6 && type==="armor" || index === 1 && type === "armor" || index === 7 && type === "armor"){ 
                 if(type === "weapon"){
                     equipmentManagement(type, row.children[i].firstElementChild, equipment)
                 }else{
@@ -523,9 +523,10 @@
                             break;
                     }
                 }else{
-                    if(index === 1){
+                    if(index === 1){                 
                         e.target.value === "arm" || e.target.value === "leg" ? equipment.equipmentLocationOptions = ["false", "right", "left"] : equipment.equipmentLocationOptions = ["false", "yes"];
                         equipment.location = e.target.value;
+                        element2.innerHTML = ""; // remove all options
                         equipment.equipmentLocationOptions.forEach( (str, key)=> {
                             if(str === "false"){
                                 element2[key] = new Option("non", str, true, false)
@@ -537,9 +538,7 @@
                                 element2[key] = new Option("oui", str,false, false)
                             }     
                         })
-
                     }else{
-                        console.log(equipment)
                         if(equipment.isEquippable){
                             equipment.equiped = e.target.value;
                             if(equipment.equiped !== "false"){

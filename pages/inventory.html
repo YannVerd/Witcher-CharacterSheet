@@ -199,100 +199,48 @@
             <td><input type="text" size="10"></td>
             
         `;
-    completeTableWithCache(cache.character.inventory)
-    function completeTableWithCache(datas) {
-        let table = "";
-        for(const key in datas){
-            if (datas[key].length > 0){
-                datas[key].forEach(element => {
-                    let row = document.createElement('tr');
-                    let baseKeys = null
-                    switch(key){
-                        case 'weapons':
-                            table = document.getElementById('weapons-table')
-                            row.innerHTML = weaponsRowBase;
-                            baseKeys = keysWeaponDTO;
-                            table.appendChild(row)
-                            break;
+    // browse cache
+    let inventory = cache.character.inventory
+    for(const key in inventory){
+        if(inventory[key].length > 0){
+            inventory[key].forEach(equipment => {
+                switch(key){
+                    case "weapons":
+                        addRow('weapon', equipment)
+                        break;
+                    case "armors":
+                        addRow('armor', equipment)               
+                        break;
                     
-                        case 'armors':
-                            table = document.getElementById('armors-table')
-                            row.innerHTML = armorsRowBase;
-                            baseKeys = keysArmorDTO;
-                            table.appendChild(row)
-                            break;
+                    case "miscellaneous":                   
+                        addRow('miscellaneous', equipment)                   
+                        break;
 
-                        case 'miscellaneous':
-                            table = document.getElementById('miscellaneous-table')
-                            row.innerHTML = miscellaneousRowBase;
-                            baseKeys = keysMiscDTO;
-                            table.appendChild(row)
-                            break;
-
-                        case 'components':
-                            table = document.getElementById('components-table')
-                            row.innerHTML = componentRowBase;
-                            baseKeys = keysComponentDTO;
-                            table.appendChild(row)
-                            break;
-                    }
-                    // assign cache values
-                    for(i=0; i < row.children.length; i++){
-                        row.children[i].firstChild.value = element[baseKeys[i+1]];
-                    }
-                    let cell = document.createElement("td");
-                    let buttonDel = document.createElement("button");
-                    cell.appendChild(buttonDel);
-                    row.appendChild(cell);
-                    buttonDel.innerText = "supprimer";
-                    buttonDel.className = "fantasy-btn-sm";
-                    // manage delete row when button "supprimer" cliked
-                    buttonDel.addEventListener("click", e=> {
-                        weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
-                        cache.character.currentWeight = weightTt;
-                        // delete cache element based on "type" parameter
-                        switch(key){
-                            case "weapons":
-                                cache.character.inventory.weapons.splice(row.rowIndex -1, 1); // delete the target row (index retrieve with row.rowIndex property)
-                                break;
-                            case "armors":
-                                cache.character.inventory.armors.splice(row.rowIndex -1, 1);
-                                break;
-
-                            case "miscellaneous":
-                                cache.character.inventory.miscellaneous.splice(row.rowIndex -1, 1);
-                                break;
-
-                            case "components":
-                                cache.character.inventory.components.splice(row.rowIndex -1, 1);
-                                break;
-                        }
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
-                        table.deleteRow(row.rowIndex);
-                    })
-                });
-            }  
-            
+                    case "components":            
+                        addRow('component', equipment)
+                        break;
+                }
+            })
         }
+        
     }
-    function addRow(type) {  
+    function addRow(type, equipment = null) {  
         let table ="";
         let row = document.createElement("tr");
-        let equipment = null;
         let baseKeys = null
         // select base html depending on type parameter
         switch(type){ 
             case "weapon":
                 table = document.getElementById("weapons-table");
                 row.innerHTML = weaponsRowBase;
-                equipment = new Weapon();
+                equipment === null ? equipment = new Weapon() : null;
                 baseKeys = keysWeaponDTO;
                 table.appendChild(row);
                 break;
             case "armor":
                 table = document.getElementById("armors-table");
                 row.innerHTML = armorsRowBase;
-                equipment = new Armor();
+                equipment === null ? equipment = new Armor() : null;
                 baseKeys = keysArmorDTO;
                 table.appendChild(row);
                 break;
@@ -300,7 +248,7 @@
             case "miscellaneous":
                 table = document.getElementById("miscellaneous-table");
                 row.innerHTML = miscellaneousRowBase;
-                equipment = new Misc();
+                equipment === null ? equipment = new Misc(): null;
                 baseKeys = keysMiscDTO;
                 table.appendChild(row);
                 break;
@@ -308,7 +256,7 @@
             case "component":
                 table = document.getElementById("components-table");
                 row.innerHTML = componentRowBase;
-                equipment = new Component();
+                equipment === null ? equipment = Component(): null;
                 baseKeys = keysComponentDTO;
                 table.appendChild(row);
                 break;
@@ -560,7 +508,7 @@
                             } else { // if we desequipped
                                 for(const key in cache.character.armorsEquipped){
                                     console.log(cache.character.armorsEquipped[key]);
-                                    if(cache.character.armorsEquipped[key].id === equipment.id){
+                                    if(isEqualEquipment(cache.character.armorsEquipped[key], equipment)){
                                         cache.character.armorsEquipped[key] = {};
                                         
                                         localStorage.setItem(keys.storage, JSON.stringify(cache))

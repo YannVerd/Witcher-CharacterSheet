@@ -31,6 +31,7 @@ Bugs:
     - dans la fonction emptyElementsValues, le programme ne rentre pas dans la boucle forEach // corrigé c'était un objet pas un tableau
     - Au rafraichissement le total ne se fait pas (avec utilisation du localstore) => il faut adapt lafonciton calculSubAttributsTotal pour qu'elle englobe tous les cas (carac de base et skills en plus); en partie corrigé - fait
     - bug sur la mise a jour des totaux quand on raffraichit la page
-    - cache bug en rafraichissant la page
+    - cache bug en rafraichissant la page pour l'inventaire : pas de listener et d'assignation des valeurs mises en cache
+    - pour un Equipment parfois, à la place de 0, l'id est égal à null
 
     

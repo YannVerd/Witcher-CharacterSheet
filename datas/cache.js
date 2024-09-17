@@ -128,7 +128,7 @@ const keysArmorDTO = [
     "id",
     "name",
     "location",
-    "PA",
+    "pa",
     "weight",
     "dmg",
     "effect",

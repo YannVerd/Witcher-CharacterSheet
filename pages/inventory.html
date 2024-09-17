@@ -545,17 +545,28 @@
                         localStorage.setItem(keys.storage, JSON.stringify(cache))
                     }else{ // cache equiped armor
                         if(equipment.isEquippable){
-                            equipment.equiped = e.target.value;
-                            console.log(equipment.location)
+                            equipment.equiped = e.target.value; // update with new value
                             if(equipment.equiped !== "false"){
+                                
                                 if(equipment.location === "arm" || equipment.location === "leg"){
                                     const str = equipment.location[0].toUpperCase() + equipment.location.slice(1);
-                                    conssole.log(str)
-                                    cache.character.armorsEquipped[`${equipment.equiped}${str}`];                  
+                                    
+                                    cache.character.armorsEquipped[`${equipment.equiped}${str}`] = equipment;                  
                                 }else{
-                                    cache.character.armorsEquipped[equipment.location];
+                                    cache.character.armorsEquipped[equipment.location] = equipment;
+                                    equipment.equiped = e.target.value;
                                 }
                                 localStorage.setItem(keys.storage, JSON.stringify(cache));
+                            } else { // if we desequipped
+                                for(const key in cache.character.armorsEquipped){
+                                    console.log(cache.character.armorsEquipped[key]);
+                                    if(cache.character.armorsEquipped[key].id === equipment.id){
+                                        cache.character.armorsEquipped[key] = {};
+                                        
+                                        localStorage.setItem(keys.storage, JSON.stringify(cache))
+                                        break;
+                                    } 
+                                }
                             }
                         }else{
                             alert("veuillez saisir des informations pour pouvoir equiper l'armure")

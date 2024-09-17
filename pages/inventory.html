@@ -301,7 +301,7 @@
                 table = document.getElementById("miscellaneous-table");
                 row.innerHTML = miscellaneousRowBase;
                 equipment = new Misc();
-                baseKeys = keysMiscTO;
+                baseKeys = keysMiscDTO;
                 table.appendChild(row);
                 break;
 
@@ -309,7 +309,7 @@
                 table = document.getElementById("components-table");
                 row.innerHTML = componentRowBase;
                 equipment = new Component();
-                baseKeys = keysComponentDT;
+                baseKeys = keysComponentDTO;
                 table.appendChild(row);
                 break;
         }
@@ -524,7 +524,7 @@
                     }
                 }else{
                     if(index === 1){                 
-                        e.target.value === "arm" || e.target.value === "leg" ? equipment.equipmentLocationOptions = ["false", "right", "left"] : equipment.equipmentLocationOptions = ["false", "yes"];
+                        e.target.value === "arm" || e.target.value === "leg" ? equipment.equipmentLocationOptions = ["false", "right", "left"] : equipment.equipmentLocationOptions = ["false", "true"];
                         equipment.location = e.target.value;
                         element2.innerHTML = ""; // remove all options
                         equipment.equipmentLocationOptions.forEach( (str, key)=> {
@@ -538,16 +538,24 @@
                                 element2[key] = new Option("oui", str,false, false)
                             }     
                         })
-                    }else{
+                        // search element in cache
+                        cache.character.inventory.armors.forEach(eqpt => {
+                            eqpt.id = equipment.id ? eqpt = equipment : null
+                        })
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
+                    }else{ // cache equiped armor
                         if(equipment.isEquippable){
                             equipment.equiped = e.target.value;
+                            console.log(equipment.location)
                             if(equipment.equiped !== "false"){
-                                if(equipment.location !== "arm" || equipment.location !== "leg"){
-                                    const str = equipment.location[0].toUpperCase() + equipment.location.slice(1);                  
+                                if(equipment.location === "arm" || equipment.location === "leg"){
+                                    const str = equipment.location[0].toUpperCase() + equipment.location.slice(1);
+                                    conssole.log(str)
+                                    cache.character.armorsEquipped[`${equipment.equiped}${str}`];                  
                                 }else{
                                     cache.character.armorsEquipped[equipment.location];
                                 }
-                                localStorage.setItem('character', JSON.stringify(cache));
+                                localStorage.setItem(keys.storage, JSON.stringify(cache));
                             }
                         }else{
                             alert("veuillez saisir des informations pour pouvoir equiper l'armure")

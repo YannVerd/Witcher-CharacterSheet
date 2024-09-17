@@ -1,7 +1,7 @@
-class Armor extends Equipment{
-    constructor(name, weigth, quantity, weightTt, substances, cost){
-        super(name, weigth);
-        this.weightTt = weightTt;
+class Component extends Equipment{
+    constructor(name, weight, quantity, substances, cost){
+        super(name, weight);
+        this.weightTt = quantity * weight;
         this.quantity = quantity;
         this.substances = substances;
         this.cost = cost;

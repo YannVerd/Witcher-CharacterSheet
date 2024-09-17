@@ -1,6 +1,6 @@
 class Weapon extends Equipment{
-    constructor(name = "", weigth, type = "", prec= "", dmg = 0, fia = 0, hands = 1, scope = 1, effect = "", diss = "", am = "", isEquippable = false, equiped = "false"){
-        super(name, weigth);
+    constructor(name = "", weight = 1, type = "", prec= 0, dmg = "1d6", fia = 0, hands = 1, scope = 1, effect = "auncuns", diss = "Petite", am = 0, isEquippable = false, equiped = "false"){
+        super(name, weight);
         this.type = type;
         this.prec = prec;
         this.dmg = dmg;

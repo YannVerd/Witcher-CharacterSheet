@@ -1,9 +1,9 @@
 class Equipment {
     static count= 0;
-    constructor(name, weigth = 0){
+    constructor(name, weight = 0){
         this.id = Equipment.count;
         this.name = name;
-        this.weigth = weigth;
+        this.weight = weight;
         Equipment.count++;
     }
 

@@ -70,10 +70,10 @@ assignElementsToObject(skills, skillsTotal, "Tt", keysOfCache.skills);
 
 let weaponAttribHTML = {};
 let secWeaponAttribHTML = {};
-let armorsHTML = {};
+let armorsAttribHTML = {};
 assignElementsToObject(keysWeaponDTO, weaponAttribHTML, "Weapon", keysOfCache.weapons);
 assignElementsToObject(keysWeaponDTO, secWeaponAttribHTML, "SecWeapon", keysOfCache.weapons);
-assignElementsToObject(keysArmorDTO, armorsHTML, "Armor", keysOfCache.armors);
+assignElementsToObject(keysArmorDTO, armorsAttribHTML, "Armor", keysOfCache.armors);
 
 
 /* Sorts and rituals */
@@ -235,6 +235,51 @@ fillMagicTables(ritualsTable);
 /*-------------------skills ----------------------------*/
 manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
+
+/*--------------------equipment---------------------------*/
+
+//weapons
+for(const key in weaponAttribHTML) {
+    weaponAttribHTML[key].addEventListener('input', e=>{
+        let weaponMain = cache.character.weaponsEquipped.main 
+        weaponMain[key] = e.target.value; // change value of equiped in cache
+        cache.character.inventory.weapons.forEach( weapon =>{
+            if(weapon.id === weaponMain.id){
+                weapon[key] = weaponMain[key];
+            }
+        })
+        localStorage.setItem(keys.storage, JSON.stringify(cache))
+    })
+};
+for(const key in secWeaponAttribHTML) {
+    secWeaponAttribHTML[key].addEventListener('input', e=>{
+        let weaponSec= cache.character.weaponsEquipped.sec 
+        weaponSec[key] = e.target.value; // change value of equiped in cache
+        cache.character.inventory.weapons.forEach( weapon =>{ // search object in inventory for set property value
+            if(weapon.id === weaponSec.id){ 
+                weapon[key] = weaponSec[key];
+            }
+        })
+        localStorage.setItem(keys.storage, JSON.stringify(cache))
+    })
+};
+//armors
+for(const slot in armorsAttribHTML){
+    for(const key in armorsAttribHTML[slot]){
+        console.log(armorsAttribHTML)
+        armorsAttribHTML[slot][key].addEventListener('input', e => {
+            
+            let armorEquip = cache.character.armorsEquipped[slot]
+            armorEquip[key] = e.target.value;
+            cache.character.inventory.armors.forEach( armor =>{ // search object in inventory for set property value
+                if(armor.id === armorEquip.id){ 
+                    armor[key] = armorEquip[key];
+                }
+            })
+            localStorage.setItem(keys.storage, JSON.stringify(cache))
+        })
+    }
+}
 
 /*----------------encumbrement, cash, pp, vigor-------------------------*/
 weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) < parseFloat(weightTt.value) ? "red" : "lightgreen";

@@ -51,12 +51,11 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
                 case keysOfCache.armors:
                     for(const slot in armorsSlots) {
                         let key = slot[0].toUpperCase() + slot.slice(1) // uppercase firstLetter
+                        obj[slot] = {} // to indicate that slot is an object;
                         datas.forEach( str => {
                             console.log(str, slot)
                             if(str === "name" || str === "pa" || str === "dmg"){
-                                obj[slot] = {} // to indicate that slot is an object;
-                                obj[slot][str] = document.getElementById(`${str}${key}${suffix}`);
-                                                      
+                                obj[slot][str] = document.getElementById(`${str}${key}${suffix}`);                     
                                 if(cache !== undefined){
                                     console.log(obj[slot])
                                     cache.character[keyOfCache][slot] !== undefined? obj[slot][str].value = cache.character[keyOfCache][slot][str] : null;
@@ -122,7 +121,7 @@ const manageAttributes = (object, isSub, isSkill, isBonus) => {
                             case "vol":
                                 // physic table
                                 ratio = Math.floor((parseFloat(attribTotal["vol"].value) + parseFloat(attribTotal["cor"].value))/2); // (COR+VOL)/2
-                                console.log("(COR+VOL)/2 = "+ratio);
+                                // console.log("(COR+VOL)/2 = "+ratio);
                                 rules.physicTable.forEach( t => {
                                     if(t.ratio === ratio){
                                         subAttribHTML["end"].value = t.END; 

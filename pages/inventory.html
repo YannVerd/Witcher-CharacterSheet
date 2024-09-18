@@ -437,7 +437,7 @@
                         case 'secondary':
                             if(equipment.isEquippable){
                                 if(Object.keys(cache.character.weaponsEquipped.sec).length === 0){
-                                    equipment.equiped = "sec";
+                                    equipment.equiped = "secondary";
                                     cache.character.weaponsEquipped.sec = equipment;
                                     if(Equipment.isEqualEquipment(cache.character.weaponsEquipped.main, equipment)) { // in the case that was the main weapon
                                         cache.character.weaponsEquipped.main = {};

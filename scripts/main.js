@@ -233,7 +233,7 @@ manageSkills(skillsBonus, true);
 
 /*----------------encumbrement, cash, pp, vigor-------------------------*/
 
-weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) > parseFloat(weightTt.value) ? "red" : "lightgreen";
+weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) < parseFloat(weightTt.value) ? "red" : "lightgreen";
 cash.addEventListener('input', e => {
     cache.character.cash = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));

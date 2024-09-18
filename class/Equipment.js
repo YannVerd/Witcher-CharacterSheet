@@ -77,4 +77,5 @@ class Equipment {
         })
         localStorage.setItem(keys.storage, JSON.stringify(cache))
     }
+
 }

@@ -71,7 +71,7 @@ assignElementsToObject(skills, skillsTotal, "Tt", keysOfCache.skills);
 let weaponAttribHTML = {};
 let secWeaponAttribHTML = {};
 assignElementsToObject(keysWeaponDTO, weaponAttribHTML, "Weapon", keysOfCache.weapons);
-assignElementsToObject(keysWeaponDTO, secWeaponAttribHTML, "SecWeapon,", keysOfCache.armors)
+assignElementsToObject(keysWeaponDTO, secWeaponAttribHTML, "SecWeapon", keysOfCache.weapons)
 
 
 /* Sorts and rituals */

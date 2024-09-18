@@ -497,7 +497,6 @@
     function calculTotalWeight(){
         let inventory = cache.character.inventory;
         let totalWeight = 0;
-        console.log("calcul total weight", inventory)
         for(const key in inventory){
             inventory[key].forEach(eqpt=>{
                 if(key === "components" || key==="miscellaneous"){

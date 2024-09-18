@@ -1,7 +1,7 @@
 const attributes = ["cor", "int", "ref", "dex", "vit", "emp", "tech", "vol", "cha"];
 const subAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
 const subAttributesTotal = ["etou", "cour", "saut", "ps", "end", "enc", "rec"];
-const weaponAttributes = ["name", "pre", "dgts", "fia", "mains", "port", "diss", "am", "poids"];
+const weaponAttributes = ["name", "pre", "dmg", "fia", "hands", "scope", "diss", "am", "weight"];
 const generalsInfos = {
 name: "name",
 race: "race",

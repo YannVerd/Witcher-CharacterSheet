@@ -18,30 +18,32 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
     return new Promise((resolve, reject) => {
         try {
             if(keyOfCache != "skills"){
-                datas.forEach( str => {
-                    obj[str] = document.getElementById(`${str}${suffix}`);
+                if(keyOfCache === "attributes" || keyOfCache === "subAttributes"){
                     const cache = loadCache();
-                    if(cache != undefined){
-                        if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
-                            cache.character[keyOfCache]["base"][str] != undefined? obj[str].value = cache.character[keyOfCache]["base"][str] : null;
-                        }else if(suffix === "Bonus"){
-                            cache.character[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache.character[keyOfCache]["bonus"][str] : null;
-                        }
-                    }
-                    
-                });
+                    datas.forEach( str => {
+                        obj[str] = document.getElementById(`${str}${suffix}`);
+                        if(cache != undefined){
+                            if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
+                                cache.character[keyOfCache]["base"][str] != undefined? obj[str].value = cache.character[keyOfCache]["base"][str] : null;
+                            }else if(suffix === "Bonus"){
+                                cache.character[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache.character[keyOfCache]["bonus"][str] : null;
+                            }
+                        }        
+                    });
+                }
+                
             }else { // if is skills 
                 for (const key in datas) {
                     datas[key].forEach( skill => {
                         obj[skill.abrv] = document.getElementById(`${skill.abrv}${suffix}`)
                         const cache = loadCache();
-                    if(cache != undefined){
-                        if(suffix === "Input") {
-                            cache.character[keyOfCache]["base"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["base"][skill.abrv] : null;
-                        }else if(suffix === "Bonus"){
-                            cache.character[keyOfCache]["bonus"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["bonus"][skill.abrv] : null;
+                        if(cache != undefined){
+                            if(suffix === "Input") {
+                                cache.character[keyOfCache]["base"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["base"][skill.abrv] : null;
+                            }else if(suffix === "Bonus"){
+                                cache.character[keyOfCache]["bonus"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["bonus"][skill.abrv] : null;
+                            }
                         }
-                    }
                     })
                     
                 }

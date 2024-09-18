@@ -56,8 +56,8 @@ assignElementsToObject(attributes, attribBonus, "Bonus", "attributes");
 assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttributes")
 
 //total
-assignElementsToObject(attributes, attribTotal, "Tt", "none");
-assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt", "none");
+assignElementsToObject(attributes, attribTotal, "Tt", "attributes");
+assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt","subAttributes");
 
 /* Skills */
 displaySkills()
@@ -69,7 +69,9 @@ assignElementsToObject(skills, skillsBonus, "Bonus", "skills");
 assignElementsToObject(skills, skillsTotal, "Tt", "skills");
 
 let weaponAttribHTML = {};
+let secWeaponAttribHTML = {};
 assignElementsToObject(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
+
 
 /* Sorts and rituals */
 let sortsTable = document.getElementById('sorts-table');
@@ -232,7 +234,7 @@ manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
 
 /*----------------encumbrement, cash, pp, vigor-------------------------*/
-
+console.log(subAttribTotal["enc"])
 weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) < parseFloat(weightTt.value) ? "red" : "lightgreen";
 cash.addEventListener('input', e => {
     cache.character.cash = e.target.value;

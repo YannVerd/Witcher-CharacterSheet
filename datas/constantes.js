@@ -2,6 +2,15 @@ const attributes = ["cor", "int", "ref", "dex", "vit", "emp", "tech", "vol", "ch
 const subAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
 const subAttributesTotal = ["etou", "cour", "saut", "ps", "end", "enc", "rec"];
 const weaponAttributes = ["name", "pre", "dmg", "fia", "hands", "scope", "diss", "am", "weight"];
+const armorsSlots = {
+    head: "head",
+    torso: "torse",
+    leftArm: "leftArm",
+    rightArm: "rightArm",
+    leftLeg: "leftLeg",
+    rightLeg: "rightLeg",
+    shield: "shield"
+}
 const generalsInfos = {
     name: "name",
     race: "race",

@@ -35,7 +35,6 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
                 case keysOfCache.weapons:
                     datas.forEach(str=> {
                         if( str !== "id" && str !== "equiped"){
-                            console.log(str, suffix)
                             obj[str] = document.getElementById(`${str}${suffix}`);
                             if(cache != undefined){
                                 if(suffix === "Weapon"){
@@ -50,17 +49,22 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
                     })                     
                     break;
                 case keysOfCache.armors:
-                    datas.forEach(str => {
-                        if(str !== "id" && str !== "equiped"){
-                            obj[str] = document.getElementById(`${str}${suffix}`);
-                            let key =  obj[str].id.replaceArmor("Armor", "");
-                            console.log(key)
-
-                            if(cache != undefined){ 
-                                cache.character[keyOfCache].main != undefined? obj[str].value = cache.character[keyOfCache].main[str] : null;
-                            }  
-                        }                     
-                    })
+                    for(const slot in armorsSlots) {
+                        let key = slot[0].toUpperCase() + slot.slice(1) // uppercase firstLetter
+                        datas.forEach( str => {
+                            console.log(str, slot)
+                            if(str === "name" || str === "pa" || str === "dmg"){
+                                obj[slot] = {} // to indicate that slot is an object;
+                                obj[slot][str] = document.getElementById(`${str}${key}${suffix}`);
+                                                      
+                                if(cache !== undefined){
+                                    console.log(obj[slot])
+                                    cache.character[keyOfCache][slot] !== undefined? obj[slot][str].value = cache.character[keyOfCache][slot][str] : null;
+                                }  
+                            }     
+                        }) 
+                        console.log(obj)                    
+                    }
                     break;   
                 case keysOfCache.skills:
                     for (const key in datas) {
@@ -78,38 +82,8 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
                     }
                     break;
            
-            }
-            // if(keyOfCache != "skills"){
-            //     if(keyOfCache === "attributes" || keyOfCache === "subAttributes"){
-            //         datas.forEach( str => {
-            //             obj[str] = document.getElementById(`${str}${suffix}`);
-            //             if(cache != undefined){
-            //                 if(suffix === "Input" || suffix === "Value" && keyOfCache === "attributes"){
-            //                     cache.character[keyOfCache]["base"][str] != undefined? obj[str].value = cache.character[keyOfCache]["base"][str] : null;
-            //                 }else if(suffix === "Bonus"){
-            //                     cache.character[keyOfCache]["bonus"][str] != undefined? obj[str].value = cache.character[keyOfCache]["bonus"][str] : null;
-            //                 }
-            //             }        
-            //         });
-            //     }else if(keyOfCache === "weapon"){}
-                
-            // }else { // if is skills 
-            //     for (const key in datas) {
-            //         datas[key].forEach( skill => {
-            //             obj[skill.abrv] = document.getElementById(`${skill.abrv}${suffix}`)
-            //             if(cache != undefined){
-            //                 if(suffix === "Input") {
-            //                     cache.character[keyOfCache]["base"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["base"][skill.abrv] : null;
-            //                 }else if(suffix === "Bonus"){
-            //                     cache.character[keyOfCache]["bonus"][skill.abrv] != undefined? obj[skill.abrv].value = cache.character[keyOfCache]["bonus"][skill.abrv] : null;
-            //                 }
-            //             }
-            //         })
-                    
-            //     }
-            // }
-            
-            console.log("elements found for "+keyOfCache+" "+suffix)
+            }          
+            // console.log("elements found for "+keyOfCache+" "+suffix)
             resolve();
         }catch(e){
             console.error("failed to fill "+keyOfCache+" "+suffix)

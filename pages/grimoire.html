@@ -84,6 +84,7 @@
     selectLevel.addEventListener("change", e => {
         infosLevel.innerHTML= "";
         infosLevel.innerHTML = "PP: "+grimoire[selectLevel.value]["PP"]+" Durée: "+grimoire[selectLevel.value]["Duree"]+" SD: "+grimoire[selectLevel.value]["SD"]+" Jets: "+grimoire[selectLevel.value]["PP"];
+        infosLevel.style.color = "white";
         fillTable();
     })
     selectType.addEventListener("change", e => {

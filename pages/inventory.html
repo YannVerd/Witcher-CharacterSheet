@@ -326,22 +326,7 @@
             }
             
         }
-        // total wieght managment
-        // weightInputList = document.getElementsByClassName("weightInput"); // list of all input weigthInput class (refresh of each deletion/creation)
-        // // add all weight total
-        // for(let w of weightInputList){ 
-        //     let timeout = null;
-        //     w.addEventListener('input', e => {
-        //         clearTimeout(timeout);
-        //         // Make a new timeout set to go off in 1000ms (1 second)
-        //         timeout = setTimeout(function () {
-        //             weightTt += parseFloat(e.target.value);// add to total the target value
-        //             cache.character.currentWeight = weightTt;
-        //             localStorage.setItem(keys.storage, JSON.stringify(cache))
-        //         }, 1000);
-                        
-        //     })
-        // }
+       
     }
 
     /**
@@ -359,8 +344,6 @@
                         clearTimeout(timeout);
                     // Make a new timeout set to go off in 1000ms (1 second)
                         timeout = setTimeout(function () {
-                            // weightTt += parseFloat(e.target.value);// add to total the target value
-                            // cache.character.currentWeight = weightTt;
                             calculTotalWeight();
                             localStorage.setItem(keys.storage, JSON.stringify(cache))
                         }, 1000);
@@ -376,8 +359,6 @@
                     clearTimeout(timeout);
                     // Make a new timeout set to go off in 1000ms (1 second)
                         timeout = setTimeout(function () {
-                            // weightTt += parseFloat(e.target.value);// add to total the target value
-                            // cache.character.currentWeight = weightTt;
                             calculTotalWeight()
                             localStorage.setItem(keys.storage, JSON.stringify(cache))
                         }, 1000);
@@ -397,8 +378,6 @@
                         timeout = setTimeout(function () {
                             row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
                             equipment.weightTt = row.children[3].firstChild.value
-                            // weightTt += parseFloat(row.children[3].firstChild.value);// add to total the target value
-                            // cache.character.currentWeight = weightTt;
                             calculTotalWeight();
                             localStorage.setItem(keys.storage, JSON.stringify(cache))
                         }, 1000);
@@ -417,8 +396,6 @@
                         timeout = setTimeout(function () {
                             row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
                             equipment[keysComponentDTO[4]] = row.children[3].firstChild.value
-                            // weightTt += parseFloat(row.children[3].firstChild.value);// add to total the target value
-                            // cache.character.currentWeight = weightTt;
                             calculTotalWeight()
                             localStorage.setItem(keys.storage, JSON.stringify(cache))
                         }, 1000);

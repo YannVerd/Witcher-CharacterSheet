@@ -157,3 +157,11 @@ const keysComponentDTO = [
     "cost",
     "substance",
 ]
+
+const keysOfCache = {
+    attrib: "attributes",
+    subAttrib: "subAttributes",
+    skills: "skills",
+    weapons: "weaponsEquipped",
+    armors: "armorsEquipped"
+}

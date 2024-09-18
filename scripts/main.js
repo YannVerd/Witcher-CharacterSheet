@@ -48,29 +48,30 @@ let subAttribBonus = {};
 let subAttribTotal = {};
 let ratio = 0; // (cor+vol)/2 match to the physique table
 //base
-assignElementsToObject(attributes, attribHTML, "Input", "attributes")
+assignElementsToObject(attributes, attribHTML, "Input", keysOfCache.attrib)
 //derived
-assignElementsToObject(subAttributes, subAttribHTML, "Value", "subAttributes")
+assignElementsToObject(subAttributes, subAttribHTML, "Value", keysOfCache.subAttrib)
 //bonus
-assignElementsToObject(attributes, attribBonus, "Bonus", "attributes");
-assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttributes")
+assignElementsToObject(attributes, attribBonus, "Bonus",keysOfCache.attrib);
+assignElementsToObject(subAttributes, subAttribBonus, "Bonus", keysOfCache.subAttrib)
 
 //total
-assignElementsToObject(attributes, attribTotal, "Tt", "attributes");
-assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt","subAttributes");
+assignElementsToObject(attributes, attribTotal, "Tt", keysOfCache.attrib);
+assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt",keysOfCache.subAttrib);
 
 /* Skills */
 displaySkills()
 let skillsHTML = {};
 let skillsBonus = {};
 let skillsTotal = {}
-assignElementsToObject(skills, skillsHTML, "Input", "skills");
-assignElementsToObject(skills, skillsBonus, "Bonus", "skills");
-assignElementsToObject(skills, skillsTotal, "Tt", "skills");
+assignElementsToObject(skills, skillsHTML, "Input", keysOfCache.skills);
+assignElementsToObject(skills, skillsBonus, "Bonus",keysOfCache.skills);
+assignElementsToObject(skills, skillsTotal, "Tt", keysOfCache.skills);
 
 let weaponAttribHTML = {};
 let secWeaponAttribHTML = {};
-assignElementsToObject(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
+assignElementsToObject(keysWeaponDTO, weaponAttribHTML, "Weapon", keysOfCache.weapons);
+assignElementsToObject(keysWeaponDTO, secWeaponAttribHTML, "SecWeapon,", keysOfCache.armors)
 
 
 /* Sorts and rituals */
@@ -234,7 +235,6 @@ manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
 
 /*----------------encumbrement, cash, pp, vigor-------------------------*/
-console.log(subAttribTotal["enc"])
 weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) < parseFloat(weightTt.value) ? "red" : "lightgreen";
 cash.addEventListener('input', e => {
     cache.character.cash = e.target.value;

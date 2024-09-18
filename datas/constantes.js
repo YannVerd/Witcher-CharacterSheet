@@ -3,12 +3,12 @@ const subAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poing
 const subAttributesTotal = ["etou", "cour", "saut", "ps", "end", "enc", "rec"];
 const weaponAttributes = ["name", "pre", "dmg", "fia", "hands", "scope", "diss", "am", "weight"];
 const generalsInfos = {
-name: "name",
-race: "race",
-gender: "gender",
-age: "age",
-nativeLand: "nativeLand",
-job: "job",
+    name: "name",
+    race: "race",
+    gender: "gender",
+    age: "age",
+    nativeLand: "nativeLand",
+    job: "job",
 
 };
 const skills = {
@@ -252,6 +252,7 @@ const keys = {
         skill : "skill",
         excluSkill: "excluSkill"
     }
+  
 }
 
 const domain = {

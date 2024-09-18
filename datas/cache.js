@@ -1,6 +1,7 @@
 let cacheDTO = {
     "character":
         {
+            "maxIdInventory": "",
             "name": "",
             "race": "",
             "gender": "",
@@ -83,15 +84,15 @@ let cacheDTO = {
                 "miscellaneous":[],
                 "components":[]
             },
-            "weaponEquipped": {
+            "weaponsEquipped": {
                 "main": {},
                 "sec": {}
             },
             "armorsEquipped":{
                 "head": {},
                 "torso": {},
-                "leftHand": {},
-                "rightHand": {},
+                "leftArm": {},
+                "rightArm": {},
                 "leftLeg": {},
                 "rightLeg": {},
                 "shield": {}
@@ -105,27 +106,14 @@ let cacheDTO = {
         }
 }
 
-let weaponDTO = {
-    "name": "",
-    "type": "",
-    "prec": "",
-    "weigth": "",
-    "damages": "",
-    "fia": "",
-    "hands" :"",
-    "scope": "",
-    "effect":"",
-    "diss": "",
-    "am": "",
-    "equiped": "",
-};
 
 const keysWeaponDTO = [
+    "id",
     "name",
     "type",
     "prec",
-    "weigth",
-    "damages",
+    "weight",
+    "dmg",
     "fia",
     "hands",
     "scope",
@@ -135,55 +123,45 @@ const keysWeaponDTO = [
     "equiped",
 ];
 
-let armorDTO = {
-    "name": "",
-    "location": "",
-    "PA": "",
-    "weigth": "",
-    "damages": "",
-    "effect": "",
-    "equiped":"",
-};
+
 const keysArmorDTO = [
+    "id",
     "name",
     "location",
-    "PA",
-    "weigth",
-    "damages",
+    "pa",
+    "weight",
+    "dmg",
     "effect",
+    "ve",
     "equiped",
 ];
 
-let miscDTO = {
-    "name": "",
-    "quantity": "",
-    "wieghtUn": "",
-    "weigthTt": "",
-    "notes": "",
-    "cost": "",
-};
+
 
 const keysMiscDTO = [
+    "id",
     "name",
     "quantity",
-    "wieghtUn",
-    "weigthTt",
+    "weight",
+    "weightTt",
     "notes",
     "cost",
 ];
-let componentDTO = {
-    "name": "",
-    "quantity": "",
-    "wieghtUn": "",
-    "weigthTt": "",
-    "cost": "",
-    "substance": "",
-}
+
 const keysComponentDTO = [
+    "id",
     "name",
     "quantity",
-    "wieghtUn",
-    "weigthTt",
+    "weight",
+    "weightTt",
     "cost",
     "substance",
 ]
+
+const keysOfCache = {
+    attrib: "attributes",
+    subAttrib: "subAttributes",
+    skills: "skills",
+    weapons: "weaponsEquipped",
+    armors: "armorsEquipped"
+}

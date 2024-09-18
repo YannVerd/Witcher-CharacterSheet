@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="../styles/styles.css" rel="stylesheet">
-    <script src="../datas/constantes.js"></script>
-    <script src="../scripts/utils.js"></script>
     <script src="../datas/cache.js"></script>
+    <script src="../datas/constantes.js"></script>
     <script src="../scripts/saveSystem.js"></script>
+    <script src="../class/Equipment.js"></script>
+    <script src="../class/Weapon.js"></script>
+    <script src="../class/Armor.js"></script>
+    <script src="../class/Misc.js"></script>
+    <script src="../class/Component.js"></script>
+    <script src="../scripts/utils.js"></script>
     <script src="../scripts/main.js" defer></script>
     <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
 </head>
@@ -62,8 +67,7 @@
                     <th>Effet</th>
                     <th>Dissumlation</th>
                     <th>Amélioration</th>
-                    <th>Equipé Principale</th>
-                    <th>Equipé Secondaire</th>
+                    <th>Equipé</th>
                     <th>Actions</th>
                 </tr>
 
@@ -82,8 +86,8 @@
                     <th>Poids</th>
                     <th>Dégâts</th>
                     <th>Effet</th>
-                    <th>Equipé Principale</th>
-                    <th>Equipé Secondaire</th>
+                    <th>Valeur Encombr.</th>
+                    <th>Equipé</th>
                     <th>Actions</th>
                 </tr>
             </table>
@@ -127,8 +131,8 @@
 
 </body>
 <script type="text/javascript">
-    let weightInputList = ""; 
-    let weightTt = 0; // total of character weigth (centralised on this page)
+    // let weightInputList = ""; 
+    // let weightTt = 0; // total of character weigth (centralised on this page)
     let cache = loadCache();
     const weaponsRowBase = `
             <td><input type="text" size="10"></td> 
@@ -142,20 +146,40 @@
             <td><textarea rows="1" cols="auto"></textarea></td>
             <td><input type="text" size="10"></td>
             <td><input type="number" size="2"></td>
-            <td><input type="checkbox" id="mainEquipedWeapon"></td>
-            <td><input type="checkbox" id="secEquipedWeapon"></td>
+            <td>
+                <select>
+                    <option value="false">non</option>
+                    <option value="main">Principale</option>
+                    <option value="secondary">Secondaire</option>
+                </select>
+            </td>
+            
             
         `;
 
         const armorsRowBase = `
             <td><input type="text" size="10"></td>
-            <td><input type="text" size="10"></td>
+            <td>
+                <select>
+                    <option value="head">Tête</option>
+                    <option value="arm">Bras</option>
+                    <option value="torso">Torse</option>
+                    <option value="leg">Jambe</option>
+                    <option value="shield">Bouclier</option>
+                </select>
+            </td>
             <td><input type="number" size="2"></td>
             <td><input type="number" size="2" class="weightInput"></td>
             <td><input type="number" size="2"></td>
             <td><textarea rows="1" cols="auto"></textarea></td>
-            <td><input type="checkbox" id="mainEquipedArmor"></td>
-            <td><input type="checkbox" id="secEquipedArmor"></td>
+            <td><input type="number" size="2"></td>
+            <td>
+                <select>
+                    <option value="false">non</option>
+                    <option value="true">oui</option>          
+                </select>
+            </td>
+
         `;
         const miscellaneousRowBase = `
             <td><input type="text" size="10"></td>
@@ -175,112 +199,81 @@
             <td><input type="text" size="10"></td>
             
         `;
-    completeTableWithCache(cache.character.inventory)
-    function completeTableWithCache(datas) {
-        let table = "";
-        for(const key in datas){
-            if (datas[key].length > 0){
-                datas[key].forEach(element => {
-                    let row = document.createElement('tr');
-                    let baseKeys = null
-                    switch(key){
-                        case 'weapons':
-                            table = document.getElementById('weapons-table')
-                            row.innerHTML = weaponsRowBase;
-                            baseKeys = keysWeaponDTO;
-                            table.appendChild(row)
-                            break;
+    // browse cache
+    let inventory = cache.character.inventory
+    for(const key in inventory){
+        if(inventory[key].length > 0){
+            inventory[key].forEach(equipment => {
+                switch(key){
+                    case "weapons":
+                        addRow('weapon', equipment)
+                        break;
+                    case "armors":
+                        addRow('armor', equipment)               
+                        break;
                     
-                        case 'armors':
-                            table = document.getElementById('armors-table')
-                            row.innerHTML = armorsRowBase;
-                            baseKeys = keysArmorDTO;
-                            table.appendChild(row)
-                            break;
+                    case "miscellaneous":                   
+                        addRow('miscellaneous', equipment)                   
+                        break;
 
-                        case 'miscellaneous':
-                            table = document.getElementById('miscellaneous-table')
-                            row.innerHTML = miscellaneousRowBase;
-                            baseKeys = keysMiscDTO;
-                            table.appendChild(row)
-                            break;
-
-                        case 'components':
-                            table = document.getElementById('components-table')
-                            row.innerHTML = componentRowBase;
-                            baseKeys = keysComponentDTO;
-                            table.appendChild(row)
-                            break;
-                    }
-                    for(i=0; i < row.children.length; i++){
-                        row.children[i].firstChild.value = element[baseKeys[i]];
-                        row.dispatchEvent(new Event('input'));
-                    }
-                    let cell = document.createElement("td");
-                    let buttonDel = document.createElement("button");
-                    cell.appendChild(buttonDel);
-                    row.appendChild(cell);
-                    buttonDel.innerText = "supprimer";
-                    buttonDel.className = "fantasy-btn-sm";
-                    // manage delete row when button "supprimer" cliked
-                    buttonDel.addEventListener("click", e=> {
-                        weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
-                        cache.character.currentWeight = weightTt;
-                        // delete cache element based on "type" parameter
-                        switch(key){
-                            case "weapons":
-                                cache.character.inventory.weapons.splice(row.rowIndex -1, 1); // delete the target row (index retrieve with row.rowIndex property)
-                                break;
-                            case "armors":
-                                cache.character.inventory.armors.splice(row.rowIndex -1, 1);
-                                break;
-
-                            case "miscellaneous":
-                                cache.character.inventory.miscellaneous.splice(row.rowIndex -1, 1);
-                                break;
-
-                            case "components":
-                                cache.character.inventory.components.splice(row.rowIndex -1, 1);
-                                break;
-                        }
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
-                        table.deleteRow(row.rowIndex);
-                    })
-                });
-            }  
-            
+                    case "components":            
+                        addRow('component', equipment)
+                        break;
+                }
+            })
         }
-    }
-    function addRow(type) {
         
-
+    }
+    function addRow(type, equipment = null) {  
         let table ="";
         let row = document.createElement("tr");
+        let baseKeys = null
         // select base html depending on type parameter
         switch(type){ 
             case "weapon":
                 table = document.getElementById("weapons-table");
                 row.innerHTML = weaponsRowBase;
+                equipment === null ? equipment = new Weapon() : null;
+                baseKeys = keysWeaponDTO;
                 table.appendChild(row);
+                cache.character.inventory.weapons[row.rowIndex -1] = equipment;
                 break;
             case "armor":
                 table = document.getElementById("armors-table");
                 row.innerHTML = armorsRowBase;
+                equipment === null ? equipment = new Armor() : null;
+                baseKeys = keysArmorDTO;
                 table.appendChild(row);
+                cache.character.inventory.armors[row.rowIndex -1]= equipment;
                 break;
 
             case "miscellaneous":
                 table = document.getElementById("miscellaneous-table");
                 row.innerHTML = miscellaneousRowBase;
+                equipment === null ? equipment = new Misc(): null;
+                baseKeys = keysMiscDTO;
                 table.appendChild(row);
+                cache.character.inventory.miscellaneous[row.rowIndex -1]= equipment;
                 break;
 
             case "component":
                 table = document.getElementById("components-table");
                 row.innerHTML = componentRowBase;
+                equipment === null ? equipment = new Component(): null;
+                baseKeys = keysComponentDTO;
                 table.appendChild(row);
+                cache.character.inventory.components[row.rowIndex -1]= equipment;
                 break;
         }
+        // assign default value
+        for(i=0; i < row.children.length; i++){
+            row.children[i].firstElementChild.value = equipment[baseKeys[i+1]];
+            if(i === 1 && type === "armor"){
+                Equipment.fillEquipedSelectOptions(row.children[i].firstElementChild.value, equipment, row.children[7].firstElementChild);
+                
+            }
+        }
+        calculTotalWeight();
         // create button for each new row
         let cell = document.createElement("td");
         let buttonDel = document.createElement("button");
@@ -290,15 +283,17 @@
         buttonDel.className = "fantasy-btn-sm";
         // manage delete row when button "supprimer" cliked
         buttonDel.addEventListener("click", e=> {
-            weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
-            cache.character.currentWeight = weightTt;
+            // weightTt -= parseFloat(row.children[3].firstChild.value); // // subtracting the total weight of the item removed 
+            // cache.character.currentWeight = weightTt;
             // delete cache element based on "type" parameter
             switch(type){
                 case "weapon":
                     cache.character.inventory.weapons.splice(row.rowIndex -1, 1); // delete the target row (index retrieve with row.rowIndex property)
+                    Equipment.searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment, true)
                     break;
                 case "armor":
                     cache.character.inventory.armors.splice(row.rowIndex -1, 1);
+                    Equipment.searchAndUpdateEquipment(cache.character.armorsEquipped, equipment, true)
                     break;
 
                 case "miscellaneous":
@@ -309,102 +304,210 @@
                     cache.character.inventory.components.splice(row.rowIndex -1, 1);
                     break;
             }
+            calculTotalWeight();
             localStorage.setItem(keys.storage, JSON.stringify(cache))
             table.deleteRow(row.rowIndex);
         })
+        //row managment
         for(i = 0; i < row.children.length; i++){
-            let timeout = null
-            let index = i; // fix i for each event
-            row.children[i].firstChild.addEventListener('input', e => {
-
-                switch(type){
-                    case "weapon":
-                        if(index === 3){ // auto calcul of total weight
-                            clearTimeout(timeout);
-                        // Make a new timeout set to go off in 1000ms (1 second)
-                            timeout = setTimeout(function () {
-                                miscDTO[3] = e.target.value;
-                                weightTt += parseFloat(e.target.value);// add to total the target value
-                                cache.character.currentWeight = weightTt;
-                                localStorage.setItem(keys.storage, JSON.stringify(cache))
-                            }, 1000);
-                            
-                        }
-                        weaponDTO[keysWeaponDTO[index]] = e.target.value;
-                        cache.character.inventory.weapons[row.rowIndex -1] = weaponDTO ;
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
-                        break;
-                    case "armor":
-                    if(index === 3){ // auto calcul of total weight
-                        clearTimeout(timeout);
-                        // Make a new timeout set to go off in 1000ms (1 second)
-                            timeout = setTimeout(function () {
-                                miscDTO[3] = e.target.value;
-                                weightTt += parseFloat(e.target.value);// add to total the target value
-                                cache.character.currentWeight = weightTt;
-                                localStorage.setItem(keys.storage, JSON.stringify(cache))
-                            }, 1000);
-                            
-                        }
-                        armorDTO[keysArmorDTO[index]] = e.target.value;
-                        cache.character.inventory.armors[row.rowIndex - 1] = armorDTO;
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
-                        break;
-
-                    case "miscellaneous":
-                        if(index === 1 || index === 2){ // auto calcul of total weight
-                            clearTimeout(timeout);
-                        // Make a new timeout set to go off in 1000ms (1 second)
-                            timeout = setTimeout(function () {
-                                row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
-                                miscDTO[keysMiscDTO[3]] = row.children[3].firstChild.value
-                                weightTt += parseFloat(row.children[3].firstChild.value);// add to total the target value
-                                cache.character.currentWeight = weightTt;
-                                localStorage.setItem(keys.storage, JSON.stringify(cache))
-                            }, 1000);
-                            
-                        }
-                        miscDTO[keysMiscDTO[index]] = e.target.value;
-                        cache.character.inventory.miscellaneous[row.rowIndex - 1] = miscDTO;
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
-                        break;
-
-                    case "component":
-                    if(index === 1 || index === 2){
-                            clearTimeout(timeout);
-                        // Make a new timeout set to go off in 1000ms (1 second)
-                            timeout = setTimeout(function () {
-                                row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
-                                componentDTO[keysComponentDTO[3]] = row.children[3].firstChild.value
-                                weightTt += parseFloat(row.children[3].firstChild.value);// add to total the target value
-                                cache.character.currentWeight = weightTt;
-                                localStorage.setItem(keys.storage, JSON.stringify(cache))
-                            }, 1000);
-                            
-                        }
-                        componentDTO[keysComponentDTO[index]] = e.target.value;
-                        cache.character.inventory.components[row.rowIndex - 1] = componentDTO;
-                        localStorage.setItem(keys.storage, JSON.stringify(cache))
-                        break;
+            
+            let index = i; // fix i for each event 
+            // managment of equipped weapons
+            if(i === 11 && type ==="weapon" || index === 1 && type === "armor" || index === 7 && type === "armor"){ 
+                if(type === "weapon"){
+                    equipmentManagement(type, row.children[i].firstElementChild, equipment)
+                }else{
+                    
+                    equipmentManagement(type, row.children[i].firstElementChild, equipment, row.children[i === 1 ? 7 : 1].firstElementChild, index)
                 }
                 
-            })
+            }else {
+                assignListener(row, type, index, equipment)
+            }
+            
         }
-        weightInputList = document.getElementsByClassName("weightInput"); // list of all input weigthInput class (refresh of each deletion/creation)
-        // add all weight total
-        for(let w of weightInputList){ 
+       
+    }
+
+    /**
+     * function to assigne listener to an element and manage depending on his type
+     * @param {HTMLElement} the row of the equipment in the table
+     * @param {string} the type of the equipment ("weapon", "armor", "miscellaneaos", "component")
+     * @param {integer} the index of the child row (wich input is use)
+     */
+    function assignListener(row, type, index, equipment){
+        row.children[index].firstChild.addEventListener('input', e => {
             let timeout = null;
-            w.addEventListener('input', e => {
-                clearTimeout(timeout);
-                // Make a new timeout set to go off in 1000ms (1 second)
-                timeout = setTimeout(function () {
-                    weightTt += parseFloat(e.target.value);// add to total the target value
-                    cache.character.currentWeight = weightTt;
-                    localStorage.setItem(keys.storage, JSON.stringify(cache))
-                }, 1000);
+            switch(type){
+                case "weapon":
+                    if(index === 3){ // auto calcul of total weight
+                        clearTimeout(timeout);
+                    // Make a new timeout set to go off in 1000ms (1 second)
+                        timeout = setTimeout(function () {
+                            calculTotalWeight();
+                            localStorage.setItem(keys.storage, JSON.stringify(cache))
+                        }, 1000);
                         
+                    }
+                    equipment[keysWeaponDTO[index+1]] = e.target.value;
+                    cache.character.inventory.weapons[row.rowIndex -1] = equipment ;
+                    localStorage.setItem(keys.storage, JSON.stringify(cache))
+                    index === 0 ? equipment.isEquippable = true : null; // equippable if name is registered
+                    break;
+                case "armor":
+                    if(index === 3){ // auto calcul of total weight
+                    clearTimeout(timeout);
+                    // Make a new timeout set to go off in 1000ms (1 second)
+                        timeout = setTimeout(function () {
+                            calculTotalWeight()
+                            localStorage.setItem(keys.storage, JSON.stringify(cache))
+                        }, 1000);
+                        
+                    }
+                    
+                    equipment[keysArmorDTO[index + 1]] = e.target.value;
+                    cache.character.inventory.armors[row.rowIndex - 1] = equipment;
+                    localStorage.setItem(keys.storage, JSON.stringify(cache));
+                    index === 0 ? equipment.isEquippable = true : null; // if the name is enter, can be equippable             
+                    break;
+
+                case "miscellaneous":
+                    if(index === 1 || index === 2){ // auto calcul of total weight
+                        clearTimeout(timeout);
+                    // Make a new timeout set to go off in 1000ms (1 second)
+                        timeout = setTimeout(function () {
+                            row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
+                            equipment.weightTt = row.children[3].firstChild.value
+                            calculTotalWeight();
+                            localStorage.setItem(keys.storage, JSON.stringify(cache))
+                        }, 1000);
+                        
+                    }
+                    equipment[keysMiscDTO[index + 1]] = e.target.value;
+                    cache.character.inventory.miscellaneous[row.rowIndex - 1] = equipment;
+                    localStorage.setItem(keys.storage, JSON.stringify(cache));
+                    index === 0 ? equipment.isEquippable = true : null;
+                    break;
+
+                case "component":
+                if(index === 1 || index === 2){
+                        clearTimeout(timeout);
+                    // Make a new timeout set to go off in 1000ms (1 second)
+                        timeout = setTimeout(function () {
+                            row.children[3].firstChild.value = parseFloat(row.children[1].firstChild.value) * parseFloat(row.children[2].firstChild.value);
+                            equipment[keysComponentDTO[4]] = row.children[3].firstChild.value
+                            calculTotalWeight()
+                            localStorage.setItem(keys.storage, JSON.stringify(cache))
+                        }, 1000);
+                        
+                    }
+                    equipment[keysComponentDTO[index + 1]] = e.target.value;
+                    cache.character.inventory.components[row.rowIndex - 1] = equipment;
+                    localStorage.setItem(keys.storage, JSON.stringify(cache))
+                    index === 0 ? equipment.isEquippable = true : null;
+                    break;
+            }
+
+            })
+    }
+
+    function equipmentManagement(type, element, equipment, element2 = null, index = null){      
+            element.addEventListener('change', e => {
+                if(type === 'weapon'){
+                    switch(e.target.value){
+                        case 'main':
+                            if(equipment.isEquippable){
+                                if(Object.keys(cache.character.weaponsEquipped.main).length === 0){
+                                    equipment.equiped = "main"
+                                    cache.character.weaponsEquipped.main = equipment;
+                                    if(Equipment.isEqualEquipment(cache.character.weaponsEquipped.sec, equipment)) { // in the case that was the secondary weapon
+                                        cache.character.weaponsEquipped.sec = {};
+                                    }
+                                    localStorage.setItem(keys.storage, JSON.stringify(cache))
+                                }else{
+                                    alert("Une arme principale est déjà assignée")
+                                }
+                            }else {
+                                alert("veuillez saisir des informations pour pouvoir equiper l'arme")
+                                e.target.value = "false";
+                            }        
+                            
+                            break;
+                        
+                        case 'secondary':
+                            if(equipment.isEquippable){
+                                if(Object.keys(cache.character.weaponsEquipped.sec).length === 0){
+                                    equipment.equiped = "secondary";
+                                    cache.character.weaponsEquipped.sec = equipment;
+                                    if(Equipment.isEqualEquipment(cache.character.weaponsEquipped.main, equipment)) { // in the case that was the main weapon
+                                        cache.character.weaponsEquipped.main = {};
+                                    }
+                                    Equipment.searchAndUpdateEquipment(cache.character.inventory.weapons, equipment, false, true)
+                                    localStorage.setItem(keys.storage, JSON.stringify(cache))
+                                }else{
+                                    alert("Une arme secondaire est déjà assignée")
+                                }
+                            }else{
+                                alert("veuillez saisir des informations pour pouvoir equiper l'arme")
+                                e.target.value = "false";
+                            }
+                            
+                            break;
+
+                        case 'false':
+                            equipment.equiped = e.target.value
+                            Equipment.searchAndUpdateEquipment(cache.character.weaponsEquipped, equipment, true)
+                            break;
+                    }
+                }else{ // for equipped armor
+                    if(index === 1){ // equiped option depending on location value          
+                        Equipment.fillEquipedSelectOptions(e.target.value, equipment, element2);
+                    }else{ // cache equiped armor
+                        if(equipment.isEquippable){
+                            equipment.equiped = e.target.value; // update with new value
+                            if(equipment.equiped !== "false"){                               
+                                if(equipment.location === "arm" || equipment.location === "leg"){
+                                    const str = equipment.location[0].toUpperCase() + equipment.location.slice(1);
+                                    
+                                    cache.character.armorsEquipped[`${equipment.equiped}${str}`] = equipment;                  
+                                }else{
+                                    cache.character.armorsEquipped[equipment.location] = equipment;
+                                    equipment.equiped = e.target.value;
+                                }
+                                localStorage.setItem(keys.storage, JSON.stringify(cache));
+                            } else { // if we desequipped
+                                Equipment.searchAndUpdateEquipment(cache.character.armorsEquipped, equipment, true);
+                            }
+                        }else{
+                            alert("veuillez saisir des informations pour pouvoir equiper l'armure")
+                            e.target.value = "false";
+                        }
+                        
+
+                    }
+                    
+
+                }
+                
+                
+            })
+
+    }
+
+    function calculTotalWeight(){
+        let inventory = cache.character.inventory;
+        let totalWeight = 0;
+        for(const key in inventory){
+            inventory[key].forEach(eqpt=>{
+                if(key === "components" || key==="miscellaneous"){
+                    totalWeight += parseFloat(eqpt.weightTt);
+                }else{
+                    totalWeight += parseFloat(eqpt.weight);
+                }
             })
         }
+        cache.character.currentWeight = totalWeight;
+        localStorage.setItem(keys.storage, JSON.stringify(cache));
     }
 </script>
 </html>

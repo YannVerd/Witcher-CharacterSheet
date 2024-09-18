@@ -44,7 +44,7 @@
     let charactersTable = document.getElementById('charactersTable');
     const cellsOrder = ["name", "race", "gender", "job"];
 
-    fetch(`http://${domain.prod}:3000/characters`)
+    fetch(`http://${domain.dev}:3000/characters`)
         .then(res => res.json())
         .then((datas) => {
             datas.forEach(element => {

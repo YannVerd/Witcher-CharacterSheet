@@ -48,28 +48,33 @@ let subAttribBonus = {};
 let subAttribTotal = {};
 let ratio = 0; // (cor+vol)/2 match to the physique table
 //base
-assignElementsToObject(attributes, attribHTML, "Input", "attributes")
+assignElementsToObject(attributes, attribHTML, "Input", keysOfCache.attrib)
 //derived
-assignElementsToObject(subAttributes, subAttribHTML, "Value", "subAttributes")
+assignElementsToObject(subAttributes, subAttribHTML, "Value", keysOfCache.subAttrib)
 //bonus
-assignElementsToObject(attributes, attribBonus, "Bonus", "attributes");
-assignElementsToObject(subAttributes, subAttribBonus, "Bonus", "subAttributes")
+assignElementsToObject(attributes, attribBonus, "Bonus",keysOfCache.attrib);
+assignElementsToObject(subAttributes, subAttribBonus, "Bonus", keysOfCache.subAttrib)
 
 //total
-assignElementsToObject(attributes, attribTotal, "Tt", "none");
-assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt", "none");
+assignElementsToObject(attributes, attribTotal, "Tt", keysOfCache.attrib);
+assignElementsToObject(subAttributesTotal, subAttribTotal, "Tt",keysOfCache.subAttrib);
 
 /* Skills */
 displaySkills()
 let skillsHTML = {};
 let skillsBonus = {};
 let skillsTotal = {}
-assignElementsToObject(skills, skillsHTML, "Input", "skills");
-assignElementsToObject(skills, skillsBonus, "Bonus", "skills");
-assignElementsToObject(skills, skillsTotal, "Tt", "skills");
+assignElementsToObject(skills, skillsHTML, "Input", keysOfCache.skills);
+assignElementsToObject(skills, skillsBonus, "Bonus",keysOfCache.skills);
+assignElementsToObject(skills, skillsTotal, "Tt", keysOfCache.skills);
 
 let weaponAttribHTML = {};
-assignElementsToObject(weaponAttributes, weaponAttribHTML, "Weapon", "weapon");
+let secWeaponAttribHTML = {};
+let armorsAttribHTML = {};
+assignElementsToObject(keysWeaponDTO, weaponAttribHTML, "Weapon", keysOfCache.weapons);
+assignElementsToObject(keysWeaponDTO, secWeaponAttribHTML, "SecWeapon", keysOfCache.weapons);
+assignElementsToObject(keysArmorDTO, armorsAttribHTML, "Armor", keysOfCache.armors);
+
 
 /* Sorts and rituals */
 let sortsTable = document.getElementById('sorts-table');
@@ -217,11 +222,6 @@ jobSelect.addEventListener("change", e=> {
     cache.character.job = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));
 });
-
-/*------------------- exclusiv skills evolutions---------------- */
-
-
-
 /* ----------------Derived attributes -----------------*/
 
 manageAttributes(attribHTML, false, false, false);
@@ -236,9 +236,53 @@ fillMagicTables(ritualsTable);
 manageSkills(skillsHTML, false);
 manageSkills(skillsBonus, true);
 
-/*----------------encumbrement, cash, pp, vigor-------------------------*/
+/*--------------------equipment---------------------------*/
 
-weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) > parseFloat(weightTt.value) ? "red" : "lightgreen";
+//weapons
+for(const key in weaponAttribHTML) {
+    weaponAttribHTML[key].addEventListener('input', e=>{
+        let weaponMain = cache.character.weaponsEquipped.main 
+        weaponMain[key] = e.target.value; // change value of equiped in cache
+        cache.character.inventory.weapons.forEach( weapon =>{
+            if(weapon.id === weaponMain.id){
+                weapon[key] = weaponMain[key];
+            }
+        })
+        localStorage.setItem(keys.storage, JSON.stringify(cache))
+    })
+};
+for(const key in secWeaponAttribHTML) {
+    secWeaponAttribHTML[key].addEventListener('input', e=>{
+        let weaponSec= cache.character.weaponsEquipped.sec 
+        weaponSec[key] = e.target.value; // change value of equiped in cache
+        cache.character.inventory.weapons.forEach( weapon =>{ // search object in inventory for set property value
+            if(weapon.id === weaponSec.id){ 
+                weapon[key] = weaponSec[key];
+            }
+        })
+        localStorage.setItem(keys.storage, JSON.stringify(cache))
+    })
+};
+//armors
+for(const slot in armorsAttribHTML){
+    for(const key in armorsAttribHTML[slot]){
+        console.log(armorsAttribHTML)
+        armorsAttribHTML[slot][key].addEventListener('input', e => {
+            
+            let armorEquip = cache.character.armorsEquipped[slot]
+            armorEquip[key] = e.target.value;
+            cache.character.inventory.armors.forEach( armor =>{ // search object in inventory for set property value
+                if(armor.id === armorEquip.id){ 
+                    armor[key] = armorEquip[key];
+                }
+            })
+            localStorage.setItem(keys.storage, JSON.stringify(cache))
+        })
+    }
+}
+
+/*----------------encumbrement, cash, pp, vigor-------------------------*/
+weightTt.style.backgroundColor = parseFloat(subAttribTotal["enc"].value) < parseFloat(weightTt.value) ? "red" : "lightgreen";
 cash.addEventListener('input', e => {
     cache.character.cash = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));

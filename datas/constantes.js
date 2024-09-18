@@ -1,14 +1,23 @@
 const attributes = ["cor", "int", "ref", "dex", "vit", "emp", "tech", "vol", "cha"];
 const subAttributes = ["etou", "cour", "saut", "ps", "end", "enc", "rec", "poings", "pieds"];
 const subAttributesTotal = ["etou", "cour", "saut", "ps", "end", "enc", "rec"];
-const weaponAttributes = ["name", "pre", "dgts", "fia", "mains", "port", "diss", "am", "poids"];
+const weaponAttributes = ["name", "pre", "dmg", "fia", "hands", "scope", "diss", "am", "weight"];
+const armorsSlots = {
+    head: "head",
+    torso: "torse",
+    leftArm: "leftArm",
+    rightArm: "rightArm",
+    leftLeg: "leftLeg",
+    rightLeg: "rightLeg",
+    shield: "shield"
+}
 const generalsInfos = {
-name: "name",
-race: "race",
-gender: "gender",
-age: "age",
-nativeLand: "nativeLand",
-job: "job",
+    name: "name",
+    race: "race",
+    gender: "gender",
+    age: "age",
+    nativeLand: "nativeLand",
+    job: "job",
 
 };
 const skills = {
@@ -252,6 +261,7 @@ const keys = {
         skill : "skill",
         excluSkill: "excluSkill"
     }
+  
 }
 
 const domain = {

@@ -16,6 +16,9 @@ for(i = 0; i < listMainInfos.length; i++){
 
 let jobSelect = document.getElementById("jobSelect");
 jobSelect.value = cache.character.job || "default";
+let knowSkills = document.getElementById('knowSkills');
+let knowMagics = document.getElementById('knowMagics');
+let equipmentChoice = document.getElementById('equipmentChoice');
 let excluSkillsHTML = {}
 let excluSkillsBonus = {}
 let excluSkillsTt = {}
@@ -133,6 +136,9 @@ jobSelect.addEventListener("change", e=> {
                                         <th>Bonus</th>
                                         <th>Total</th>
                                     </tr>`;
+    knowSkills.innerText = "";
+    knowMagics.innerText = "";
+    equipmentChoice.innerText = "";
     rules.jobs.forEach(j => {
         if(j.Profession == e.target.value){
             descripExcluSkill.innerHTML = "";
@@ -215,9 +221,34 @@ jobSelect.addEventListener("change", e=> {
                     eventInputExcluSkill(excluSkillsHTML, indexKey, false)
                     eventInputExcluSkill(excluSkillsBonus, indexKey, true)
                 }
+                
+    
+    
                 index++;
             }
+            if(j["knowSkills"].length > 0){
+                j["knowSkills"].forEach(detail => {
+                    knowSkills.innerText += `${detail}\n`
+                })
+            }else{
+                knowSkills.innerText = "Aucunes informations";
+            }
+            if(j["knowMagics"].length > 0){
+                j["knowMagics"].forEach(detail => {
+                    knowMagics.innerText += `${detail}\n`
+                })
+            }else{
+                knowMagics.innerText = "Aucunes informations";
+            }
+            if(j["equipmentChoice"].length > 0){
+                j["equipmentChoice"].forEach(detail => {
+                    equipmentChoice.innerText += `${detail}\n`
+                })
+            }else{
+                equipmentChoice.innerText = "Aucunes informations";
+            }
         }
+        
     } )
     cache.character.job = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));
@@ -242,41 +273,48 @@ manageSkills(skillsBonus, true);
 for(const key in weaponAttribHTML) {
     weaponAttribHTML[key].addEventListener('input', e=>{
         let weaponMain = cache.character.weaponsEquipped.main 
-        weaponMain[key] = e.target.value; // change value of equiped in cache
-        cache.character.inventory.weapons.forEach( weapon =>{
+        if(Object.keys(weaponMain).length > 0) { // test an object is equiped
+            weaponMain[key] = e.target.value; // change value of equiped in cache
+            cache.character.inventory.weapons.forEach( weapon =>{
             if(weapon.id === weaponMain.id){
                 weapon[key] = weaponMain[key];
             }
         })
         localStorage.setItem(keys.storage, JSON.stringify(cache))
+        }
+        
     })
 };
 for(const key in secWeaponAttribHTML) {
     secWeaponAttribHTML[key].addEventListener('input', e=>{
-        let weaponSec= cache.character.weaponsEquipped.sec 
-        weaponSec[key] = e.target.value; // change value of equiped in cache
-        cache.character.inventory.weapons.forEach( weapon =>{ // search object in inventory for set property value
-            if(weapon.id === weaponSec.id){ 
-                weapon[key] = weaponSec[key];
-            }
-        })
-        localStorage.setItem(keys.storage, JSON.stringify(cache))
+        let weaponSec= cache.character.weaponsEquipped.sec
+        if(Object.keys(weaponSec).length > 0) {
+            weaponSec[key] = e.target.value; // change value of equiped in cache
+            cache.character.inventory.weapons.forEach( weapon =>{ // search object in inventory for set property value
+                if(weapon.id === weaponSec.id){ 
+                    weapon[key] = weaponSec[key];
+                }
+            })
+            localStorage.setItem(keys.storage, JSON.stringify(cache))
+        }
+        
     })
 };
 //armors
 for(const slot in armorsAttribHTML){
     for(const key in armorsAttribHTML[slot]){
-        console.log(armorsAttribHTML)
         armorsAttribHTML[slot][key].addEventListener('input', e => {
-            
             let armorEquip = cache.character.armorsEquipped[slot]
-            armorEquip[key] = e.target.value;
-            cache.character.inventory.armors.forEach( armor =>{ // search object in inventory for set property value
-                if(armor.id === armorEquip.id){ 
-                    armor[key] = armorEquip[key];
-                }
-            })
-            localStorage.setItem(keys.storage, JSON.stringify(cache))
+            if(Object.keys(armorEquip).length > 0) {
+                armorEquip[key] = e.target.value;
+                cache.character.inventory.armors.forEach( armor =>{ // search object in inventory for set property value
+                    if(armor.id === armorEquip.id){ 
+                        armor[key] = armorEquip[key];
+                    }
+                })
+                localStorage.setItem(keys.storage, JSON.stringify(cache))
+            }
+            
         })
     }
 }

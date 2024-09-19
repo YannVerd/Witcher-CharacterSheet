@@ -38,9 +38,9 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
                             obj[str] = document.getElementById(`${str}${suffix}`);
                             if(cache != undefined){
                                 if(suffix === "Weapon"){
-                                    cache.character[keyOfCache].main != undefined? obj[str].value = cache.character[keyOfCache].main[str] : null;
+                                    Object.keys(cache.character[keyOfCache].main).length > 0? obj[str].value = cache.character[keyOfCache].main[str] : obj[str].disabled=true;
                                 }else{
-                                    cache.character[keyOfCache].sec != undefined? obj[str].value = cache.character[keyOfCache].sec[str] : null;
+                                    Object.keys(cache.character[keyOfCache].sec).length > 0? obj[str].value = cache.character[keyOfCache].sec[str] : obj[str].disabled=true;
                                 }
                             
                             }  
@@ -58,11 +58,10 @@ const assignElementsToObject = (datas, obj, suffix, keyOfCache) => {
                                 obj[slot][str] = document.getElementById(`${str}${key}${suffix}`);                     
                                 if(cache !== undefined){
                                     console.log(obj[slot])
-                                    cache.character[keyOfCache][slot] !== undefined? obj[slot][str].value = cache.character[keyOfCache][slot][str] : null;
+                                    Object.keys(cache.character[keyOfCache][slot]).length > 0 ? obj[slot][str].value = cache.character[keyOfCache][slot][str] : obj[slot][str].disabled=true;
                                 }  
                             }     
-                        }) 
-                        console.log(obj)                    
+                        })                
                     }
                     break;   
                 case keysOfCache.skills:

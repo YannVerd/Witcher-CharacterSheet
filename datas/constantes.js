@@ -27,7 +27,7 @@ const skills = {
             abrv: "connRue"
         },
         {
-            nom: "connaissance des monstres",
+            nom: "connaissance des monstres (2)",
             abrv: "connMonstre"
         },
         {
@@ -47,15 +47,15 @@ const skills = {
             abrv: "etiquette"
         },
         {
-            nom: "langue ancienne",
+            nom: "langue ancienne (2)",
             abrv: "langueAncienne"
         },
         {
-            nom: "langue commune",
+            nom: "langue commune (2)",
             abrv: "langueCommune"
         },
         {
-            nom: "langue naine",
+            nom: "langue naine (2)",
             abrv: "langueNaine"
         },
         {
@@ -67,7 +67,7 @@ const skills = {
             abrv: "survie"
         },
         {
-            nom: "tactique",
+            nom: "tactique (2)",
             abrv: "tactique"
         },
         {
@@ -190,11 +190,11 @@ const skills = {
 
     technique: [
         {
-            nom: "alchimie",
+            nom: "alchimie (2)",
             abrv: "alchimie"
         },
         {
-            nom: "artisanat",
+            nom: "artisanat (2)",
             abrv: "artisanat"
         },
         {
@@ -210,7 +210,7 @@ const skills = {
             abrv: "deguisement"
         },
         {
-            nom: "fabrication de pièges",
+            nom: "fabrication de pièges (2)",
             abrv: "fabricationPieges"
         },
         {
@@ -221,20 +221,20 @@ const skills = {
 
     volonte: [
         {
-            nom: "concentration",
-            abrv: "concentration"
-        },
-        {
             nom: "courage",
             abrv: "courage"
         },
         {
-            nom: "intimidation",
-            abrv: "intimidation"
+            nom: "envoûtement (2)",
+            abrv: "envoutement"
         },
         {
-            nom: "résistance à la douleur",
-            abrv: "resDouleur"
+            nom: "incantation (2)",
+            abrv: "incantation"
+        },
+        {
+            nom: "intimidation",
+            abrv: "intimidation"
         },
         {
             nom: "résistance à la contrainte",

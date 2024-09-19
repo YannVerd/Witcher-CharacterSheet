@@ -78,7 +78,7 @@ let cacheDTO = {
             },
             "sorts": [],
             "rituels": [],
-            "enchantments": [],
+            "envoutements": [],
             "inventory": {
                 "weapons":[],
                 "armors":[],

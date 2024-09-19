@@ -20,8 +20,10 @@ Pour tous renseignement sur les compétences, equipements et objets de l'inventa
 4. Vous avez 44 points à répartir entre vos compétence exclusives (métier) et vos compétences connues (listées en dessous de votre 
     profession):
     - Sachant que chacunes doivent avoir au minimum 1 points (sauf les evolutions de la compétence exclusive)
+    - les compétences avec un (2) coûtent 2 points
 
 5. Vous pouvez répartir REF * INT points dans les compétences acquises: ce sont les compétences que vous choisissez en plus. Obligatoirement différentes des commpétences liées à votre profession (compétences connues listées dans votre fiche personnage)
+    - les compétences avec un (2) coûtent 2 points
 
 6. Vous apprenez autant de sorts / rituels / invocations que votre profession le permet (c'est listé avec atout magique)
 

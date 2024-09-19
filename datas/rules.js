@@ -124,8 +124,31 @@ const rules = {
                
                 
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Connaissance de la Rue (int)",
+                "Vigilance (int)",
+                "Lame courtes (ref)",
+                "Adresse (dex)",
+                "Athlétisme (dex)",
+                "Furtivité (dex)",
+                "Duperie (emp)",
+                "Contrefaçon (tech)",
+                "Crochetage (tech)",
+                "Intimidation (vol)",
+            ],
+            "knowMagics": [],
+            "equipmentChoice": [
+                "Chloroforme",
+                "Coup-de-poing",
+                "Couteaux de lancé *5",
+                "Dés pipés",
+                "fourreau de manche",
+                "Lanterne sourde",
+                "Outils de voleur",
+                "Poche secrète",
+                "Sacoche",
+                "Stylet"
+            ]
         },
         {
             "Profession": "Docteur",

@@ -23,8 +23,31 @@ const rules = {
                 ]
               
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Connaissance de la rue (int)",
+                "Education (int)",
+                "Négoce (int)",
+                "Athlétisme (dex)",
+                "Physique (cor)",
+                "Résilience (cor)",
+                "Beaux-Arts (emp)",
+                "Persuasion (emp)",
+                "Alchimie (tech)",
+                "Artisanat (tech)",
+            ],
+            "knowMagics": [],
+            "equipmentChoice": [
+                "50 couronnes",
+                "Ensemble d'alchimie",
+                "Epee longue de fer",
+                "Forge  Portable",
+                "Masse d'armes",
+                "Outils d'artisan",
+                "Outils de marchand",
+                "Petit coffre",
+                "Sablier",
+                "Serrure"
+            ]
         },
         {
             "Profession": "Barde",
@@ -50,8 +73,31 @@ const rules = {
                 
                 
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Connaissance de la rue (int)",
+                "Etiquette (int)",
+                "Langue: 1 au choix (int)",
+                "Beaux arts (emp)",
+                "Charisme (emp)",
+                "Duperie (emp)",
+                "Persuasion (emp)",
+                "Psychologie (emp)",
+                "Représentation (emp)",
+                "Séduction (emp)"
+            ],
+            "knowMagics": [],
+            "equipmentChoice": [
+                "Bourse",
+                "Dague",
+                "Flasque d'alcool",
+                "Fourreau de jarretière",
+                "Jeu de gwynt",
+                "Journal cadenassé",
+                "Miroir de poche",
+                "Parfum/eau de toilette",
+                "Piste de dé",
+                "un instrument"
+            ]
         },
         {
             "Profession": "Criminel",

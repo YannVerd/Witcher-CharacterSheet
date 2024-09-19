@@ -18,6 +18,7 @@ let jobSelect = document.getElementById("jobSelect");
 jobSelect.value = cache.character.job || "default";
 let knowSkills = document.getElementById('knowSkills');
 let knowMagics = document.getElementById('knowMagics');
+let equipmentChoice = document.getElementById('equipmentChoice');
 let excluSkillsHTML = {}
 let excluSkillsBonus = {}
 let excluSkillsTt = {}
@@ -135,6 +136,9 @@ jobSelect.addEventListener("change", e=> {
                                         <th>Bonus</th>
                                         <th>Total</th>
                                     </tr>`;
+    knowSkills.innerText = "";
+    knowMagics.innerText = "";
+    equipmentChoice.innerText = "";
     rules.jobs.forEach(j => {
         if(j.Profession == e.target.value){
             descripExcluSkill.innerHTML = "";
@@ -235,6 +239,13 @@ jobSelect.addEventListener("change", e=> {
                 })
             }else{
                 knowMagics.innerText = "Aucunes informations";
+            }
+            if(j["equipmentChoice"].length > 0){
+                j["equipmentChoice"].forEach(detail => {
+                    equipmentChoice.innerText += `${detail}\n`
+                })
+            }else{
+                equipmentChoice.innerText = "Aucunes informations";
             }
         }
         

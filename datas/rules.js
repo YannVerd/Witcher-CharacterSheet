@@ -37,16 +37,16 @@ const rules = {
             ],
             "knowMagics": [],
             "equipmentChoice": [
-                "50 couronnes",
-                "Ensemble d'alchimie",
-                "Epee longue de fer",
-                "Forge  Portable",
-                "Masse d'armes",
-                "Outils d'artisan",
-                "Outils de marchand",
-                "Petit coffre",
-                "Sablier",
-                "Serrure"
+                "- 50 couronnes",
+                "- Ensemble d'alchimie",
+                "- Epee longue de fer",
+                "- Forge  Portable",
+                "- Masse d'armes",
+                "- Outils d'artisan",
+                "- Outils de marchand",
+                "- Petit coffre",
+                "- Sablier",
+                "- Serrure"
             ]
         },
         {
@@ -87,16 +87,16 @@ const rules = {
             ],
             "knowMagics": [],
             "equipmentChoice": [
-                "Bourse",
-                "Dague",
-                "Flasque d'alcool",
-                "Fourreau de jarretière",
-                "Jeu de gwynt",
-                "Journal cadenassé",
-                "Miroir de poche",
-                "Parfum/eau de toilette",
-                "Piste de dé",
-                "un instrument"
+                "- Bourse",
+                "- Dague",
+                "- Flasque d'alcool",
+                "- Fourreau de jarretière",
+                "- Jeu de gwynt",
+                "- Journal cadenassé",
+                "- Miroir de poche",
+                "- Parfum/eau de toilette",
+                "- Piste de dé",
+                "- un instrument"
             ]
         },
         {
@@ -138,16 +138,16 @@ const rules = {
             ],
             "knowMagics": [],
             "equipmentChoice": [
-                "Chloroforme",
-                "Coup-de-poing",
-                "Couteaux de lancé *5",
-                "Dés pipés",
-                "fourreau de manche",
-                "Lanterne sourde",
-                "Outils de voleur",
-                "Poche secrète",
-                "Sacoche",
-                "Stylet"
+                "- Chloroforme",
+                "- Coup-de-poing",
+                "- Couteaux de lancé * 5",
+                "- Dés pipés",
+                "- fourreau de manche",
+                "- Lanterne sourde",
+                "- Outils de voleur",
+                "- Poche secrète",
+                "- Sacoche",
+                "- Stylet"
             ]
         },
         {
@@ -175,8 +175,31 @@ const rules = {
                 
                 
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Déduction (int)",
+                "Etiquette (int)",
+                "Négoce (int)",
+                "Survie (int)",
+                "Lames courtes (ref)",
+                "Charisme (emp)",
+                "Psychologie (emp)",
+                "Alchimie (tech)",
+                "Courage (vol)",
+                "Résistance à la contrainte",
+            ],
+            "knowMagics": [],
+            "equipmentChoice": [
+                "- Bougies * 10",
+                "- Couverture",
+                "- Dague",
+                "- Fluides stérilisants * 10",
+                "- Grande tente",
+                "- Herbes engourdissantes * 10",
+                "- Instruments chirurgicaux",
+                "- Nécessaire d'écriture",
+                "- Poudre de coagulation * 10",
+                "- Sablier"
+            ]
         },
         {
             "Profession": "Homme d'armes",
@@ -200,8 +223,27 @@ const rules = {
                     "Même pas mal (cor)"
                 ]
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Survie (int)",
+                "Esquive/Evasion (ref)",
+                "5 compétences de Combat",
+                "Physique (cor)",
+                "Courage (vol)",
+                "Intimidation (vol)"
+            ],
+            "knowMagics": [],
+            "equipmentChoice": [
+                "- Arbalète et 20 careeaux",
+                "- Bocle d'acier",
+                "- Brigandine",
+                "- Camail",
+                "- Couteaux de lancer * 5",
+                "- Hache de bataille",
+                "- Kord",
+                "- Lance",
+                "- Pantalon renforcé",
+                "- Sacoche",
+            ]
         },
         {
             "Profession": "Mage",
@@ -225,8 +267,34 @@ const rules = {
                     "Magie étendue (vol)"
                 ]
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Education (int)",
+                "Etiquette (int)",
+                "Baton/lance (ref)",
+                "Psychologie (emp)",
+                "Séduciton (emp)",
+                "Envoutement (vol)",
+                "Incantation (vol)",
+                "Résistance à la magie (vol)",
+                "Rituels"
+            ],
+            "knowMagics": [
+                "5 sorts de novice",
+                "1 rituel de novice",
+                "1 envoutement peu dangereux",
+            ],
+            "equipmentChoice": [
+                "- 100 couronnes de composants",
+                "- Bâton",
+                "- Bourse",
+                "- Dague",
+                "- Fourreau de jarretière",
+                "- Journal",
+                "- Miroir de poche",
+                "- Nécessaire d'écriture",
+                "- Sablier",
+                "- Trousse de maquillage"
+            ]
         },
         {
             "Profession": "Marchand",
@@ -251,8 +319,30 @@ const rules = {
                 ]
                 
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Connaissance de la rue (int)",
+                "Education (int)",
+                "Langues (2 au choix) (int)",
+                "Négoce (int)",
+                "Lames courtes (ref)",
+                "Charisme (emp)",
+                "Jeu (emp)",
+                "Persuasion (emp)",
+                "Psychologie (emp)",
+                "Résistance à la contrainte (vol)"
+
+            ],
+            "knowMagics": [],
+            "equipmentChoice": [
+                "- Arbalète et carreaux * 20",
+                "- Dague",
+                "- Grande tente",
+                "- Journal",
+                "- Nécessaire d'écriture",
+                "- Outils de marchand",
+                "/!\\Obligatoire :/!\\",
+                "- Charette (contient pour 1000 couronnes d'objets partout ou communs. Tirée par une mule"
+            ]
         },
         {
             "Profession": "Prêtre",
@@ -276,8 +366,36 @@ const rules = {
                     "Emissaire des dieux (emp)",
                 ]
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Enseignement (int)",
+                "Survie (int)",
+                "Charisme (emp)",
+                "Commandement (emp)",
+                "Psychologie (emp)",
+                "Premiers soins (tech)",
+                "Courage (vol)",
+                "Envoutement (vol)",
+                "Incantation (vol)",
+                "Rituels (vol)"
+            ],
+            "knowMagics": [
+                "2 invocations de novice (sorts)",
+                "2 rituels de novice",
+                "2 envoutements peu dangereux"
+            ],
+            "equipmentChoice": [
+                "- 100 couronnes de composants",
+                "- Bâton",
+                "- Dague",
+                "- Ensemble d'alchimie",
+                "- Fluides stérilisants * 5",
+                "- Herbes engourdissantes * 5",
+                "- Instruments chirurgicaux",
+                "- Poudre de coagulation * 5",
+                "- Sablier",
+                "- Symbole Sacré"
+
+            ]
         },
         {
             "Profession": "Sorceleur",
@@ -301,8 +419,37 @@ const rules = {
                     "Tourbillon (ref)"
                 ]
             },
-            "knowSkills": [],
-            "knowMagics": []
+            "knowSkills": [
+                "Déduction (int)",
+                "Survie (int)",
+                "Vigilance (int)",
+                "Equitation (ref)",
+                "Escrime (ref)",
+                "Esquive/Evasion",
+                "Athlétisme (dex)",
+                "Furtivité (dex)",
+                "Alchimie (tech)",
+                "Incantation (vol)"
+
+            ],
+            "knowMagics": [
+                "Tous les Signes du bases"
+            ],
+            "equipmentChoice": [
+                "- Arbalète de poing",
+                "- Couteaux de lancé * 5",
+                "- Ensemble d'alchimie",
+                "- Gambison a tissage renforcé",
+                "- Un Cheval",
+                "/!\\ Obligatoire : /!\\",
+                "- Epee de sorceleur en acier",
+                "- Epee de sorceleur en argent",
+                "- Formule de décoction",
+                "- Formules d'huiles * 2",
+                "- Formules de potions * 2",
+                "- Médaillon du Sorceleur"
+
+            ]
         }
     ],
     "physicTable": [

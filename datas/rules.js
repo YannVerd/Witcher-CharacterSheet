@@ -22,7 +22,9 @@ const rules = {
                     "Déceler (tech)"
                 ]
               
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Barde",
@@ -47,7 +49,9 @@ const rules = {
                 ]
                 
                 
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Criminel",
@@ -73,7 +77,9 @@ const rules = {
                 
                
                 
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Docteur",
@@ -99,7 +105,9 @@ const rules = {
                 
                 
                 
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Homme d'armes",
@@ -122,7 +130,9 @@ const rules = {
                     "Zweihand (cor)",
                     "Même pas mal (cor)"
                 ]
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Mage",
@@ -145,7 +155,9 @@ const rules = {
                     "Immuable (vol)",
                     "Magie étendue (vol)"
                 ]
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Marchand",
@@ -169,7 +181,9 @@ const rules = {
                     "Débiteur martial (emp)"
                 ]
                 
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Prêtre",
@@ -192,7 +206,9 @@ const rules = {
                     "Ferveur (emp)",
                     "Emissaire des dieux (emp)",
                 ]
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         },
         {
             "Profession": "Sorceleur",
@@ -215,7 +231,9 @@ const rules = {
                     "Frappe rapide (ref)",
                     "Tourbillon (ref)"
                 ]
-            }
+            },
+            "knowSkills": [],
+            "knowMagic": []
         }
     ],
     "physicTable": [

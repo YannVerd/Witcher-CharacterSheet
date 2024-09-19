@@ -242,41 +242,48 @@ manageSkills(skillsBonus, true);
 for(const key in weaponAttribHTML) {
     weaponAttribHTML[key].addEventListener('input', e=>{
         let weaponMain = cache.character.weaponsEquipped.main 
-        weaponMain[key] = e.target.value; // change value of equiped in cache
-        cache.character.inventory.weapons.forEach( weapon =>{
+        if(Object.keys(weaponMain).length > 0) { // test an object is equiped
+            weaponMain[key] = e.target.value; // change value of equiped in cache
+            cache.character.inventory.weapons.forEach( weapon =>{
             if(weapon.id === weaponMain.id){
                 weapon[key] = weaponMain[key];
             }
         })
         localStorage.setItem(keys.storage, JSON.stringify(cache))
+        }
+        
     })
 };
 for(const key in secWeaponAttribHTML) {
     secWeaponAttribHTML[key].addEventListener('input', e=>{
-        let weaponSec= cache.character.weaponsEquipped.sec 
-        weaponSec[key] = e.target.value; // change value of equiped in cache
-        cache.character.inventory.weapons.forEach( weapon =>{ // search object in inventory for set property value
-            if(weapon.id === weaponSec.id){ 
-                weapon[key] = weaponSec[key];
-            }
-        })
-        localStorage.setItem(keys.storage, JSON.stringify(cache))
+        let weaponSec= cache.character.weaponsEquipped.sec
+        if(Object.keys(weaponSec).length > 0) {
+            weaponSec[key] = e.target.value; // change value of equiped in cache
+            cache.character.inventory.weapons.forEach( weapon =>{ // search object in inventory for set property value
+                if(weapon.id === weaponSec.id){ 
+                    weapon[key] = weaponSec[key];
+                }
+            })
+            localStorage.setItem(keys.storage, JSON.stringify(cache))
+        }
+        
     })
 };
 //armors
 for(const slot in armorsAttribHTML){
     for(const key in armorsAttribHTML[slot]){
-        console.log(armorsAttribHTML)
         armorsAttribHTML[slot][key].addEventListener('input', e => {
-            
             let armorEquip = cache.character.armorsEquipped[slot]
-            armorEquip[key] = e.target.value;
-            cache.character.inventory.armors.forEach( armor =>{ // search object in inventory for set property value
-                if(armor.id === armorEquip.id){ 
-                    armor[key] = armorEquip[key];
-                }
-            })
-            localStorage.setItem(keys.storage, JSON.stringify(cache))
+            if(Object.keys(armorEquip).length > 0) {
+                armorEquip[key] = e.target.value;
+                cache.character.inventory.armors.forEach( armor =>{ // search object in inventory for set property value
+                    if(armor.id === armorEquip.id){ 
+                        armor[key] = armorEquip[key];
+                    }
+                })
+                localStorage.setItem(keys.storage, JSON.stringify(cache))
+            }
+            
         })
     }
 }

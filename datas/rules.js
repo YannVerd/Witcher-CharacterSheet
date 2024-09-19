@@ -24,7 +24,7 @@ const rules = {
               
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Barde",
@@ -51,7 +51,7 @@ const rules = {
                 
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Criminel",
@@ -79,7 +79,7 @@ const rules = {
                 
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Docteur",
@@ -107,7 +107,7 @@ const rules = {
                 
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Homme d'armes",
@@ -132,7 +132,7 @@ const rules = {
                 ]
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Mage",
@@ -157,7 +157,7 @@ const rules = {
                 ]
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Marchand",
@@ -183,7 +183,7 @@ const rules = {
                 
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Prêtre",
@@ -208,7 +208,7 @@ const rules = {
                 ]
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         },
         {
             "Profession": "Sorceleur",
@@ -233,7 +233,7 @@ const rules = {
                 ]
             },
             "knowSkills": [],
-            "knowMagic": []
+            "knowMagics": []
         }
     ],
     "physicTable": [

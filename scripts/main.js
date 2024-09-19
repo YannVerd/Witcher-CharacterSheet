@@ -16,6 +16,8 @@ for(i = 0; i < listMainInfos.length; i++){
 
 let jobSelect = document.getElementById("jobSelect");
 jobSelect.value = cache.character.job || "default";
+let knowSkills = document.getElementById('knowSkills');
+let knowMagics = document.getElementById('knowMagics');
 let excluSkillsHTML = {}
 let excluSkillsBonus = {}
 let excluSkillsTt = {}
@@ -215,9 +217,27 @@ jobSelect.addEventListener("change", e=> {
                     eventInputExcluSkill(excluSkillsHTML, indexKey, false)
                     eventInputExcluSkill(excluSkillsBonus, indexKey, true)
                 }
+                
+    
+    
                 index++;
             }
+            if(j["knowSkills"].length > 0){
+                j["knowSkills"].forEach(detail => {
+                    knowSkills.innerText += `${detail}\n`
+                })
+            }else{
+                knowSkills.innerText = "Aucunes informations";
+            }
+            if(j["knowMagics"].length > 0){
+                j["knowMagics"].forEach(detail => {
+                    knowMagics.innerText += `${detail}\n`
+                })
+            }else{
+                knowMagics.innerText = "Aucunes informations";
+            }
         }
+        
     } )
     cache.character.job = e.target.value;
     localStorage.setItem(keys.storage, JSON.stringify(cache));

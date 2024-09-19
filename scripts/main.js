@@ -82,6 +82,7 @@ assignElementsToObject(keysArmorDTO, armorsAttribHTML, "Armor", keysOfCache.armo
 /* Sorts and rituals */
 let sortsTable = document.getElementById('sorts-table');
 let ritualsTable = document.getElementById('rituals-table');
+let enchantmentsTable = document.getElementById('enchantments-table');
 
 /* ------------------------- Generals Informations  ----------------------------*/
 // add bonus by race
@@ -262,6 +263,8 @@ manageAttributes(subAttribBonus, true, false,true);
 /*-------------------Magic -----------------------------*/
 fillMagicTables(sortsTable);
 fillMagicTables(ritualsTable);
+fillMagicTables(enchantmentsTable);
+
 
 /*-------------------skills ----------------------------*/
 manageSkills(skillsHTML, false);

@@ -220,23 +220,58 @@ const displaySkills = () => {
 
 function fillMagicTables(table) {
     let cache = loadCache();
-    const baseTableHTML = `<tr>
+    let baseTableHTML = ""
+    let path = "";
+    if(table.id === "sorts-table"){
+        path = cache.character.sorts;
+        baseTableHTML = `<tr>
                 <th>Nom</th>
-                <th>Temps_preparation</th>
+                <th>Element</th>
+                <th>Type</th>	
+                <th>Cout</th>	
+                <th>Durée</th>	
+                <th>Effet</th>	
+                <th>Porter</th>	
+                <th>Defense</th>
+                <th>Dégats</th>	
+                <th>Classe</th>	
+                <th>Source</th>
+                <th>Actions</th>
+            </tr>`
+    }else if(table.id === "rituals-table") {
+        path = cache.character.rituels;
+        baseTableHTML = `<tr>
+                <th>Nom</th>
+                <th>Temps de preparation</th>
                 <th>Type</th>
                 <th>Cout</th>
                 <th>Duree</th>
                 <th>Effet</th>
-                <th>SD_Difficulte</th>
+                <th>SD Difficulte</th>
                 <th>Defense</th>
                 <th>Degats</th>
                 <th>Classe</th>
                 <th>Source</th>  
                 <th>Actions</th>
             </tr>`
+    }else{
+        path = cache.character.envoutements;
+        baseTableHTML = `<tr>
+                <th>Nom</th>
+                <th>Element</th>
+                <th>Type</th>	
+                <th>Cout</th>	
+                <th>Durée</th>	
+                <th>Effet</th>	
+                <th>Porter</th>	
+                <th>Defense</th>
+                <th>Dégats</th>	
+                <th>Classe</th>	
+                <th>Source</th>
+                <th>Actions</th>
+            </tr>`
+    }
     table.innerHTML = baseTableHTML;
-    let path = "";
-    table.id === "sorts-table" ? path = cache.character.sorts : path = cache.character.rituels;
     if(path.length > 0){
         path.forEach(obj => {
             let row = document.createElement("tr");

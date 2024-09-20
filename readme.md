@@ -6,7 +6,7 @@ L'absence de framework côté front s'explique par la nécessité d'être lancé
 
 Seul le système de sauvegarde des personnages est géré par l'API et la base de données. Tout le reste est en local
 
-Pour tous renseignement sur les compétences, equipements et objets de l'inventaire vous pouvez vous rendre sur le site : https://www.the-witcher-jdr.fr/
+Pour tous renseignements sur les compétences, equipements et objets de l'inventaire vous pouvez vous rendre sur le site : https://www.the-witcher-jdr.fr/
 
 ## Fonctionnement de l'app
 1. Le choix de la race et de la profession est déterminant, les bonus et malus sont appliqués automatiquement

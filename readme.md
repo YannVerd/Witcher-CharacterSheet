@@ -20,7 +20,7 @@ Pour tous renseignement sur les compétences, equipements et objets de l'inventa
     * Vous pouvez équiper une arme. qui apparaitre dans votre fiche (onglet fiche). Vous pouvez l'équiper en arme principale ou secondaire.
     * Les pièces d'armures sont équipables sur la tête, le torse, les bras et les jambes.
     * Les modifications que vous apporter sur les éléments équipés sont enregistrées également dans votre inventaire.
-    * La poids total est calculé automatiquement, est vous dira quand vous dépasserai votre valeur d'encombrement (qui donnera des malus bien évidemment)
+    * La poids total est calculé automatiquement et le dépassement de la valeur totale d'Encombrement colore la case encombrement actuel en rouge
 
 ## Création du personnage
 1. Choisir le race (les bonus / malus s'appliquent automatiquement)

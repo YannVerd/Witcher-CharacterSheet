@@ -9,13 +9,13 @@ Seul le système de sauvegarde des personnages est géré par l'API et la base d
 Pour tous renseignement sur les compétences, equipements et objets de l'inventaire vous pouvez vous rendre sur le site : https://www.the-witcher-jdr.fr/
 
 ## Création du personnage
-1. Choisir le race (les bonus / malus s'applique automatiquement)
+1. Choisir le race (les bonus / malus s'appliquent automatiquement)
 
 2. choisir la profession (idem)
 
-3. vous avez 40 points (ou 9d6 en relançant si un ou deux) à répartir dans vos caractéristique de base 
-    - les valeur initiale  (colonne gauche)  de vos caractériques. 
-        Elle ne peut pas être supérieur à 6 à la création (hors bonus)
+3. vous avez 40 points (ou 9d6 en relançant si un ou deux) à répartir dans vos caractéristiques de base 
+    - les valeurs initiales  (colonne gauche) de vos caractériques. 
+        Elles ne peuvent pas être supérieures à 6 à la création (hors bonus)
 
 4. Vous avez 44 points à répartir entre vos compétence exclusives (métier) et vos compétences connues (listées en dessous de votre 
     profession):

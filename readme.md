@@ -30,3 +30,5 @@ Pour tous renseignement sur les compétences, equipements et objets de l'inventa
 7. bien sur, il faut indiquer les autres informations dont je n'ai pas parlé (Nom, genre, etc...)
 
 Encore une fois, le site https://www.the-witcher-jdr.fr/ est tres complet. Vous pouvez tout regarder sauf les scénarios
+
+##v1.0

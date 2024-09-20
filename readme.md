@@ -27,8 +27,8 @@ Pour tous renseignement sur les compétences, equipements et objets de l'inventa
 
 2. choisir la profession (idem). Elle débloque une parite compétence exclusive qui permet d'indiquer le niveau de votre compétence exclusive ainsi que ses embranchements avec les évolutions
 
-3. vous avez 40 points (ou 9d6 en relançant si un ou deux) à répartir dans vos caractéristiques de base 
-    - les valeurs initiales  (colonne gauche) de vos caractériques. 
+3. vous avez 40 points (ou 9d6 en relançant si un ou deux) à répartir dans vos caractéristiques de base :
+    - Vous ne modifier que les valeurs initiales  (colonne gauche) de vos caractériques. 
         Elles ne peuvent pas être supérieures à 6 à la création (hors bonus)
 
 4. Vous avez 44 points à répartir entre vos compétence exclusives (métier) et vos compétences connues (listées en dessous de votre) 

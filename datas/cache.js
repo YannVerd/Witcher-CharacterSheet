@@ -166,16 +166,3 @@ const keysOfCache = {
     weapons: "weaponsEquipped",
     armors: "armorsEquipped"
 }
-
-const saveContext = {
-    LOCAL: "LOCAL",
-    API: "API",
-}
-
-const sources = {
-    base: "Base",
-    Toc: "Toc",
-    dlc: "DLC",
-    fan: "Fan Made"
-}
-

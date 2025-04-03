@@ -268,3 +268,65 @@ const domain = {
     prod :"192.168.1.62",
     dev: "localhost"
 }
+
+//#region Compendium filter
+    // Do not change the conjugation or spelling. Irregularities are there to correct the Compendium
+const saveContext = {
+    LOCAL: "LOCAL",
+    API: "API",
+}
+
+const sourcesCompendium = {
+    base: "Base",
+    Toc: "Toc",
+    dlc: "DLC",
+    fan: "Fan Made",
+    rodolf: "Rodolf",
+    paysan: "Paysan"
+}
+
+const weaponsCategories = {
+    tools: "Outils",
+    shortBlade: "Lame Courte",
+    sword: "Epées",
+    blunt: "Armes Contondantes",
+    axe: "Hache",
+    hast: "Armes d'hast",
+    throwing: "Amres de jet",
+    bow: "Arc",
+    crossBow: "Arbalètes",
+    projectile: "Projectiles",
+    stick: "Bâtons",
+    bomb: "Bombes",
+    trap: "Pièges"
+}
+
+const armorsLocalisation = {
+    head: "Tête",
+    torso: "Torse",
+    legs: "Jambes",
+    shield: "Boucliers"
+}
+
+const equipmentsCategorie = {
+    tool: "Outils",
+    general: "Général",
+    container: "Contenants",
+    food: "Nourritures",
+    clothing: "Vêtements",
+    service: "Services",
+    housing: "Logements",
+    frame: "Montures",
+    rune: "Runes",
+    glyph: "Glyphes",
+    magicObject: "Objets Magiques"
+}
+
+const potionsCType = {
+    potion: "Potions",
+    decoction: "Decoctions",
+    oil: "Huiles",
+    article: "Articles",
+    remedy: "Remède",
+}
+//#rendregion

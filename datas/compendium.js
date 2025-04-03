@@ -1,5 +1,5 @@
 const compendium = {
-    weapons: [
+    "weapons": [
         {
             "Nom": "Dague de pierre de sang",
             "Catégorie": "Lame courte",
@@ -2479,7 +2479,7 @@ const compendium = {
             "Craft": ""
           }
     ],
-    armors: [
+    "armors": [
       {
         "Nom": "Chaperon d'archet verdenien",
         "Catégorie": "Légères",
@@ -3504,7 +3504,7 @@ const compendium = {
         "Localisation": "Boucliers"
       }
     ],
-    equipments: [
+    "equipments": [
       {
         "Nom": "Nécessaire d’écriture",
         "Catégorie": "Outils",
@@ -5500,7 +5500,7 @@ const compendium = {
         "Description": ""
       }  
     ],
-    potions: [
+    "potions": [
       {
         "Nom": "Baiser",
         "Type": "Potions",

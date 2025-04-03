@@ -305,3 +305,27 @@ function eventInputExcluSkill(input, key, isBonus){
         localStorage.setItem(keys.storage, JSON.stringify(cache));
     })
 }
+
+const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere, source = sourcesCompendium.base) =>{
+    let list = [];
+    let keySearch = "";
+    const compendiumObject = JSON.parse(JSON.stringify(compendium))
+    switch(search){
+        case keysCompendium.armors:
+        case keysCompendium.equipments:
+        case keysCompendium.weapons:
+            keySearch = keysCompendiumSearch.categorie;
+            break;
+        case keysCompendium.potions:
+            keySearch = keysCompendiumSearch.potions;
+            break;    
+    }
+    compendiumObject[search].forEach(e => {
+        if(e.Source === source && e[keySearch] === categorie && e.Dispo === rarity ){
+            list.push(e);
+        }
+    })
+
+    return list
+}
+console.log(compendiumSearch(keysCompendium.weapons, weaponsCategories.shortBlade))

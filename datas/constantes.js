@@ -269,11 +269,33 @@ const domain = {
     dev: "localhost"
 }
 
-//#region Compendium filter
-    // Do not change the conjugation or spelling. Irregularities are there to correct the Compendium
+
 const saveContext = {
     LOCAL: "LOCAL",
     API: "API",
+}
+
+//#region Compendium filters
+    // Do not change the conjugation or spelling. Irregularities are there to correct the Compendium
+
+const keysCompendiumSearch = {
+    type: "Type",
+    categorie: "Catégorie"
+}
+
+const keysCompendium = {
+    weapons: "weapons",
+    armors: "armors",
+    equipments: "equipments",
+    potions: "potions"    
+}
+
+const rarityCompendium = {
+    everyWhere: "P",
+    common: "C",
+    unsual: "I",
+    rare: "R"
+
 }
 
 const sourcesCompendium = {

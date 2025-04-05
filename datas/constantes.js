@@ -307,7 +307,7 @@ const sourcesCompendium = {
     paysan: "Paysan"
 }
 
-const weaponsCategories = {
+const weaponsCategoriesCompendium = {
     tools: "Outils",
     shortBlade: "Lame courte",
     sword: "Epées",
@@ -323,14 +323,14 @@ const weaponsCategories = {
     trap: "Pièges"
 }
 
-const armorsLocalisation = {
+const armorsLocalisationCompendium = {
     head: "Tête",
     torso: "Torse",
     legs: "Jambes",
     shield: "Boucliers"
 }
 
-const equipmentsCategorie = {
+const equipmentsCategorieCompendium = {
     tool: "Outils",
     general: "Général",
     container: "Contenants",
@@ -344,7 +344,7 @@ const equipmentsCategorie = {
     magicObject: "Objets Magiques"
 }
 
-const potionsCType = {
+const potionsTypeCompendium = {
     potion: "Potions",
     decoction: "Decoctions",
     oil: "Huiles",

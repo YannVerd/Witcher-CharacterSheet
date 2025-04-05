@@ -309,9 +309,9 @@ const sourcesCompendium = {
 
 const weaponsCategories = {
     tools: "Outils",
-    shortBlade: "Lame Courte",
+    shortBlade: "Lame courte",
     sword: "Epées",
-    blunt: "Armes Contondantes",
+    blunt: "Armes contondantes",
     axe: "Hache",
     hast: "Armes d'hast",
     throwing: "Amres de jet",

@@ -328,4 +328,4 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
 
     return list
 }
-console.log(compendiumSearch(keysCompendium.weapons, weaponsCategories.shortBlade))
+console.log(compendiumSearch(keysCompendium.weapons, weaponsCategories.shortBlade, rarityCompendium.common))

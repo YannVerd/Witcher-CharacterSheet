@@ -287,7 +287,9 @@ const keysCompendium = {
     weapons: "weapons",
     armors: "armors",
     equipments: "equipments",
-    potions: "potions"    
+    potions: "potions",
+    substances: "substances" ,
+    components: "components" 
 }
 
 const rarityCompendium = {

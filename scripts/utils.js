@@ -325,7 +325,6 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
             list.push(e);
         }
     })
-
+    console.log(list)
     return list
 }
-console.log(compendiumSearch(keysCompendium.weapons, weaponsCategories.shortBlade, rarityCompendium.common))

@@ -6779,7 +6779,7 @@ const compendium = {
         "Nom": "Vitriol"
       }
     ],
-    "composants": [
+    "components": [
       {'Composant': 'Aconit', 'Substance': 'Vermillon'},
       {'Composant': 'Aloès du loup', 'Substance': 'Sol'},
       {'Composant': 'Bryone', 'Substance': 'Caelum'},

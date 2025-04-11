@@ -4,7 +4,9 @@ Il s'agit d'une application simplifiée pour un usage privée entre amis. Elle f
 
 L'absence de framework côté front s'explique par la nécessité d'être lancé sans ligne de commande ou une installation. Pour lancer "l'application", il suffit de double-cliquer sur le fichier Character.html, ce qui lance un navigateur.
 
-Seul le système de sauvegarde des personnages est géré par l'API et la base de données. Tout le reste est en local
+Il existe deux systèmes de sauvegarde des personnages : 
+    - Un avec une API et Base de Données (uniquement sur serveur privé).
+    - L'autre en local qui nécessite de conserver le fichier json généré par l'appli avec le bouton 'Suavegarde Locale'. Pour récupérer cette sauvegarde, il suffit de lire le    fichier dans la page "Choix Personnage".
 
 Pour tous renseignements sur les compétences, equipements et objets de l'inventaire vous pouvez vous rendre sur le site : https://www.the-witcher-jdr.fr/
 

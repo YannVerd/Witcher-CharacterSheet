@@ -338,7 +338,7 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
             keySearch = keysCompendiumSearch.categorie;
             break;
         case keysCompendium.potions:
-            keySearch = keysCompendiumSearch.potions;
+            keySearch = keysCompendiumSearch.type;
             break;    
     }
     compendiumObject[search].forEach(e => {

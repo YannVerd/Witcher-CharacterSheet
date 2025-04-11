@@ -135,6 +135,22 @@
                 </tr>
             </table>
         </section>
+        <section class="infos-container">
+            <div class="titleDiv">
+                <h2>Potions</h2>
+                <button class="fantasy-btn-sm" onclick="addRow('potions')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.potions)">Compendium</button>
+            </div>
+            <table id="potions-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Poids Unité</th>
+                    <th>Poids total</th>
+                    <th>Effets</th>
+                </tr>
+            </table>
+        </section>
         
         <section class="infos-container">
             <div class="titleDiv">
@@ -169,6 +185,21 @@
                     <th>Couts</th>
                     <th>Substance</th>
                     <th>Actions</th>
+                </tr>
+            </table>
+        </section>
+        <section class="infos-container">
+            <div class="titleDiv">
+                <h2>Substance</h2>
+                <button class="fantasy-btn-sm" onclick="addRow('potions')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.subtances)">Compendium</button>
+            </div>
+            <table id="subtsances-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Poids Unité</th>
+                    <th>Poids total</th>
                 </tr>
             </table>
         </section>
@@ -228,10 +259,10 @@
                 selectOptionsManagment(potionsTypeCompendium, categorieSelect)
                 break;
             case keysCompendium.subtances:
-
+                // another system
                 break;
             case keysCompendium.components:
-
+                
                 break;
         }
 

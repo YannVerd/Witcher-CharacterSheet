@@ -306,6 +306,27 @@ function eventInputExcluSkill(input, key, isBonus){
     })
 }
 
+function showToast(message, state = toastStates.default, duration = 3000) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    if(state !== toast.default)
+        toast.style.backgroundColor = state
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 500); // attendre l'effet de transition
+    }, duration);
+  }
+
+  const toastStates = {
+    default: "default",
+    warn: "orange",
+    error: "red"
+  }
+
 const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere, source = sourcesCompendium.base) =>{
     let list = [];
     let keySearch = "";

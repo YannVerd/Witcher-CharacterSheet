@@ -346,6 +346,6 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
             list.push(e);
         }
     })
-    console.log(list)
+    console.log("compendium result :" ,list)
     return list
 }

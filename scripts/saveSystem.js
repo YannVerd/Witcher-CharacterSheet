@@ -65,7 +65,7 @@ const loadLocalyCharacter = () => {
         }
         reader.readAsText(fileInput);
     } else {
-        alert("Veuillez sélectionner un fichier")
+        showToast("Veuillez Sélectionner un fichier")
     }
 }
 

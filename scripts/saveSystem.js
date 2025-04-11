@@ -40,6 +40,9 @@ function saveCharacter(){
         }
         alert(res.message)
     })
+    .catch(()=>{
+        showToast('Connexion au serveur impossible')
+    })
 }
 
 const saveLocalyCharacter = () => {

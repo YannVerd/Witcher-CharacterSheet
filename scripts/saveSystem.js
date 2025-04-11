@@ -41,7 +41,7 @@ function saveCharacter(){
         alert(res.message)
     })
     .catch(()=>{
-        showToast('Connexion au serveur impossible')
+        showToast('Connexion au serveur impossible', toastStates.warn)
     })
 }
 

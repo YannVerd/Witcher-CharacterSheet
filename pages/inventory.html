@@ -262,13 +262,30 @@
                 // another system
                 break;
             case keysCompendium.components:
-                
                 break;
         }
 
         compendiumFilters.forEach(s => {
             s.addEventListener('change', (e)=>{
                 searchList = compendiumSearch(type, categorieSelect.value, raritySelect.value, sourceSelect.value)
+                const mappedList = searchList.map( o => mapperCompendiumToInventory(type, o))
+                mappedList.forEach( e => {
+                    const row = document.createElement('tr')
+                    for( key in e){
+                        const td = document.createElement('td')
+                        td.innerText = e[key];
+                        row.appendChild(td);
+                    }
+                    const cell = document.createElement("td");
+                    const button = document.createElement("button");
+                    cell.appendChild(button);
+                    row.appendChild(cell);
+                    button.innerText = "Ajouter";
+                    button.addEventListener('click', ()=>{
+                        cache.inventory[type].push(e)
+                    })
+                    compendiumTable(row)
+                })
             })
         })
         

@@ -349,3 +349,21 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
     console.log("compendium result :" ,list)
     return list
 }
+
+const mapperCompendiumToInventory = ( type , object) => {
+    switch(type){
+        case keysCompendium.weapons :
+            return new Weapon(object.Nom, object.Poids, object.Type, object["pré"], object["Dégats"], object.Fia, object.mains, object["Portée"], object.Effet, object.Taille, object.AM, true);
+        case keysCompendium.armors :
+            return new Armor(object.Nom, object.Poids, object.Localisation, object.PA, 0, object.Effet, object.VE, true)
+        case keysCompendium.potions :
+
+            break; 
+        case keysCompendium.equipments :
+
+            break;
+        case keysCompendium.substances :
+
+            break;
+    }
+}

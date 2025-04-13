@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche de Personnage - The Witcher</title>
     <link href="../styles/styles.css" rel="stylesheet">
-    <script src="../datas/cache.js"></script>
-    <script src="../datas/constantes.js"></script>
-    <script src="../scripts/saveSystem.js"></script>
-    <script src="../class/Equipment.js"></script>
-    <script src="../class/Weapon.js"></script>
-    <script src="../class/Armor.js"></script>
-    <script src="../class/Misc.js"></script>
-    <script src="../class/Component.js"></script>
-    <script src="../scripts/utils.js"></script>
-    <script src="../scripts/main.js" defer></script>
+    <script src="../datas/cache.js" type="text/javascript"></script>
+    <script src="../datas/compendium.js" type="text/javascript" fetchpriority="high"></script>
+    <script src="../datas/constantes.js" type="text/javascript"></script>
+    <script src="../scripts/saveSystem.js" type="text/javascript"></script>
+    <script src="../class/Equipment.js" type="text/javascript"></script>
+    <script src="../class/Weapon.js" type="text/javascript"></script>
+    <script src="../class/Armor.js" type="text/javascript"></script>
+    <script src="../class/Misc.js" type="text/javascript"></script>
+    <script src="../class/Component.js" type="text/javascript"></script>
+    <script src="../scripts/utils.js" type="text/javascript"></script>
+    <script src="../scripts/main.js" type="text/javascript" defer></script>
     <link rel="icon" type="image/x-icon" href="../pictures/logo.png">
 </head>
 <style>
@@ -31,7 +32,30 @@
         width: 100vw;
         text-align: center;
     }
- 
+    /* Fond de la modale */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vh; height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Contenu de la modale */
+    .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      min-width: 300px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .modal button {
+      margin-top: 1rem;
+    }
     
 </style>
 <body>
@@ -47,12 +71,30 @@
         <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="window.location.href='./saves.html'">Choix du Personnage</button>
         <button class="fantasy-btn-sm fantasy-bone-n-coper" onclick="saveCharacter()">Sauvegarder personnage</button>
     </nav>
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <h2> Compendium</h2>
+            <div style="display: flex; justify-content:left;">
+                <label>Catégorie</label> 
+                <select id="categorie-select"></select>
+                <label>Rareté</label>
+                <select id="rarity-select"></select>
+                <label>Source</label>
+                <select id="source-select"></select>
+            </div>
+          <table id="compendium-table">
+
+          </table>
+          <button class="fantasy-btn-sm" id="closeModalBtn" onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
     <div class="infos-container container">
         <h1>Inventaire et Composants</h1>
         <section class="infos-container"></section>
             <div class="titleDiv">
                 <h2>Armes</h2> 
                 <button class="fantasy-btn-sm" onclick="addRow('weapon')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.weapons)">Compendium</button>
             </div>
             <table id="weapons-table">
                 <tr>
@@ -77,6 +119,7 @@
             <div class="titleDiv">
                 <h2>Armures</h2>
                 <button class="fantasy-btn-sm" onclick="addRow('armor')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.armors)">Compendium</button>
             </div>
             <table id="armors-table">
                 <tr>
@@ -92,11 +135,28 @@
                 </tr>
             </table>
         </section>
+        <section class="infos-container">
+            <div class="titleDiv">
+                <h2>Potions</h2>
+                <button class="fantasy-btn-sm" onclick="addRow('potions')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.potions)">Compendium</button>
+            </div>
+            <table id="potions-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Poids Unité</th>
+                    <th>Poids total</th>
+                    <th>Effets</th>
+                </tr>
+            </table>
+        </section>
         
         <section class="infos-container">
             <div class="titleDiv">
                 <h2>Divers</h2>
                 <button class="fantasy-btn-sm" onclick="addRow('miscellaneous')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.equipment)">Compendium</button>
             </div>
             <table id="miscellaneous-table">
                 <tr>
@@ -114,6 +174,7 @@
             <div class="titleDiv">
                 <h2>Composants</h2>
                 <button class="fantasy-btn-sm" onclick="addRow('component')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.components)">Compendium</button>
             </div>
             <table id="components-table">
                 <tr>
@@ -127,6 +188,21 @@
                 </tr>
             </table>
         </section>
+        <section class="infos-container">
+            <div class="titleDiv">
+                <h2>Substance</h2>
+                <button class="fantasy-btn-sm" onclick="addRow('potions')">Ajouter</button>
+                <button class="fantasy-btn-sm" onclick="openModal(keysCompendium.subtances)">Compendium</button>
+            </div>
+            <table id="subtsances-table">
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Poids Unité</th>
+                    <th>Poids total</th>
+                </tr>
+            </table>
+        </section>
     </div>
 
 </body>
@@ -134,6 +210,98 @@
     // let weightInputList = ""; 
     // let weightTt = 0; // total of character weigth (centralised on this page)
     let cache = loadCache();
+
+    /*===== Modal Managment=====*/
+    const modalOverlay = document.getElementById("modalOverlay");
+    const openModal = (type) => {
+        modalOverlay.style.display = 'flex';
+        const compendiumTable = document.getElementById('compendium-table');
+        const categorieSelect = document.getElementById('categorie-select')
+        const raritySelect = document.getElementById('rarity-select');
+        const sourceSelect = document.getElementById('source-select');
+        const compendiumFilters = [categorieSelect, raritySelect, sourceSelect];
+
+        const compendiumParse = JSON.parse(JSON.stringify(compendium));
+        compendiumTable.innerHTML = "";
+        categorieSelect.innerHTML = "";
+        raritySelect.innerHTML = "";
+        sourceSelect.innerHTML = "";
+        let searchList = [];
+        
+        const selectOptionsManagment = (listOptions, select) => {
+            for (key in listOptions){
+                const option = document.createElement('option')
+                option.value = listOptions[key];
+                option.text = listOptions[key];
+                select.add(option)
+            }
+        }
+
+        const displayFilteredList = (result) =>{
+            addRow(type)
+        }   
+        // selects managment
+        selectOptionsManagment(rarityCompendium, raritySelect);
+        selectOptionsManagment(sourcesCompendium, sourceSelect)
+
+        //categorie select options managment
+        switch(type){
+            case keysCompendium.weapons:
+                selectOptionsManagment(weaponsCategoriesCompendium, categorieSelect)
+                break;
+            case keysCompendium.armors:
+                selectOptionsManagment(armorsLocalisationCompendium, categorieSelect)
+                break;
+            case keysCompendium.equipment:
+                selectOptionsManagment(equipmentsCategorieCompendium, categorieSelect)
+                break;
+            case keysCompendium.potions:
+                selectOptionsManagment(potionsTypeCompendium, categorieSelect)
+                break;
+            case keysCompendium.subtances:
+                // another system
+                break;
+            case keysCompendium.components:
+                break;
+        }
+
+        compendiumFilters.forEach(s => {
+            s.addEventListener('change', (e)=>{
+                compendiumTable.innerHTML = "";
+                searchList = compendiumSearch(type, categorieSelect.value, raritySelect.value, sourceSelect.value)
+                const mappedList = searchList.map( o => mapperCompendiumToInventory(type, o))
+                mappedList.forEach( e => {
+                    const row = document.createElement('tr')
+                    for( key in e){
+                        const td = document.createElement('td')
+                        td.innerText = e[key];
+                        row.appendChild(td);
+                    }
+                    const cell = document.createElement("td");
+                    const button = document.createElement("button");
+                    cell.appendChild(button);
+                    row.appendChild(cell);
+                    button.innerText = "Ajouter";
+                    button.addEventListener('click', ()=>{
+                        cache.character.inventory[type].push(e)
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
+                    })
+                    compendiumTable.appendChild(row)
+                })
+            })
+        })
+        
+
+    }
+
+
+
+    const closeModal = () => {
+        modalOverlay.style.display = 'none';
+        location.reload();
+    }
+
+    /*====== End Modal Managment===*/
     const weaponsRowBase = `
             <td><input type="text" size="10"></td> 
             <td><input type="text" size="10"></td>

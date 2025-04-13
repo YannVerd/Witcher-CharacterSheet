@@ -326,3 +326,44 @@ function showToast(message, state = toastStates.default, duration = 3000) {
     warn: "orange",
     error: "red"
   }
+
+const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere, source = sourcesCompendium.base) =>{
+    let list = [];
+    let keySearch = "";
+    const compendiumObject = JSON.parse(JSON.stringify(compendium))
+    switch(search){
+        case keysCompendium.armors:
+        case keysCompendium.equipments:
+        case keysCompendium.weapons:
+            keySearch = keysCompendiumSearch.categorie;
+            break;
+        case keysCompendium.potions:
+            keySearch = keysCompendiumSearch.type;
+            break;    
+    }
+    compendiumObject[search].forEach(e => {
+        if(e.Source === source && e[keySearch] === categorie && e.Dispo === rarity ){
+            list.push(e);
+        }
+    })
+    console.log("compendium result :" ,list)
+    return list
+}
+
+const mapperCompendiumToInventory = ( type , object) => {
+    switch(type){
+        case keysCompendium.weapons :
+            return new Weapon(object.Nom, object.Poids, object.Type, object["pré"], object["Dégats"], object.Fia, object.mains, object["Portée"], object.Effet, object.Taille, object.AM, true);
+        case keysCompendium.armors :
+            return new Armor(object.Nom, object.Poids, object.Localisation, object.PA, 0, object.Effet, object.VE, true)
+        case keysCompendium.potions :
+
+            break; 
+        case keysCompendium.equipments :
+
+            break;
+        case keysCompendium.substances :
+
+            break;
+    }
+}

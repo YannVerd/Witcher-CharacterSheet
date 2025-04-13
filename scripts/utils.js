@@ -333,6 +333,8 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
     const compendiumObject = JSON.parse(JSON.stringify(compendium))
     switch(search){
         case keysCompendium.armors:
+            keySearch = keysCompendiumSearch.locate;
+            break;
         case keysCompendium.equipments:
         case keysCompendium.weapons:
             keySearch = keysCompendiumSearch.categorie;

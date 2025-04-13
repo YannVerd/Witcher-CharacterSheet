@@ -280,7 +280,8 @@ const saveContext = {
 
 const keysCompendiumSearch = {
     type: "Type",
-    categorie: "Catégorie"
+    categorie: "Catégorie",
+    locate: "Localisation",
 }
 
 const keysCompendium = {

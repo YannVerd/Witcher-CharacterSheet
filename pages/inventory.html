@@ -267,6 +267,7 @@
 
         compendiumFilters.forEach(s => {
             s.addEventListener('change', (e)=>{
+                compendiumTable.innerHTML = "";
                 searchList = compendiumSearch(type, categorieSelect.value, raritySelect.value, sourceSelect.value)
                 const mappedList = searchList.map( o => mapperCompendiumToInventory(type, o))
                 mappedList.forEach( e => {
@@ -282,9 +283,10 @@
                     row.appendChild(cell);
                     button.innerText = "Ajouter";
                     button.addEventListener('click', ()=>{
-                        cache.inventory[type].push(e)
+                        cache.character.inventory[type].push(e)
+                        localStorage.setItem(keys.storage, JSON.stringify(cache))
                     })
-                    compendiumTable(row)
+                    compendiumTable.appendChild(row)
                 })
             })
         })
@@ -296,6 +298,7 @@
 
     const closeModal = () => {
         modalOverlay.style.display = 'none';
+        location.reload();
     }
 
     /*====== End Modal Managment===*/

@@ -305,3 +305,67 @@ function eventInputExcluSkill(input, key, isBonus){
         localStorage.setItem(keys.storage, JSON.stringify(cache));
     })
 }
+
+function showToast(message, state = toastStates.default, duration = 3000) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    if(state !== toast.default)
+        toast.style.backgroundColor = state
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 500); // attendre l'effet de transition
+    }, duration);
+  }
+
+  const toastStates = {
+    default: "default",
+    warn: "orange",
+    error: "red"
+  }
+
+const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere, source = sourcesCompendium.base) =>{
+    let list = [];
+    let keySearch = "";
+    const compendiumObject = JSON.parse(JSON.stringify(compendium))
+    switch(search){
+        case keysCompendium.armors:
+            keySearch = keysCompendiumSearch.locate;
+            break;
+        case keysCompendium.equipments:
+        case keysCompendium.weapons:
+            keySearch = keysCompendiumSearch.categorie;
+            break;
+        case keysCompendium.potions:
+            keySearch = keysCompendiumSearch.type;
+            break;    
+    }
+    compendiumObject[search].forEach(e => {
+        if(e.Source === source && e[keySearch] === categorie && e.Dispo === rarity ){
+            list.push(e);
+        }
+    })
+    console.log("compendium result :" ,list)
+    return list
+}
+
+const mapperCompendiumToInventory = ( type , object) => {
+    switch(type){
+        case keysCompendium.weapons :
+            return new Weapon(object.Nom, object.Poids, object.Type, object["pré"], object["Dégats"], object.Fia, object.mains, object["Portée"], object.Effet, object.Taille, object.AM, true);
+        case keysCompendium.armors :
+            return new Armor(object.Nom, object.Poids, object.Localisation, object.PA, 0, object.Effet, object.VE, true)
+        case keysCompendium.potions :
+
+            break; 
+        case keysCompendium.equipments :
+
+            break;
+        case keysCompendium.substances :
+
+            break;
+    }
+}

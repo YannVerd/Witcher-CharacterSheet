@@ -1,10 +1,12 @@
 # Feuille de personnage pour le jeu de role papier The witcher
 ## Explications
-Il s'agit d'une application simplifiée pour un usage privée entre amis. Elle foncitonne avec un server nodejs/express (API) et une bdd nosql mongodb sur serveur privé
+Il s'agit d'une application simplifiée pour un usage privée entre amis. Elle fonctionne avec un server nodejs/express (API) et une bdd nosql mongodb sur serveur privé
 
 L'absence de framework côté front s'explique par la nécessité d'être lancé sans ligne de commande ou une installation. Pour lancer "l'application", il suffit de double-cliquer sur le fichier Character.html, ce qui lance un navigateur.
 
-Seul le système de sauvegarde des personnages est géré par l'API et la base de données. Tout le reste est en local
+Il existe deux systèmes de sauvegarde des personnages : 
+    - Un avec une API et Base de Données (uniquement sur serveur privé).
+    - L'autre en local qui nécessite de conserver le fichier json généré par l'appli avec le bouton 'Suavegarde Locale'. Pour récupérer cette sauvegarde, il suffit de lire le    fichier dans la page "Choix Personnage".
 
 Pour tous renseignements sur les compétences, equipements et objets de l'inventaire vous pouvez vous rendre sur le site : https://www.the-witcher-jdr.fr/
 
@@ -31,7 +33,7 @@ Pour tous renseignements sur les compétences, equipements et objets de l'invent
     - Vous ne modifier que les valeurs initiales  (colonne gauche) de vos caractériques. 
         Elles ne peuvent pas être supérieures à 6 à la création (hors bonus)
 
-4. Vous avez 44 points à répartir entre vos compétence exclusives (métier) et vos compétences connues (listées en dessous de votre) 
+4. Vous avez 44 points à répartir entre vos compétence exclusives (métier) et vos compétences connues (listées en dessous de votre
     profession):
     - Sachant que chacunes doivent avoir au minimum 1 points (sauf les evolutions de la compétence exclusive)
     - les compétences avec un (2) coûtent 2 points

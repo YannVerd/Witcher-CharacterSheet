@@ -268,3 +268,90 @@ const domain = {
     prod :"192.168.1.62",
     dev: "localhost"
 }
+
+
+const saveContext = {
+    LOCAL: "LOCAL",
+    API: "API",
+}
+
+//#region Compendium filters
+    // Do not change the conjugation or spelling. Irregularities are there to correct the Compendium
+
+const keysCompendiumSearch = {
+    type: "Type",
+    categorie: "Catégorie",
+    locate: "Localisation",
+}
+
+const keysCompendium = {
+    weapons: "weapons",
+    armors: "armors",
+    equipments: "equipments",
+    potions: "potions",
+    substances: "substances" ,
+    components: "components" 
+}
+
+const rarityCompendium = {
+    everyWhere: "P",
+    common: "C",
+    unsual: "I",
+    rare: "R"
+
+}
+
+const sourcesCompendium = {
+    base: "Base",
+    Toc: "Toc",
+    dlc: "DLC",
+    fan: "Fan Made",
+    rodolf: "Rodolf",
+    paysan: "Paysan"
+}
+
+const weaponsCategoriesCompendium = {
+    tools: "Outils",
+    shortBlade: "Lame courte",
+    sword: "Epées",
+    blunt: "Armes contondantes",
+    axe: "Hache",
+    hast: "Armes d'hast",
+    throwing: "Amres de jet",
+    bow: "Arc",
+    crossBow: "Arbalètes",
+    projectile: "Projectiles",
+    stick: "Bâtons",
+    bomb: "Bombes",
+    trap: "Pièges"
+}
+
+const armorsLocalisationCompendium = {
+    head: "Tête",
+    torso: "Torse",
+    legs: "Jambes",
+    shield: "Boucliers"
+}
+
+const equipmentsCategorieCompendium = {
+    tool: "Outils",
+    general: "Général",
+    container: "Contenants",
+    food: "Nourritures",
+    clothing: "Vêtements",
+    service: "Services",
+    housing: "Logements",
+    frame: "Montures",
+    rune: "Runes",
+    glyph: "Glyphes",
+    magicObject: "Objets Magiques"
+}
+
+const potionsTypeCompendium = {
+    potion: "Potions",
+    decoction: "Decoctions",
+    oil: "Huiles",
+    article: "Articles",
+    remedy: "Remède",
+}
+//#rendregion

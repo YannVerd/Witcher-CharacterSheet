@@ -332,8 +332,10 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
     let keySearch = "";
     const compendiumObject = JSON.parse(JSON.stringify(compendium))
     switch(search){
+        case keysCompendium.components:
+            break;
         case keysCompendium.armors:
-        case keysCompendium.equipments:
+        case keysCompendium.equipments:     
         case keysCompendium.weapons:
             keySearch = keysCompendiumSearch.categorie;
             break;
@@ -341,10 +343,16 @@ const compendiumSearch =(search, categorie, rarity = rarityCompendium.everyWhere
             keySearch = keysCompendiumSearch.type;
             break;    
     }
+    console.log(search)
     compendiumObject[search].forEach(e => {
-        if(e.Source === source && e[keySearch] === categorie && e.Dispo === rarity ){
+        if(search !== keysCompendium.components){
+            if(e.Source === source && e[keySearch] === categorie && e.Dispo === rarity ){
+                list.push(e);
+            }
+        } else {
             list.push(e);
         }
+        
     })
     console.log("compendium result :" ,list)
     return list
@@ -357,13 +365,13 @@ const mapperCompendiumToInventory = ( type , object) => {
         case keysCompendium.armors :
             return new Armor(object.Nom, object.Poids, object.Localisation, object.PA, 0, object.Effet, object.VE, true)
         case keysCompendium.potions :
-
-            break; 
+            return new Potion(object.Nom, object["Catégorie"], object.Effet, object["Durée"], object.Toxi, 1, 1, object.Prix); 
         case keysCompendium.equipments :
-
-            break;
+            return new Misc(object.Nom, object["Catégorie"], object.Effet, object.Poids, 1, object.Prix)
+        case keysCompendium.components:
+            return new Component(object.Nom, object.Substance)
         case keysCompendium.substances :
-
+            // other system
             break;
     }
 }

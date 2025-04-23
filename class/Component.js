@@ -1,9 +1,9 @@
 class Component extends Equipment{
-    constructor(name, weight = 1, quantity = 1, substances, cost){
+    constructor(name, substance, cost = 1, weight = 1, quantity = 1){
         super(name, weight);
         this.weightTt = quantity * weight;
         this.quantity = quantity;
-        this.substances = substances;
+        this.substance = substance;
         this.cost = cost;
     }
 }
